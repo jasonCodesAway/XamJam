@@ -58,7 +58,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
-      <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <PlatformTarget>ARM</PlatformTarget>
@@ -109,10 +109,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen\CrossXamJam.Screen.cs">
-      <Link>CrossXamJam.Screen.cs</Link>
-    </Compile>
-    <Compile Include="XamJam.ScreenImplementation.cs" />
+    <Compile Include="ScreenImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Plugin.XamJam.Screen.UWP.rd.xml" />
   </ItemGroup>

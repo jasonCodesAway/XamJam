@@ -99,7 +99,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
-      <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
@@ -109,10 +109,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen\CrossXamJam.Screen.cs">
-      <Link>CrossXamJam.Screen.cs</Link>
-    </Compile>
-    <Compile Include="XamJam.ScreenImplementation.cs" />
+    <Compile Include="ScreenImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

@@ -45,10 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen\CrossXamJam.Screen.cs">
-      <Link>CrossXamJam.Screen.cs</Link>
-    </Compile>
-    <Compile Include="XamJam.ScreenImplementation.cs" />
+    <Compile Include="ScreenImplementation.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
