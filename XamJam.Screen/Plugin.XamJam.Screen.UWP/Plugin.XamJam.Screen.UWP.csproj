@@ -109,6 +109,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrossScreen.cs" />
     <Compile Include="ScreenImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Plugin.XamJam.Screen.UWP.rd.xml" />

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>Xam.Plugins.XamJam.Screen</id>
-       <version>0.0.1</version>
+       <version>1.0.3-alpha</version>
        <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
        <authors>Jason C. HandUber</authors>
        <owners>Jason C. HandUber</owners>
@@ -38,14 +38,12 @@
      <!--Xamarin.iOS-->
      <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.dll" />
      <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.pdb" target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.pdb" />
      <file src="Plugin.XamJam.Screen.iOS\bin\iPhone\Release\Plugin.XamJam.Screen.dll" target="lib\MonoTouch10\Plugin.XamJam.Screen.dll" />
      <file src="Plugin.XamJam.Screen.iOS\bin\iPhone\Release\Plugin.XamJam.Screen.xml" target="lib\MonoTouch10\Plugin.XamJam.Screen.xml" />
  
      <!--Xamarin.iOS Unified
      <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.Abstractions.dll" />
      <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.pdb" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.Abstractions.pdb" />
      <file src="Plugin.XamJam.Screen.iOSUnified\bin\iPhone\Release\Plugin.XamJam.Screen.dll" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.dll" />
      <file src="Plugin.XamJam.Screen.iOSUnified\bin\iPhone\Release\Plugin.XamJam.Screen.xml" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.xml" />
 	 -->
