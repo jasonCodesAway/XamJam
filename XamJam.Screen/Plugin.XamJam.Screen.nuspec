@@ -18,10 +18,10 @@
     </summary>
     <tags>xamarin, xamarin.forms, android, ios, windows phone, screen size</tags>
     <releaseNotes>
-      [1.0.0-beta]
-      - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
-      [1.0.1-beta]
-      - Minor code and documentation cleanup.
+[1.0.0-beta]
+  - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
+[1.0.1-beta]
+  - Minor code and documentation cleanup.
     </releaseNotes>
   </metadata>
   <files>
