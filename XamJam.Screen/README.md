@@ -1,4 +1,4 @@
-## ![](phoneSize.png)Xamarin-compatible cross-platform way to determine screen size. 
+## ![](phoneSize.png) Xamarin-compatible cross-platform screen size getter. 
 
 _Note_: Your application isn't guaranteed to be full screen, so this is the maximum screen size you can hope for, not necessarily the current screen size available to your app.
 
