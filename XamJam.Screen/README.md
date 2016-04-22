@@ -1,6 +1,6 @@
 Cross-platform way to determine the screen size. 
 
-_Note_: Your application isn't guaranteed to be full screen, so this is the maximum screen size you can hope for, not the current screen size available to your app.
+_Note_: Your application isn't guaranteed to be full screen, so this is the maximum screen size you can hope for, not necessarily the current screen size available to your app.
 
 #### Setup
 * Available on [NuGet Xam.Plugins.XamJam.Screen](https://www.nuget.org/packages/Xam.Plugins.XamJam.Screen)
