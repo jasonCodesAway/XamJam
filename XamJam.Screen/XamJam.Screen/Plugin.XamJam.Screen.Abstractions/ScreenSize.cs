@@ -11,10 +11,21 @@ namespace Plugin.XamJam.Screen.Abstractions
     /// </summary>
     public struct ScreenSize
     {
+        /// <summary>
+        /// Screen width
+        /// </summary>
         public double Width { get; }
 
+        /// <summary>
+        /// Screen height
+        /// </summary>
         public double Height { get; }
 
+        /// <summary>
+        /// Creates a new ScreenSize struct
+        /// </summary>
+        /// <param name="width">the screen's width</param>
+        /// <param name="height">the screen's height</param>
         public ScreenSize(double width, double height)
         {
             Width = width;

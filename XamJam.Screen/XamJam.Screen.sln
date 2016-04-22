@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.Screen.Window
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.Screen.UWP", "XamJam.Screen\Plugin.XamJam.Screen.UWP\Plugin.XamJam.Screen.UWP.csproj", "{E34B516D-C0D8-450F-9DB0-BB6A5B04AEF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF6EDEE5-D52D-4F7C-92EC-AC3ACB8363EC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\phoneSize.png = ..\..\..\Desktop\phoneSize.png
+		Plugin.XamJam.Screen.nuspec = Plugin.XamJam.Screen.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU

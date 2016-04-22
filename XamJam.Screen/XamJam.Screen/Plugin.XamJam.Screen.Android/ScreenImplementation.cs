@@ -10,8 +10,14 @@ namespace Plugin.XamJam.Screen
     /// </summary>
     public class ScreenImplementation : Abstractions.Screen
     {
+        /// <summary>
+        /// See <see cref="Abstractions.Screen"/>
+        /// </summary>
         public ScreenSize Size { get; }
 
+        /// <summary>
+        /// Sets the screen's size
+        /// </summary>
         public ScreenImplementation()
         {
             var displayMetrics = Resources.System.DisplayMetrics;
