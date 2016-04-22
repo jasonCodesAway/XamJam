@@ -1,1 +1,0 @@
-nuget pack Plugin.XamJam.Screen.nuspec
