@@ -1,3 +1,3 @@
 del ..\..\LocalNuget\Xam.Plugins.XamJam.Screen.*.nupkg
-nuget pack Plugin.XamJam.Screen.nuspec
+call pack
 move /Y Xam.Plugins.XamJam.Screen.*.nupkg ..\..\LocalNuget

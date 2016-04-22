@@ -1,7 +1,5 @@
 using Plugin.XamJam.Screen.Abstractions;
-using System;
 using Windows.UI.Xaml;
-
 
 namespace Plugin.XamJam.Screen
 {

@@ -87,8 +87,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrossScreen.cs" />
-    <Compile Include="ScreenImplementation.cs" />
+    <Compile Include="..\Plugin.XamJam.Screen.WindowsStore\ScreenImplementation.cs">
+      <Link>ScreenImplementation.cs</Link>
+    </Compile>
+    <Compile Include="..\Plugin.XamJam.Screen\CrossScreen.cs">
+      <Link>CrossScreen.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

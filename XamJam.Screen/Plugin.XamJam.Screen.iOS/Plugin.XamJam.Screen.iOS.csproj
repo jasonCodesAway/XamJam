@@ -35,7 +35,9 @@
     <DocumentationFile>bin\iPhone\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CrossScreen.cs" />
+    <Compile Include="..\Plugin.XamJam.Screen\CrossScreen.cs">
+      <Link>CrossScreen.cs</Link>
+    </Compile>
     <Compile Include="ScreenImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>Xam.Plugins.XamJam.Screen</id>
-       <version>1.0.3-alpha</version>
+       <version>1.0.0-beta</version>
        <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
        <authors>Jason C. HandUber</authors>
        <owners>Jason C. HandUber</owners>
@@ -17,6 +17,10 @@
          Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to determine screen size
        </summary>
        <tags>xamarin, xamarin.forms, android, ios, windows phone, screen size</tags>
+     <releaseNotes>
+       [1.0.0-beta]
+       - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
+     </releaseNotes>
    </metadata>
    <files>
      <!--Core-->

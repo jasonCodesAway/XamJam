@@ -1,0 +1,1 @@
+nuget push Xam.Plugins.XamJam.Screen.*.nupkg
