@@ -1,17 +1,18 @@
-﻿using Plugin.XamJam.Screen.Abstractions;
-using System;
+﻿using System;
+using System.Threading;
 
 namespace Plugin.XamJam.Screen
 {
     /// <summary>
-    /// Cross platform XamJam.CrossScreen implemenations
+    ///     Cross platform XamJam.CrossScreen implemenations
     /// </summary>
     public class CrossScreen
     {
-        private static readonly Lazy<Abstractions.Screen> Implementation = new Lazy<Abstractions.Screen>(CreateScreen, System.Threading.LazyThreadSafetyMode.PublicationOnly);
+        private static readonly Lazy<Abstractions.Screen> Implementation = new Lazy<Abstractions.Screen>(CreateScreen,
+            LazyThreadSafetyMode.PublicationOnly);
 
         /// <summary>
-        /// Current settings to use
+        ///     Current settings to use
         /// </summary>
         public static Abstractions.Screen Current
         {
@@ -37,7 +38,9 @@ namespace Plugin.XamJam.Screen
 
         internal static Exception NotImplementedInReferenceAssembly()
         {
-            return new NotImplementedException("Please add a reference to 'Xam.Plugins.XamJam.Screen' to your startup project (e.g. Droid, iOS, WP, UWP, etc.).");
+            return
+                new NotImplementedException(
+                    "Please add a reference to 'Xam.Plugins.XamJam.Screen' to your startup project (e.g. Droid, iOS, WP, UWP, etc.).");
         }
     }
 }

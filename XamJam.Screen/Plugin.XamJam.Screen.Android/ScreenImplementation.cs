@@ -1,5 +1,4 @@
 using Plugin.XamJam.Screen.Abstractions;
-using System;
 using Android.Content.Res;
 
 

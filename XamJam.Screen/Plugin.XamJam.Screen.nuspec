@@ -1,88 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-   <metadata minClientVersion="2.8.1">
-       <id>Xam.Plugins.XamJam.Screen</id>
-       <version>1.0.0-beta</version>
-       <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
-       <authors>Jason C. HandUber</authors>
-       <owners>Jason C. HandUber</owners>
-       <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-       <projectUrl>https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.Screen</projectUrl>
-       <iconUrl>https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.Scree/phoneSize.png</iconUrl>
-       <requireLicenseAcceptance>false</requireLicenseAcceptance>
-       <description>
-         Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to determine screen size
-       </description>
-       <summary>
-         Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to determine screen size
-       </summary>
-       <tags>xamarin, xamarin.forms, android, ios, windows phone, screen size</tags>
-     <releaseNotes>
-       [1.0.0-beta]
-       - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
-     </releaseNotes>
-   </metadata>
-   <files>
-     <!--Core-->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.Abstractions.pdb" />
-     <file src="Plugin.XamJam.Screen\bin\Release\Plugin.XamJam.Screen.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen\bin\Release\Plugin.XamJam.Screen.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.xml" />
-     <file src="Plugin.XamJam.Screen\bin\Release\Plugin.XamJam.Screen.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.pdb" />
- 
-     <!--Xamarin.Android-->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\MonoAndroid10\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\MonoAndroid10\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.pdb" target="lib\MonoAndroid10\Plugin.XamJam.Screen.Abstractions.pdb" />
-     <file src="Plugin.XamJam.Screen.Android\bin\Release\Plugin.XamJam.Screen.dll" target="lib\MonoAndroid10\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen.Android\bin\Release\Plugin.XamJam.Screen.xml" target="lib\MonoAndroid10\Plugin.XamJam.Screen.xml" />
-     <file src="Plugin.XamJam.Screen.Android\bin\Release\Plugin.XamJam.Screen.pdb" target="lib\MonoAndroid10\Plugin.XamJam.Screen.pdb" />
- 
-     <!--Xamarin.iOS-->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.iOS\bin\iPhone\Release\Plugin.XamJam.Screen.dll" target="lib\MonoTouch10\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen.iOS\bin\iPhone\Release\Plugin.XamJam.Screen.xml" target="lib\MonoTouch10\Plugin.XamJam.Screen.xml" />
- 
-     <!--Xamarin.iOS Unified
+  <metadata minClientVersion="2.8.1">
+    <id>Xam.Plugins.XamJam.Screen</id>
+    <version>1.0.0-beta</version>
+    <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
+    <authors>Jason C. HandUber</authors>
+    <owners>Jason C. HandUber</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.Screen</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/jasonCodesAway/XamJam/master/XamJam.Screen/phoneSize.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to determine screen size
+    </description>
+    <summary>
+      Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to determine screen size
+    </summary>
+    <tags>xamarin, xamarin.forms, android, ios, windows phone, screen size</tags>
+    <releaseNotes>
+      [1.0.0-beta]
+      - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
+    </releaseNotes>
+  </metadata>
+  <files>
+    <!--Core-->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.pdb"
+          target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.Abstractions.pdb" />
+    <file src="Plugin.XamJam.Screen\bin\Release\Plugin.XamJam.Screen.dll"
+          target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen\bin\Release\Plugin.XamJam.Screen.xml"
+          target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.xml" />
+    <file src="Plugin.XamJam.Screen\bin\Release\Plugin.XamJam.Screen.pdb"
+          target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Screen.pdb" />
+
+    <!--Xamarin.Android-->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\MonoAndroid10\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\MonoAndroid10\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.pdb"
+          target="lib\MonoAndroid10\Plugin.XamJam.Screen.Abstractions.pdb" />
+    <file src="Plugin.XamJam.Screen.Android\bin\Release\Plugin.XamJam.Screen.dll"
+          target="lib\MonoAndroid10\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen.Android\bin\Release\Plugin.XamJam.Screen.xml"
+          target="lib\MonoAndroid10\Plugin.XamJam.Screen.xml" />
+    <file src="Plugin.XamJam.Screen.Android\bin\Release\Plugin.XamJam.Screen.pdb"
+          target="lib\MonoAndroid10\Plugin.XamJam.Screen.pdb" />
+
+    <!--Xamarin.iOS-->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\MonoTouch10\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.iOS\bin\iPhone\Release\Plugin.XamJam.Screen.dll"
+          target="lib\MonoTouch10\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen.iOS\bin\iPhone\Release\Plugin.XamJam.Screen.xml"
+          target="lib\MonoTouch10\Plugin.XamJam.Screen.xml" />
+
+    <!--Xamarin.iOS Unified
      <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.Abstractions.dll" />
      <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.Abstractions.xml" />
      <file src="Plugin.XamJam.Screen.iOSUnified\bin\iPhone\Release\Plugin.XamJam.Screen.dll" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.dll" />
      <file src="Plugin.XamJam.Screen.iOSUnified\bin\iPhone\Release\Plugin.XamJam.Screen.xml" target="lib\Xamarin.iOS10\Plugin.XamJam.Screen.xml" />
 	 -->
-   
-     <!--Win Store-->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\UAP10\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\UAP10\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\UAP10\Plugin.XamJam.Screen.Abstractions.pdb" />
-     <file src="Plugin.XamJam.Screen.UWP\bin\Release\Plugin.XamJam.Screen.dll" target="lib\UAP10\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen.UWP\bin\Release\Plugin.XamJam.Screen.xml" target="lib\UAP10\Plugin.XamJam.Screen.xml" />
-     <file src="Plugin.XamJam.Screen.UWP\bin\Release\Plugin.XamJam.Screen.pdb" target="lib\UAP10\Plugin.XamJam.Screen.pdb" />
- 
-     <!--Win Phone 8.0 -->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\wp8\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\wp8\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\wp8\Plugin.XamJam.Screen.Abstractions.pdb" />
-     <file src="Plugin.XamJam.Screen.WindowsPhone8\bin\Release\Plugin.XamJam.Screen.dll" target="lib\wp8\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen.WindowsPhone8\bin\Release\Plugin.XamJam.Screen.xml" target="lib\wp8\Plugin.XamJam.Screen.xml" />
-     <file src="Plugin.XamJam.Screen.WindowsPhone8\bin\Release\Plugin.XamJam.Screen.pdb" target="lib\wp8\Plugin.XamJam.Screen.pdb" />
- 
-     <!--Win Phone RT / Windows Phone 8.1-->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\wpa81\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\wpa81\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\wpa81\Plugin.XamJam.Screen.Abstractions.pdb" />
-     <file src="Plugin.XamJam.Screen.WindowsPhone81\bin\Release\Plugin.XamJam.Screen.dll" target="lib\wpa81\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen.WindowsPhone81\bin\Release\Plugin.XamJam.Screen.xml" target="lib\wpa81\Plugin.XamJam.Screen.xml" />
-     <file src="Plugin.XamJam.Screen.WindowsPhone81\bin\Release\Plugin.XamJam.Screen.pdb" target="lib\wpa81\Plugin.XamJam.Screen.pdb" />
- 
-     <!--Win Store-->
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll" target="lib\win8\Plugin.XamJam.Screen.Abstractions.dll" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\win8\Plugin.XamJam.Screen.Abstractions.xml" />
-     <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml" target="lib\win8\Plugin.XamJam.Screen.Abstractions.pdb" />
-     <file src="Plugin.XamJam.Screen.WindowsStore\bin\Release\Plugin.XamJam.Screen.dll" target="lib\win8\Plugin.XamJam.Screen.dll" />
-     <file src="Plugin.XamJam.Screen.WindowsStore\bin\Release\Plugin.XamJam.Screen.xml" target="lib\win8\Plugin.XamJam.Screen.xml" />
-     <file src="Plugin.XamJam.Screen.WindowsStore\bin\Release\Plugin.XamJam.Screen.pdb" target="lib\win8\Plugin.XamJam.Screen.pdb" />
-      
-   </files>
+
+    <!--Win Store-->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\UAP10\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\UAP10\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\UAP10\Plugin.XamJam.Screen.Abstractions.pdb" />
+    <file src="Plugin.XamJam.Screen.UWP\bin\Release\Plugin.XamJam.Screen.dll"
+          target="lib\UAP10\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen.UWP\bin\Release\Plugin.XamJam.Screen.xml"
+          target="lib\UAP10\Plugin.XamJam.Screen.xml" />
+    <file src="Plugin.XamJam.Screen.UWP\bin\Release\Plugin.XamJam.Screen.pdb"
+          target="lib\UAP10\Plugin.XamJam.Screen.pdb" />
+
+    <!--Win Phone 8.0 -->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\wp8\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\wp8\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\wp8\Plugin.XamJam.Screen.Abstractions.pdb" />
+    <file src="Plugin.XamJam.Screen.WindowsPhone8\bin\Release\Plugin.XamJam.Screen.dll"
+          target="lib\wp8\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen.WindowsPhone8\bin\Release\Plugin.XamJam.Screen.xml"
+          target="lib\wp8\Plugin.XamJam.Screen.xml" />
+    <file src="Plugin.XamJam.Screen.WindowsPhone8\bin\Release\Plugin.XamJam.Screen.pdb"
+          target="lib\wp8\Plugin.XamJam.Screen.pdb" />
+
+    <!--Win Phone RT / Windows Phone 8.1-->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\wpa81\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\wpa81\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\wpa81\Plugin.XamJam.Screen.Abstractions.pdb" />
+    <file src="Plugin.XamJam.Screen.WindowsPhone81\bin\Release\Plugin.XamJam.Screen.dll"
+          target="lib\wpa81\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen.WindowsPhone81\bin\Release\Plugin.XamJam.Screen.xml"
+          target="lib\wpa81\Plugin.XamJam.Screen.xml" />
+    <file src="Plugin.XamJam.Screen.WindowsPhone81\bin\Release\Plugin.XamJam.Screen.pdb"
+          target="lib\wpa81\Plugin.XamJam.Screen.pdb" />
+
+    <!--Win Store-->
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.dll"
+          target="lib\win8\Plugin.XamJam.Screen.Abstractions.dll" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\win8\Plugin.XamJam.Screen.Abstractions.xml" />
+    <file src="Plugin.XamJam.Screen.Abstractions\bin\Release\Plugin.XamJam.Screen.Abstractions.xml"
+          target="lib\win8\Plugin.XamJam.Screen.Abstractions.pdb" />
+    <file src="Plugin.XamJam.Screen.WindowsStore\bin\Release\Plugin.XamJam.Screen.dll"
+          target="lib\win8\Plugin.XamJam.Screen.dll" />
+    <file src="Plugin.XamJam.Screen.WindowsStore\bin\Release\Plugin.XamJam.Screen.xml"
+          target="lib\win8\Plugin.XamJam.Screen.xml" />
+    <file src="Plugin.XamJam.Screen.WindowsStore\bin\Release\Plugin.XamJam.Screen.pdb"
+          target="lib\win8\Plugin.XamJam.Screen.pdb" />
+
+  </files>
 </package>
