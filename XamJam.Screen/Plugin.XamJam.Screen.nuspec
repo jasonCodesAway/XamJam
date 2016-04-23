@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Xam.Plugins.XamJam.Screen</id>
-    <version>1.0.1-beta</version>
+    <version>1.0.2-beta</version>
     <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
     <authors>Jason C. HandUber</authors>
     <owners>Jason C. HandUber</owners>
@@ -18,10 +18,12 @@
     </summary>
     <tags>xamarin, xamarin.forms, android, ios, windows phone, screen size</tags>
     <releaseNotes>
-[1.0.0-beta]
-  - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
-[1.0.1-beta]
-  - Minor code and documentation cleanup.
+      [1.0.0-beta]
+      - Tested on WP8.1 simulator and Android S5. Still beta until I test on UWP and iOS.
+      [1.0.1-beta]
+      - Minor code and documentation cleanup.
+      [1.0.2-beta]
+      - Testing on iOS didn't go as predicted. Trying again...
     </releaseNotes>
   </metadata>
   <files>
