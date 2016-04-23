@@ -4,7 +4,7 @@ A collection of independently useful Xamarin (cross-platform mobile development)
 | Component | Stability	| Description |
 | :--- | :--- | :--- | 
 | [Screen](https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.Screen) | beta | screen size getter |
-| Monitor | developing | logger and eventually performance monitor |
-| Nav&#42; | developing | Support navigating between Root, Navigation, and TabbedPages |
+| BugHound | developing | type and task-based logging and exception reporting and eventually performance monitor |
+| Nav&#42; | developing | ViewModel-based navigation between Root, Navigation, and TabbedPages |
 
 &#42; Requires Xamarin Forms as a Dependency

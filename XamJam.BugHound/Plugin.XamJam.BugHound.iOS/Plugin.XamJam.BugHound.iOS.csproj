@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2882AEEB-D4CD-4EB9-8A6C-6653B33681F0}</ProjectGuid>
+    <ProjectGuid>{9F927C5D-B675-4053-9953-FB87F95AEB11}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Plugin.XamJam.Screen</RootNamespace>
+    <RootNamespace>Plugin.XamJam.BugHound</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Plugin.XamJam.Screen</AssemblyName>
+    <AssemblyName>Plugin.XamJam.BugHound</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,13 +32,13 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <DocumentationFile>bin\iPhone\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
+    <DocumentationFile>bin\iPhone\Release\Plugin.XamJam.BugHound.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen\CrossScreen.cs">
-      <Link>CrossScreen.cs</Link>
+    <Compile Include="..\Plugin.XamJam.BugHound\BugHoundHelper.cs">
+      <Link>BugHoundHelper.cs</Link>
     </Compile>
-    <Compile Include="ScreenImplementation.cs" />
+    <Compile Include="BugHoundHelperImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Threading;
 namespace Plugin.XamJam.Screen
 {
     /// <summary>
-    ///     Cross platform XamJam.CrossScreen implemenations
+    ///     Cross platform CrossScreen implemenations
     /// </summary>
     public class CrossScreen
     {
@@ -40,7 +40,7 @@ namespace Plugin.XamJam.Screen
         {
             return
                 new NotImplementedException(
-                    "Please add a reference to 'Xam.Plugins.XamJam.Screen' to your startup project (e.g. Droid, iOS, WP, UWP, etc.).");
+                    "Please add a reference to 'Xam.Plugins.XamJam.Screen' to your startup platform project (e.g. Droid, iOS, WP, UWP, etc.).");
         }
     }
 }

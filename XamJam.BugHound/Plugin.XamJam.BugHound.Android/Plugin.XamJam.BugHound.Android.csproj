@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{56A56F17-7DE1-4CA1-9617-BF32E971AC84}</ProjectGuid>
+    <ProjectGuid>{1F8440B4-E939-495E-B380-06580231D7AB}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Plugin.XamJam.Screen</RootNamespace>
-    <AssemblyName>Plugin.XamJam.Screen</AssemblyName>
+    <RootNamespace>Plugin.XamJam.BugHound</RootNamespace>
+    <AssemblyName>Plugin.XamJam.BugHound</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -34,7 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Plugin.XamJam.BugHound.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -45,10 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen\CrossScreen.cs">
-      <Link>CrossScreen.cs</Link>
+    <Compile Include="..\Plugin.XamJam.BugHound\BugHoundHelper.cs">
+      <Link>BugHoundHelper.cs</Link>
     </Compile>
-    <Compile Include="ScreenImplementation.cs" />
+    <Compile Include="BugHoundHelperImplementation.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

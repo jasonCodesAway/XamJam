@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E34B516D-C0D8-450F-9DB0-BB6A5B04AEF1}</ProjectGuid>
+    <ProjectGuid>{A1006F2F-E26B-4296-8717-914364A91789}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Plugin.XamJam.Screen</RootNamespace>
-    <AssemblyName>Plugin.XamJam.Screen</AssemblyName>
+    <RootNamespace>Plugin.XamJam.BugHound</RootNamespace>
+    <AssemblyName>Plugin.XamJam.BugHound</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -35,7 +35,7 @@
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Plugin.XamJam.BugHound.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -58,7 +58,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Plugin.XamJam.BugHound.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <PlatformTarget>ARM</PlatformTarget>
@@ -109,12 +109,12 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen\CrossScreen.cs">
-      <Link>CrossScreen.cs</Link>
+    <Compile Include="..\Plugin.XamJam.BugHound\BugHoundHelper.cs">
+      <Link>BugHoundHelper.cs</Link>
     </Compile>
-    <Compile Include="ScreenImplementation.cs" />
+    <Compile Include="BugHoundHelperImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Plugin.XamJam.Screen.UWP.rd.xml" />
+    <EmbeddedResource Include="Properties\Plugin.XamJam.BugHound.UWP.rd.xml" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
