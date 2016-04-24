@@ -1,7 +1,5 @@
 using Plugin.XamJam.BugHound.Abstractions;
-using System;
 using Java.Lang;
-
 
 namespace Plugin.XamJam.BugHound
 {

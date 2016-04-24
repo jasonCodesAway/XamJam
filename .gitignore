@@ -245,3 +245,5 @@ ModelManifest.xml
 .fake/
 /XamJam.Screen/cycleLocal.bat
 /XamJam.Screen/cycleRemote.bat
+/XamJam.BugHound/cycleRemote.bat
+/XamJam.BugHound/cycleLocal.bat

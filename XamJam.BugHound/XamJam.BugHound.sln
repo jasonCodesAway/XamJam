@@ -19,6 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.BugHound.Wind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.BugHound.UWP", "Plugin.XamJam.BugHound.UWP\Plugin.XamJam.BugHound.UWP.csproj", "{E34B516D-C0D8-450F-9DB0-BB6A5B04AEF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{935AA56D-351E-4812-830E-1196726E07EB}"
+	ProjectSection(SolutionItems) = preProject
+		icon.png = icon.png
+		icon.svg = icon.svg
+		Plugin.XamJam.BugHound.nuspec = Plugin.XamJam.BugHound.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU

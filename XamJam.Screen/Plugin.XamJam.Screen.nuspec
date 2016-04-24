@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Xam.Plugins.XamJam.Screen</id>
-    <version>1.0.3-beta</version>
+    <version>1.0.4-beta</version>
     <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
     <authors>Jason C. HandUber</authors>
     <owners>Jason C. HandUber</owners>
@@ -24,9 +24,10 @@
       - Minor code and documentation cleanup.
       [1.0.2-beta]
       - Testing on iOS didn't go as predicted. Trying again...
-      [1.0.3-beta]
+      [1.0.4-beta]
       - Fixed the iOS nuspec, the template had me going to classic and using the old "Unified" directory structure. Will test this new nuspec.
       - Added 'ScreenSize.IsMaximum' since UWP apps don't provide a way to determine max screen size (since they can run with multiple monitors, change their resolution, etc.)
+      - Don't ask about 1.0.3-beta, it's not the beta you're looking for.
     </releaseNotes>
   </metadata>
   <files>

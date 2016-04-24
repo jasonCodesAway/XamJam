@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata minClientVersion="2.8.3">
+		<id>Xam.Plugins.XamJam.BugHound</id>
+		<version>0.0.1-alpha</version>
+		<title>BugHound, App Logging and Performance Monitoring</title>
+    <authors>Jason C. HandUber</authors>
+    <owners>Jason C. HandUber</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.BugHound</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jasonCodesAway/XamJam/master/XamJam.BugHound/icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>
+      Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to log, record exceptions, and eventually provide insightful reports (e.g. functionality-X fails under conditions Y and Z on platform P)
+    </description>
+		<summary>Xamarin Logging and Bug-Finding Framework.</summary>
+		<tags>logging, exception reporting, bug, xamarin, pcl, xam.pcl, plugin, plugin for xamarin, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
+		<dependencies>
+			<group targetFramework="net">
+			</group>
+			<group targetFramework="win">
+			</group>
+			<group targetFramework="wp">
+			</group>
+			<group targetFramework="wpa">
+			</group>
+			<group targetFramework="MonoAndroid">
+			</group>
+			<group targetFramework="Xamarin.iOS10">
+			</group>
+			<group targetFramework="Xamarin.Mac20">
+			</group>
+			<group targetFramework="portable-net45+win+wpa81+wp80">
+			</group>
+			<group targetFramework="uap">
+			</group>
+			<group targetFramework="dotnet">
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<!--Core-->
+		<file src="Plugin.XamJam.BugHound\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.Abstractions.pdb" />		
+		
+		<!--dotnet-->
+		<file src="Plugin.XamJam.BugHound\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\dotnet\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\dotnet\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\dotnet\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\dotnet\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\dotnet\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\dotnet\Plugin.XamJam.BugHound.Abstractions.pdb" />
+		
+		<!--Win Phone Silverlight-->
+		<file src="Plugin.XamJam.BugHound.WindowsPhone8\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\wp8\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound.WindowsPhone8\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\wp8\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.WindowsPhone8\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\wp8\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\wp8\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\wp8\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\wp8\Plugin.XamJam.BugHound.Abstractions.pdb" />
+		
+		<!--Win Phone 81-->
+		<file src="Plugin.XamJam.BugHound.WindowsPhone81\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\wpa81\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound.WindowsPhone81\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\wpa81\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.WindowsPhone81\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\wpa81\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\wpa81\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\wpa81\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\wpa81\Plugin.XamJam.BugHound.Abstractions.pdb" />
+		
+		<!--WinStore-->
+		<file src="Plugin.XamJam.BugHound.WindowsStore\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\win8\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound.WindowsStore\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\win8\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.WindowsStore\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\win8\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\win8\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\win8\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\win8\Plugin.XamJam.BugHound.Abstractions.pdb" />
+
+		<!--Xamarin.Android-->
+		<file src="Plugin.XamJam.BugHound.Android\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\MonoAndroid10\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound.Android\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\MonoAndroid10\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.Android\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\MonoAndroid10\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\MonoAndroid10\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\MonoAndroid10\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\MonoAndroid10\Plugin.XamJam.BugHound.Abstractions.pdb" />
+
+		<!--Xamarin.iOS-->
+		<file src="Plugin.XamJam.BugHound.iOS\bin\iPhone\Release\Plugin.XamJam.BugHound.dll" target="lib\Xamarin.iOS10\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound.iOS\bin\iPhone\Release\Plugin.XamJam.BugHound.xml" target="lib\Xamarin.iOS10\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\Xamarin.iOS10\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\Xamarin.iOS10\Plugin.XamJam.BugHound.Abstractions.xml" />
+
+		<!--uap-->
+		<file src="Plugin.XamJam.BugHound.UWP\bin\Release\Plugin.XamJam.BugHound.dll" target="lib\UAP10\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound.UWP\bin\Release\Plugin.XamJam.BugHound.xml" target="lib\UAP10\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.UWP\bin\Release\Plugin.XamJam.BugHound.pdb" target="lib\UAP10\Plugin.XamJam.BugHound.pdb" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\UAP10\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\UAP10\Plugin.XamJam.BugHound.Abstractions.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.pdb" target="lib\UAP10\Plugin.XamJam.BugHound.Abstractions.pdb" />
+		
+		<!--Xamarin.Mac
+		<file src="Plugin.XamJam.BugHound\Plugin.XamJam.BugHound.Mac\bin\iPhone\Release\Plugin.XamJam.BugHound.dll" target="lib\Xamarin.Mac20\Plugin.XamJam.BugHound.dll" />
+		<file src="Plugin.XamJam.BugHound\Plugin.XamJam.BugHound.Mac\bin\iPhone\Release\Plugin.XamJam.BugHound.xml" target="lib\Xamarin.Mac20\Plugin.XamJam.BugHound.xml" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.dll" target="lib\Xamarin.Mac20\Plugin.XamJam.BugHound.Abstractions.dll" />
+		<file src="Plugin.XamJam.BugHound.Abstractions\bin\Release\Plugin.XamJam.BugHound.Abstractions.xml" target="lib\Xamarin.Mac20\Plugin.XamJam.BugHound.Abstractions.xml" />
+        -->
+	</files>
+</package>
