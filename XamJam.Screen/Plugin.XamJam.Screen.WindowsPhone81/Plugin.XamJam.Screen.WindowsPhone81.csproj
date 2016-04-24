@@ -80,13 +80,11 @@
     <DocumentationFile>bin\Release\Plugin.XamJam.Screen.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Screen.WindowsStore\ScreenImplementation.cs">
-      <Link>ScreenImplementation.cs</Link>
-    </Compile>
     <Compile Include="..\Plugin.XamJam.Screen\CrossScreen.cs">
       <Link>CrossScreen.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.XamJam.Screen.Abstractions\Plugin.XamJam.Screen.Abstractions.csproj">

@@ -8,8 +8,7 @@ namespace Plugin.XamJam.Screen
     /// </summary>
     public class CrossScreen
     {
-        private static readonly Lazy<Abstractions.Screen> Implementation = new Lazy<Abstractions.Screen>(CreateScreen,
-            LazyThreadSafetyMode.PublicationOnly);
+        private static readonly Lazy<Abstractions.Screen> Implementation = new Lazy<Abstractions.Screen>(CreateScreen, LazyThreadSafetyMode.PublicationOnly);
 
         /// <summary>
         ///     Current settings to use
@@ -38,9 +37,7 @@ namespace Plugin.XamJam.Screen
 
         internal static Exception NotImplementedInReferenceAssembly()
         {
-            return
-                new NotImplementedException(
-                    "Please add a reference to 'Xam.Plugins.XamJam.Screen' to your startup platform project (e.g. Droid, iOS, WP, UWP, etc.).");
+            return new NotImplementedException("Please add a reference to 'Xam.Plugins.XamJam.Screen' to your startup platform project (e.g. Droid, iOS, WP, UWP, etc.).");
         }
     }
 }

@@ -5,7 +5,7 @@ using Android.Content.Res;
 namespace Plugin.XamJam.Screen
 {
     /// <summary>
-    /// Implementation for Feature
+    /// Adnroid Screen Implementation
     /// </summary>
     public class ScreenImplementation : Abstractions.Screen
     {
@@ -22,7 +22,7 @@ namespace Plugin.XamJam.Screen
             var displayMetrics = Resources.System.DisplayMetrics;
             var width = displayMetrics.HeightPixels / displayMetrics.Density;
             var height = displayMetrics.WidthPixels / displayMetrics.Density;
-            Size = new ScreenSize(width, height);
+            Size = new ScreenSize(true, width, height);
         }
     }
 }
