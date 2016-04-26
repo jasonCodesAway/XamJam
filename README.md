@@ -1,5 +1,5 @@
 ![](xamJam.jpg) 
-## A collection of independently useful Xamarin (cross-platform mobile development) components.
+### A collection of independently useful Xamarin (cross-platform mobile development) components.
 
 | Component | Stability	| Description |
 | :--- | :--- | :--- | 
