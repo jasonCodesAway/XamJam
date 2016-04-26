@@ -1,5 +1,5 @@
-## XamJam
-A collection of independently useful Xamarin (cross-platform mobile development) components:
+![](xamJam.jpg) 
+## A collection of independently useful Xamarin (cross-platform mobile development) components.
 
 | Component | Stability	| Description |
 | :--- | :--- | :--- | 
