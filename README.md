@@ -1,4 +1,4 @@
-![](xamJam.jpg) 
+![](xamJam.png) 
 ### Caz and Jason's collection of useful Xamarin components. Enjoy!
 
 | Component | Stability	| Description |
