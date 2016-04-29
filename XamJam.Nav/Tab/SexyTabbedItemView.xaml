@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:xamSvg="clr-namespace:XamSvg.XamForms;assembly=XamSvg.XamForms"
+     x:Class="XamJam.Nav.Tab.SexyTabbedItemView">
+  <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
+    <xamSvg:SvgImage x:Name="tmp" Svg="{Binding Svg}" HeightRequest="{Binding SvgSize}"
+                     WidthRequest="{Binding SvgSize}" ClickedCommand="{Binding ClickedCommand}"
+                     ColorMapping="{Binding ColorMapping}" HorizontalOptions="Center" />
+    <Label Text="{Binding TabLabelText}" FontSize="Micro" TextColor="{Binding TextColor}" />
+  </StackLayout>
+</ContentView>
