@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using FFImageLoading.Forms;
 using MR.Gestures;
 using Plugin.XamJam.BugHound;
 using PropertyChanged;
@@ -130,6 +131,8 @@ namespace XamJam.PicSelector
         /// <param name="pic">new image</param>
         public void LoadImage(IPicture pic)
         {
+            CachedImage ci;
+            ci.
             PicSelectionResult.Selected = pic;
             TranslationX = 0;
             TranslationY = 0;
