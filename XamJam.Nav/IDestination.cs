@@ -6,6 +6,10 @@ using Xamarin.Forms;
 
 namespace XamJam.Nav
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TNavScheme"></typeparam>
     public interface IDestination<out TNavScheme> where TNavScheme : INavScheme
     {
         object ViewModel { get; }

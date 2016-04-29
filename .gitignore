@@ -247,3 +247,4 @@ ModelManifest.xml
 /XamJam.Screen/cycleRemote.bat
 /XamJam.BugHound/cycleRemote.bat
 /XamJam.BugHound/cycleLocal.bat
+/git-add-dir.bat
