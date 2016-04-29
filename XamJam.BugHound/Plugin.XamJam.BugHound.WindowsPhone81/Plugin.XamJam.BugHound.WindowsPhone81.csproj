@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7169373F-0B82-4E5D-9129-7CC3065B90FA}</ProjectGuid>
+    <ProjectGuid>{795CBAF9-5D92-4DE3-A334-265CCB21FF71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plugin.XamJam.BugHound</RootNamespace>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E34B516D-C0D8-450F-9DB0-BB6A5B04AEF1}</ProjectGuid>
+    <ProjectGuid>{A1006F2F-E26B-4296-8717-914364A91789}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plugin.XamJam.BugHound</RootNamespace>

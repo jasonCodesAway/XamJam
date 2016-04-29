@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A6FCEF44-D2BA-42C7-B3CB-13667BCD7B54}</ProjectGuid>
+    <ProjectGuid>{54997076-792F-4AAF-82C0-EDE69ADF38DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plugin.XamJam.BugHound</RootNamespace>
