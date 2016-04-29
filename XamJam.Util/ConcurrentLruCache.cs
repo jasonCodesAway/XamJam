@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using Plugin.XamJam.BugHound;
 
 
 namespace XamJam.Util
 {
     public class ConcurrentLruCache<TK, TV>
     {
-        private static readonly IBugHound Monitor = BugHound.For(typeof (ConcurrentLruCache<TK, TV>));
+        private static readonly IBugHound Monitor = BugHound.ByType(typeof (ConcurrentLruCache<TK, TV>));
         private readonly ConcurrentDictionary<TK, TV> map = new ConcurrentDictionary<TK, TV>();
         private readonly ConcurrentQueue<TK> q = new ConcurrentQueue<TK>();
 
