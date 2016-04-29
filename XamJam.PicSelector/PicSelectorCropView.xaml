@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             x:Class="XamJam.PicSelector.PicSelectorCropView">
+  <mr:AbsoluteLayout PinchingCommand="{Binding PinchingCommand}" PanningCommand="{Binding PanningCommand}" BackgroundColor="Black">
+    <Image Source="{Binding PicSelectionResult.Selected.Uri}" Scale="{Binding Scale}" TranslationX="{Binding TranslationX}" TranslationY="{Binding TranslationY}" AbsoluteLayout.LayoutBounds="{Binding ImageBox}" AbsoluteLayout.LayoutFlags="None" />
+    <!-- Draw the white "crop box" outline/rectangle that shows the area of the photo that will be kept -->
+    <BoxView AbsoluteLayout.LayoutBounds="{Binding TopCropBox}" AbsoluteLayout.LayoutFlags="None" BackgroundColor="White" />
+    <BoxView AbsoluteLayout.LayoutBounds="{Binding LeftCropBox}" AbsoluteLayout.LayoutFlags="None" BackgroundColor="White" />
+    <BoxView AbsoluteLayout.LayoutBounds="{Binding RightCropBox}" AbsoluteLayout.LayoutFlags="None" BackgroundColor="White" />
+    <BoxView AbsoluteLayout.LayoutBounds="{Binding BottomCropBox}" AbsoluteLayout.LayoutFlags="None" BackgroundColor="White" />
+    <!-- Overlay 0.5 opacity boxes over the parts of the photo that will be cropped out -->
+    <BoxView BackgroundColor="Black" Opacity="0.5" AbsoluteLayout.LayoutBounds="{Binding TopBox}" AbsoluteLayout.LayoutFlags="None" />
+    <BoxView BackgroundColor="Black" Opacity="0.5" AbsoluteLayout.LayoutBounds="{Binding LeftBox}" AbsoluteLayout.LayoutFlags="None" />
+    <BoxView BackgroundColor="Black" Opacity="0.5" AbsoluteLayout.LayoutBounds="{Binding RightBox}" AbsoluteLayout.LayoutFlags="None" />
+    <BoxView BackgroundColor="Black" Opacity="0.5" AbsoluteLayout.LayoutBounds="{Binding BottomBox}" AbsoluteLayout.LayoutFlags="None" />
+    <!--- This is the only way I've found to preseve the white background on the iOS status bar (battery %, cell signal, time) -->
+    <BoxView BackgroundColor="White" AbsoluteLayout.LayoutBounds="{Binding StatusBox}" AbsoluteLayout.LayoutFlags="None" />
+  </mr:AbsoluteLayout>
+</ContentView>
+<!--- 
+x:Name="topCropBox"
+x:Name="leftCropBox"
+x:Name="rightCropBox"
+x:Name="bottomCropBox"
+x:Name="topBox"
+x:Name="leftBox"
+x:Name="rightBox"
+x:Name="bottomBox"
+x:Name="statusBox"
+-->
