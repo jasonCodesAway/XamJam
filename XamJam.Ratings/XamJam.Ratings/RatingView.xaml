@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures" x:Class="XamJam.Ratings.RatingView">
-  <mr:StackLayout Orientation="Horizontal" PanningCommand="{Binding PanningCommand}" Padding="{Binding Padding}">
-    <mr:Image Source="{Binding FirstStar.Image}" TappedCommand="{Binding FirstStar.TappedCommand}" />
-    <mr:Image Source="{Binding SecondStar.Image}" TappedCommand="{Binding SecondStar.TappedCommand}" />
-    <mr:Image Source="{Binding ThirdStar.Image}" TappedCommand="{Binding ThirdStar.TappedCommand}" />
-    <mr:Image Source="{Binding FourthStar.Image}" TappedCommand="{Binding FourthStar.TappedCommand}" />
-    <mr:Image Source="{Binding FifthStar.Image}" TappedCommand="{Binding FifthStar.TappedCommand}" />
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             xmlns:svg="clr-namespace:XamSvg.XamForms;assembly=XamSvg.XamForms"
+             x:Class="XamJam.Ratings.RatingView">
+  <mr:StackLayout Orientation="Horizontal" PanningCommand="{Binding PanningCommand}" TappedCommand="{Binding TappedCommand}" Padding="{Binding Padding}" BackgroundColor="Yellow">
+    <svg:SvgImage Svg="{Binding FirstStar.Image}" WidthRequest="32" />
+    <svg:SvgImage Svg="{Binding SecondStar.Image}" WidthRequest="32"/>
+    <svg:SvgImage Svg="{Binding ThirdStar.Image}" WidthRequest="32"/>
+    <svg:SvgImage Svg="{Binding FourthStar.Image}" WidthRequest="32"/>
+    <svg:SvgImage Svg="{Binding FifthStar.Image}" WidthRequest="32"/>
+    <!--<svg:SvgImage Svg="{Binding FirstStar.Image}" ClickedCommand="{Binding FirstStar.TappedCommand}" />
+    <svg:SvgImage Svg="{Binding SecondStar.Image}" ClickedCommand="{Binding SecondStar.TappedCommand}" />
+    <svg:SvgImage Svg="{Binding ThirdStar.Image}" ClickedCommand="{Binding ThirdStar.TappedCommand}" />
+    <svg:SvgImage Svg="{Binding FourthStar.Image}" ClickedCommand="{Binding FourthStar.TappedCommand}" />
+    <svg:SvgImage Svg="{Binding FifthStar.Image}" ClickedCommand="{Binding FifthStar.TappedCommand}" />-->
   </mr:StackLayout>
 </ContentView>

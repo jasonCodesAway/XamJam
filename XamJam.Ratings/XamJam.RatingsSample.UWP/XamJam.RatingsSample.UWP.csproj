@@ -131,6 +131,15 @@
     <ProjectReference Include="..\XamJam.RatingsSample\XamJam.RatingsSample.csproj">
       <Name>XamJam.RatingsSample</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XamJam.Ratings\XamJam.Ratings.csproj">
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Name>XamJam.Ratings</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.Forms.Platform.WinRT">
+      <HintPath>..\packages\Xamarin.Forms.2.2.0.31\lib\win81\Xamarin.Forms.Platform.WinRT.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

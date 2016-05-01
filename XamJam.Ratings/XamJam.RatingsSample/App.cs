@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Reflection;
 using Xamarin.Forms;
+using XamJam.Ratings;
+using XamSvg.XamForms;
 
 namespace XamJam.RatingsSample
 {
@@ -11,6 +9,8 @@ namespace XamJam.RatingsSample
     {
         public App()
         {
+            XamSvg.Shared.Config.ResourceAssembly = typeof(App).GetTypeInfo().Assembly;
+            
             // The root page of your application
             MainPage = new ContentPage
             {
@@ -21,9 +21,23 @@ namespace XamJam.RatingsSample
                         new Label {
                             XAlign = TextAlignment.Center,
                             Text = "Welcome to Xamarin Forms!"
+                        },
+                        //new SvgImage()
+                        //{
+                        //    Svg="res:Images.Half",
+                        //    WidthRequest=48
+
+                        //},
+                        new RatingView()
+                        {
+                            BindingContext = new RatingViewModel()
+                            {
+                                Rating = 10
+                            }
                         }
                     }
-                }
+                },
+                BackgroundColor = Color.Purple
             };
         }
 

@@ -53,6 +53,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
+    <Reference Include="MR.Gestures, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MR.Gestures.1.3.2\lib\MonoAndroid10\MR.Gestures.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MR.Gestures.Android, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MR.Gestures.1.3.2\lib\MonoAndroid10\MR.Gestures.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -104,6 +112,22 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.2.0.31\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XamSvg.Droid, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vapolia.XamSvg.Forms.2.0.32\lib\MonoAndroid\XamSvg.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XamSvg.Shared, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vapolia.XamSvg.Forms.2.0.32\lib\MonoAndroid\XamSvg.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XamSvg.XamForms, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vapolia.XamSvg.Forms.2.0.32\lib\MonoAndroid\XamSvg.XamForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XamSvg.XamForms.Droid, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vapolia.XamSvg.Forms.2.0.32\lib\MonoAndroid\XamSvg.XamForms.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

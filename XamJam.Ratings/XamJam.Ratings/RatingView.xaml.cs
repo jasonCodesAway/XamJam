@@ -14,5 +14,10 @@ namespace XamJam.Ratings
         {
             InitializeComponent();
         }
+
+        //private void OnPadUpdated(object sender, PanUpdatedEventArgs e)
+        //{
+        //    ((RatingViewModel) BindingContext)?.OnPanUpdated(sender, e);
+        //}
     }
 }

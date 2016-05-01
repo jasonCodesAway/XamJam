@@ -27,6 +27,15 @@ namespace XamJam.RatingsSample.Droid
 		public static void UpdateIdValues()
 		{
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::XamJam.RatingsSample.Droid.Resource.Attribute.actionBarSize;
+			global::XamSvg.Resource.Attribute.colorMapping = global::XamJam.RatingsSample.Droid.Resource.Attribute.colorMapping;
+			global::XamSvg.Resource.Attribute.colorMappingSelected = global::XamJam.RatingsSample.Droid.Resource.Attribute.colorMappingSelected;
+			global::XamSvg.Resource.Attribute.svg = global::XamJam.RatingsSample.Droid.Resource.Attribute.svg;
+			global::XamSvg.Resource.Attribute.useCache = global::XamJam.RatingsSample.Droid.Resource.Attribute.useCache;
+			global::XamSvg.Resource.Styleable.SvgImageView = global::XamJam.RatingsSample.Droid.Resource.Styleable.SvgImageView;
+			global::XamSvg.Resource.Styleable.SvgImageView_colorMapping = global::XamJam.RatingsSample.Droid.Resource.Styleable.SvgImageView_colorMapping;
+			global::XamSvg.Resource.Styleable.SvgImageView_colorMappingSelected = global::XamJam.RatingsSample.Droid.Resource.Styleable.SvgImageView_colorMappingSelected;
+			global::XamSvg.Resource.Styleable.SvgImageView_svg = global::XamJam.RatingsSample.Droid.Resource.Styleable.SvgImageView_svg;
+			global::XamSvg.Resource.Styleable.SvgImageView_useCache = global::XamJam.RatingsSample.Droid.Resource.Styleable.SvgImageView_useCache;
 		}
 		
 		public partial class Animation
@@ -350,6 +359,12 @@ namespace XamJam.RatingsSample.Droid
 			
 			// aapt resource value: 0x7f01009f
 			public const int colorControlNormal = 2130772127;
+			
+			// aapt resource value: 0x7f01013d
+			public const int colorMapping = 2130772285;
+			
+			// aapt resource value: 0x7f01013e
+			public const int colorMappingSelected = 2130772286;
 			
 			// aapt resource value: 0x7f01009c
 			public const int colorPrimary = 2130772124;
@@ -864,6 +879,9 @@ namespace XamJam.RatingsSample.Droid
 			// aapt resource value: 0x7f0100d9
 			public const int suggestionRowLayout = 2130772185;
 			
+			// aapt resource value: 0x7f01013c
+			public const int svg = 2130772284;
+			
 			// aapt resource value: 0x7f0100df
 			public const int switchMinWidth = 2130772191;
 			
@@ -1004,6 +1022,9 @@ namespace XamJam.RatingsSample.Droid
 			
 			// aapt resource value: 0x7f0100dc
 			public const int track = 2130772188;
+			
+			// aapt resource value: 0x7f01013f
+			public const int useCache = 2130772287;
 			
 			// aapt resource value: 0x7f010118
 			public const int useCompatPadding = 2130772248;
@@ -5542,6 +5563,24 @@ namespace XamJam.RatingsSample.Droid
 			
 			// aapt resource value: 4
 			public const int Spinner_popupTheme = 4;
+			
+			public static int[] SvgImageView = new int[] {
+					2130772284,
+					2130772285,
+					2130772286,
+					2130772287};
+			
+			// aapt resource value: 1
+			public const int SvgImageView_colorMapping = 1;
+			
+			// aapt resource value: 2
+			public const int SvgImageView_colorMappingSelected = 2;
+			
+			// aapt resource value: 0
+			public const int SvgImageView_svg = 0;
+			
+			// aapt resource value: 3
+			public const int SvgImageView_useCache = 3;
 			
 			public static int[] SwitchCompat = new int[] {
 					16843044,

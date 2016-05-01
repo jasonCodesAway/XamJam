@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -58,7 +59,25 @@ namespace XamJam.RatingsSample.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                // Begin Code taken from: https://github.com/MichaelRumpler/GestureSample/blob/master/GestureSample/GestureSample.UWP/App.xaml.cs
+                var otherAssemblies = new[] {
+                    typeof(MR.Gestures.ContentPage).GetTypeInfo().Assembly,
+                    typeof(MR.Gestures.UWP.Renderers.PageRenderer).GetTypeInfo().Assembly,
+                    typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly //seeing if adding this allows the Images in XamJam.Rating to be referenced
+                };
+
+                //XamSvg.Shared.Config.ResourceAssembly = typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly;
+
+                XamSvg.XamForms.Universal.SvgImageRenderer.InitializeForms();
+
+                Xamarin.Forms.Forms.Init(e, otherAssemblies);
+
+                System.Diagnostics.Debug.WriteLine("FOO");
+                //XamSvg.Shared.Config.ResourceAssembly = typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly;
+                //XamSvg.XamForms.Universal.SvgImageRenderer.InitializeForms();
+
+                MR.Gestures.UWP.Settings.LicenseKey = "ALZ9-BPVU-XQ35-CEBG-5ZRR-URJQ-ED5U-TSY8-6THP-3GVU-JW8Z-RZGE-CQW6";
+                // End Code taken from: https://github.com/MichaelRumpler/GestureSample/blob/master/GestureSample/GestureSample.UWP/App.xaml.cs
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
