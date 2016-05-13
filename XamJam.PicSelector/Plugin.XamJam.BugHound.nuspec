@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata minClientVersion="2.8.3">
+		<id>Xam.Plugins.XamJam.PicSelector</id>
+		<version>0.0.1-alpha</version>
+		<title>PicSelector: Get a Pic, Edit it a bit (i.e. cropping), Select it.</title>
+    <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
+    <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.PicSelector</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jasonCodesAway/XamJam/master/XamJam.PicSelector/icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>
+      Xamarin (Android/iOS/Windows Store and Phone and UWP) plugin to easily allow the user to select a picture (or take one) and crop it to their satisfaction. This project depends on Xamarin Forms directly.
+    </description>
+		<summary>Select or Take a Pic, Crop It, Done.</summary>
+		<tags>crop, photo, image, picture, select, xamarin forms, xamarin, pcl, xam.pcl, plugin, plugin for xamarin, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
+		<dependencies>
+			<group targetFramework="net">
+			</group>
+			<group targetFramework="win">
+			</group>
+			<group targetFramework="wp">
+			</group>
+			<group targetFramework="wpa">
+			</group>
+			<group targetFramework="MonoAndroid">
+			</group>
+			<group targetFramework="Xamarin.iOS10">
+			</group>
+			<group targetFramework="Xamarin.Mac20">
+			</group>
+			<group targetFramework="portable-net45+win+wpa81+wp80">
+			</group>
+			<group targetFramework="uap">
+			</group>
+			<group targetFramework="dotnet">
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="Plugin.XamJam.PicSelector\bin\Release\Plugin.XamJam.PicSelector.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.PicSelector.dll" />
+		<file src="Plugin.XamJam.PicSelector\bin\Release\Plugin.XamJam.PicSelector.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.PicSelector.xml" />
+		<file src="Plugin.XamJam.PicSelector\bin\Release\Plugin.XamJam.PicSelector.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.PicSelector.pdb" />
+	</files>
+</package>

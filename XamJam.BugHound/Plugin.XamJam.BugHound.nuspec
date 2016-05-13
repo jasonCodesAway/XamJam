@@ -4,8 +4,8 @@
 		<id>Xam.Plugins.XamJam.BugHound</id>
 		<version>0.0.1-alpha</version>
 		<title>BugHound, App Logging and Performance Monitoring</title>
-    <authors>Jason C. HandUber</authors>
-    <owners>Jason C. HandUber</owners>
+    <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
+    <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/jasonCodesAway/XamJam/tree/master/XamJam.BugHound</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jasonCodesAway/XamJam/master/XamJam.BugHound/icon.png</iconUrl>

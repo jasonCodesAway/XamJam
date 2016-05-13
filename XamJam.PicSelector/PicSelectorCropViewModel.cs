@@ -2,6 +2,8 @@
 
 using System;
 using FFImageLoading.Forms;
+using FFImageLoading.Helpers;
+using FFImageLoading.Work;
 using MR.Gestures;
 using Plugin.XamJam.BugHound;
 using PropertyChanged;
@@ -128,38 +130,39 @@ namespace XamJam.PicSelector
         /// <summary>
         ///     Called whenever the loaded image size changes
         /// </summary>
-        /// <param name="pic">new image</param>
-        public void LoadImage(IPicture pic)
+        /// <param name="ci">new image</param>
+        public void LoadImage(CachedImage ci)
         {
-            CachedImage ci;
-            ci.
-            PicSelectionResult.Selected = pic;
-            TranslationX = 0;
-            TranslationY = 0;
-            ResetImageBox();
-            double xamScaleFactor;
-            if (pic.Size.Width >= pic.Size.Height)
+            ci.Success += (sender, args) =>
             {
-                xamScaleFactor = ImageBox.Width / pic.Size.Width;
-            }
-            else
-            {
-                xamScaleFactor = ImageBox.Height / pic.Size.Height;
-            }
+                var ii = args.ImageInformation;
+                TranslationX = 0;
+                TranslationY = 0;
+                ResetImageBox();
+                double xamScaleFactor;
+                if (ii.OriginalWidth >= ii.OriginalHeight)
+                {
+                    xamScaleFactor = ImageBox.Width / ii.OriginalWidth;
+                }
+                else
+                {
+                    xamScaleFactor = ImageBox.Height / ii.OriginalHeight;
+                }
 
-            var widthRatio = pic.Size.Width * xamScaleFactor / ImageBox.Width;
-            var heightRatio = pic.Size.Height * xamScaleFactor / ImageBox.Height;
+                var widthRatio = ii.OriginalWidth * xamScaleFactor / ImageBox.Width;
+                var heightRatio = ii.OriginalHeight * xamScaleFactor / ImageBox.Height;
 
-            var minRatio = Math.Min(widthRatio, heightRatio);
+                var minRatio = Math.Min(widthRatio, heightRatio);
 
-            if (minRatio < 1)
-            {
-                Scale = 1 / minRatio;
-            }
-            else
-            {
-                Scale = 1;
-            }
+                if (minRatio < 1)
+                {
+                    Scale = 1 / minRatio;
+                }
+                else
+                {
+                    Scale = 1;
+                }
+            };
         }
 
         /// <summary>

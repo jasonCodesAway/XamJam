@@ -73,6 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Plugin.XamJam.Util.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
