@@ -37,7 +37,8 @@
     <DocumentationFile>bin\Release\Plugin.XamJam.Pic.Abstractions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IXamJam.Pic.cs" />
+    <Compile Include="IPic.cs" />
+    <Compile Include="IPicManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

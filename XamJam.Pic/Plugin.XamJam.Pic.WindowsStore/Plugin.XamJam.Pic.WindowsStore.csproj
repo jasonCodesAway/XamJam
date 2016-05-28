@@ -107,12 +107,16 @@
       <Project>{6edb0588-ffc5-4ef5-8a99-9e241d0f878d}</Project>
       <Name>Plugin.XamJam.Pic.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Plugin.XamJam.Pic\Plugin.XamJam.Pic.csproj">
+      <Project>{A6FCEF44-D2BA-42C7-B3CB-13667BCD7B54}</Project>
+      <Name>Plugin.XamJam.Pic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Pic\CrossPic.cs">
-      <Link>CrossPic.cs</Link>
+    <Compile Include="..\Plugin.XamJam.Pic\PicManager.cs">
+      <Link>PicManager.cs</Link>
     </Compile>
-    <Compile Include="XamJam.PicImplementation.cs" />
+    <Compile Include="PicManagerImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

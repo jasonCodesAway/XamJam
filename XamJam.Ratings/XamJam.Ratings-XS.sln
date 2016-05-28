@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.Ratings", "XamJam.Ratings\XamJam.Ratings.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.RatingsSample", "XamJam.RatingsSample\XamJam.RatingsSample.csproj", "{FE2B3E19-0096-4083-A573-E55B54519916}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.RatingsSample.Droid", "XamJam.RatingsSample.Droid\XamJam.RatingsSample.Droid.csproj", "{E0703B3D-1E51-4EC7-BA5C-984555B9E588}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0703B3D-1E51-4EC7-BA5C-984555B9E588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0703B3D-1E51-4EC7-BA5C-984555B9E588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0703B3D-1E51-4EC7-BA5C-984555B9E588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0703B3D-1E51-4EC7-BA5C-984555B9E588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2B3E19-0096-4083-A573-E55B54519916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2B3E19-0096-4083-A573-E55B54519916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2B3E19-0096-4083-A573-E55B54519916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2B3E19-0096-4083-A573-E55B54519916}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

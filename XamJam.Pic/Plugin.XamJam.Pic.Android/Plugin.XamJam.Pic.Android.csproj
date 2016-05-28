@@ -43,12 +43,15 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.2.0.31\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Plugin.XamJam.Pic\CrossPic.cs">
-      <Link>CrossPic.cs</Link>
+    <Compile Include="..\Plugin.XamJam.Pic\PicManager.cs">
+      <Link>PicManager.cs</Link>
     </Compile>
-    <Compile Include="XamJam.PicImplementation.cs" />
+    <Compile Include="PicManagerImplementation.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +62,10 @@
     <ProjectReference Include="..\Plugin.XamJam.Pic.Abstractions\Plugin.XamJam.Pic.Abstractions.csproj">
       <Project>{6edb0588-ffc5-4ef5-8a99-9e241d0f878d}</Project>
       <Name>Plugin.XamJam.Pic.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugin.XamJam.Pic\Plugin.XamJam.Pic.csproj">
+      <Project>{A6FCEF44-D2BA-42C7-B3CB-13667BCD7B54}</Project>
+      <Name>Plugin.XamJam.Pic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

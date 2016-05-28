@@ -6,14 +6,14 @@ namespace Plugin.XamJam.Pic
   /// <summary>
   /// Cross platform XamJam.Pic implemenations
   /// </summary>
-  public class CrossPic
+  public class PicManager
   {
-      private static readonly Lazy<IPic> Implementation = new Lazy<IPic>(CreatePic, System.Threading.LazyThreadSafetyMode.PublicationOnly);
+      private static readonly Lazy<IPicManager> Implementation = new Lazy<IPicManager>(CreatePic, System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
     /// <summary>
     /// Current settings to use
     /// </summary>
-    public static IPic Current
+    public static IPicManager Current
     {
       get
       {
@@ -26,12 +26,12 @@ namespace Plugin.XamJam.Pic
       }
     }
 
-    static IPic CreatePic()
+    private static IPicManager CreatePic()
     {
 #if PORTABLE
         return null;
 #else
-        return new Pic();
+        return new PicManagerImplementation();
 #endif
     }
 
