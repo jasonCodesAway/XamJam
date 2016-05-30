@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Plugin.XamJam.Pic.Abstractions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IPicManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         Task<IPic> LoadAsync(Uri uri);
     }
 }

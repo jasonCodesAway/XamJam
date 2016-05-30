@@ -9,12 +9,24 @@ namespace Plugin.XamJam.Pic.Abstractions
   public interface IPic
   {
 
+        /// <summary>
+        /// 
+        /// </summary>
         Size Size { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         Uri Uri { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ImageSource Source { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         byte[] Bytes { get; }
 
     }

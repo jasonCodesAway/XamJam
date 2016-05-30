@@ -7,11 +7,10 @@ using Plugin.XamJam.Pic.Abstractions;
 
 namespace Plugin.XamJam.Pic
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PicManagerImplementation : AbstractPicManager
     {
-        public override Task<IPic> LoadAsync(Uri uri)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

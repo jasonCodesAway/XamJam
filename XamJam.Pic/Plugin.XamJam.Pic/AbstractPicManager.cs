@@ -11,8 +11,16 @@ using Xamarin.Forms;
 
 namespace Plugin.XamJam.Pic
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class AbstractPicManager : IPicManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         public virtual async Task<IPic> LoadAsync(Uri uri)
         {
             var tcs = new TaskCompletionSource<Tuple<ImageInformation, LoadingResult>>();
@@ -21,7 +29,7 @@ namespace Plugin.XamJam.Pic
             //if (process.HasExited) tcs.TrySetResult(process.ExitCode);
             //return tcs.Task.GetAwaiter();
 
-            var loadTask = ImageService.Instance.LoadUrl(uri.ToString()).
+            ImageService.Instance.LoadUrl(uri.ToString()).
                 Success((ImageInformation imageInformation, LoadingResult loadingResult) =>
                 {
                     tcs.TrySetResult(new Tuple<ImageInformation, LoadingResult>(imageInformation, loadingResult));
@@ -33,8 +41,8 @@ namespace Plugin.XamJam.Pic
                 Width = loaded.Item1.OriginalWidth,
                 Height = loaded.Item1.OriginalHeight
             };
-            var imageSource = new FileImageSource {File = loaded.Item1.FilePath};
-            var ci = new CachedImage {Source = imageSource};
+            var imageSource = new FileImageSource { File = loaded.Item1.FilePath };
+            var ci = new CachedImage { Source = imageSource };
             var bytes = await ci.GetImageAsPngAsync();
             return new Pic(size, uri, imageSource, bytes);
         }

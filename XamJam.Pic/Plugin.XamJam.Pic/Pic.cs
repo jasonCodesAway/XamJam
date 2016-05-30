@@ -10,6 +10,13 @@ namespace Plugin.XamJam.Pic
     /// </summary>
     public class Pic : IPic
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size"></param>
+        /// <param name="uri"></param>
+        /// <param name="source"></param>
+        /// <param name="bytes"></param>
         public Pic(Size size, Uri uri, ImageSource source, byte[] bytes)
         {
             Size = size;
@@ -18,12 +25,24 @@ namespace Plugin.XamJam.Pic
             Bytes = bytes;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Size Size { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Uri Uri { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ImageSource Source { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public byte[] Bytes { get; }
     }
 }
