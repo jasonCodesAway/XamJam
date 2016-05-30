@@ -9,7 +9,7 @@ namespace Plugin.XamJam.Pic
 {
     public class PicManagerImplementation : AbstractPicManager
     {
-        public override IPic Create(Uri uri)
+        public override Task<IPic> LoadAsync(Uri uri)
         {
             throw new NotImplementedException();
         }

@@ -10,6 +10,6 @@ namespace Plugin.XamJam.Pic.Abstractions
 {
     public interface IPicManager
     {
-        IPic Create(Uri uri);
+        Task<IPic> LoadAsync(Uri uri);
     }
 }
