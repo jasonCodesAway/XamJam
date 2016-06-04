@@ -1,7 +1,6 @@
 using Plugin.XamJam.Screen.Abstractions;
 using Android.Content.Res;
 
-
 namespace Plugin.XamJam.Screen
 {
     /// <summary>
@@ -20,8 +19,8 @@ namespace Plugin.XamJam.Screen
         public ScreenImplementation()
         {
             var displayMetrics = Resources.System.DisplayMetrics;
-            var width = displayMetrics.HeightPixels / displayMetrics.Density;
-            var height = displayMetrics.WidthPixels / displayMetrics.Density;
+            var height = displayMetrics.HeightPixels / displayMetrics.Density;
+            var width = displayMetrics.WidthPixels / displayMetrics.Density;
             Size = new ScreenSize(true, width, height);
         }
     }
