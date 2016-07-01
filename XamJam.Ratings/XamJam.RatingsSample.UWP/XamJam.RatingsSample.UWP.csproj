@@ -136,11 +136,6 @@
       <Name>XamJam.Ratings</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Xamarin.Forms.Platform.WinRT">
-      <HintPath>..\packages\Xamarin.Forms.2.2.0.31\lib\win81\Xamarin.Forms.Platform.WinRT.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
