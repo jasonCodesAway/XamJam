@@ -3,12 +3,12 @@
              xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
              xmlns:svg="clr-namespace:XamSvg.XamForms;assembly=XamSvg.XamForms"
              x:Class="XamJam.Ratings.RatingView">
-  <mr:StackLayout Orientation="Horizontal" PanningCommand="{Binding PanningCommand}" TappedCommand="{Binding TappedCommand}" Padding="{Binding Padding}" HorizontalOptions="Center">
-    <svg:SvgImage Svg="{Binding FirstStar.Image}" WidthRequest="32" />
-    <svg:SvgImage Svg="{Binding SecondStar.Image}" WidthRequest="32"/>
-    <svg:SvgImage Svg="{Binding ThirdStar.Image}" WidthRequest="32"/>
-    <svg:SvgImage Svg="{Binding FourthStar.Image}" WidthRequest="32"/>
-    <svg:SvgImage Svg="{Binding FifthStar.Image}" WidthRequest="32"/>
+  <mr:StackLayout Orientation="Horizontal" PanningCommand="{Binding PanningCommand}" TappedCommand="{Binding TappedCommand}" Spacing="{Binding Spacing}" HorizontalOptions="Center">
+    <svg:SvgImage Svg="{Binding FirstStar.Image}" WidthRequest="100" />
+    <svg:SvgImage Svg="{Binding SecondStar.Image}" WidthRequest="100"/>
+    <svg:SvgImage Svg="{Binding ThirdStar.Image}" WidthRequest="100"/>
+    <svg:SvgImage Svg="{Binding FourthStar.Image}" WidthRequest="100"/>
+    <svg:SvgImage Svg="{Binding FifthStar.Image}" WidthRequest="100"/>
     <!--<svg:SvgImage Svg="{Binding FirstStar.Image}" ClickedCommand="{Binding FirstStar.TappedCommand}" />
     <svg:SvgImage Svg="{Binding SecondStar.Image}" ClickedCommand="{Binding SecondStar.TappedCommand}" />
     <svg:SvgImage Svg="{Binding ThirdStar.Image}" ClickedCommand="{Binding ThirdStar.TappedCommand}" />

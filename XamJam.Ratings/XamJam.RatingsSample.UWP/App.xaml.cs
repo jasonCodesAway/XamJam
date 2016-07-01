@@ -60,12 +60,6 @@ namespace XamJam.RatingsSample.UWP
 
                 Xamarin.Forms.Forms.Init(e, otherAssemblies);
 
-                //XamSvg.XamForms.Uw.SvgImageRenderer.InitializeForms();
-
-                System.Diagnostics.Debug.WriteLine("FOO");
-                //XamSvg.Shared.Config.ResourceAssembly = typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly;
-                //XamSvg.XamForms.Universal.SvgImageRenderer.InitializeForms();
-
                 MR.Gestures.UWP.Settings.LicenseKey = "ALZ9-BPVU-XQ35-CEBG-5ZRR-URJQ-ED5U-TSY8-6THP-3GVU-JW8Z-RZGE-CQW6";
                 // End Code taken from: https://github.com/MichaelRumpler/GestureSample/blob/master/GestureSample/GestureSample.UWP/App.xaml.cs
 

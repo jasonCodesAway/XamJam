@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MR.Gestures;
 using Plugin.XamJam.BugHound;
 using PropertyChanged;
@@ -15,93 +11,39 @@ namespace XamJam.Ratings
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingViewModel));
 
-        public Thickness Padding { get; } = new Thickness(12);
+        public const int NumStars = 5;
+
+        /// <summary>
+        /// The UI's Spacing value, definitely weird to set this in the view model but the view and view model are somewhat linked in this case because of all the
+        /// view-centric math that the view model does
+        /// </summary>
+        public double Spacing { get; } = 6;
 
         public Command<PanEventArgs> PanningCommand { get; }
 
         public Command<TapEventArgs> TappedCommand { get; }
 
-        private readonly RatingStarViewModel[] ratingStars = new RatingStarViewModel[5];
+        private readonly RatingStarViewModel[] ratingStars = new RatingStarViewModel[NumStars];
 
         public RatingViewModel()
         {
-            for (byte s = 0; s < 5; s++)
+            for (byte s = 0; s < NumStars; s++)
             {
                 ratingStars[s] = new RatingStarViewModel(this, s);
             }
-            PanningCommand = new Command<PanEventArgs>(eventArgs => {
-                // Layout looks like this:
-                // 12 pixels (padding) : First Star, Second Star, ... , Fifth Star, 12 pixels (padding)
-                // handle the cases where the user panned way out to the right or left
+            PanningCommand = new Command<PanEventArgs>(eventArgs =>
+            {
                 var sender = (MR.Gestures.StackLayout)eventArgs.Sender;
-                if (eventArgs.Center.X < Padding.Left)
-                {
-                    Monitor.Debug($"Setting rating to 0 in respond to CenterX={eventArgs.Center.X} and PaddingLeft={Padding.Left}");
-                    Rating = 0;
-                }
-                else if (eventArgs.Center.X > sender.Width - Padding.Right)
-                {
-                    Monitor.Debug($"Setting rating to 10 in respond to CenterX={eventArgs.Center.X} and PaddingLeft={Padding.Left} and Width={sender.Width}");
-                    Rating = 10;
-                }
-                else
-                {
-                    // normal case
-                    var percentX = (eventArgs.Center.X - Padding.Left) / (sender.Width - Padding.Left - Padding.Right);
-                    Rating = (byte)Math.Round(percentX * 10);
-                    Monitor.Debug($"Panned, Set Rating = {Rating} in response to {percentX}% CenterX={eventArgs.Center.X} Width={sender.Width}");
-                }
+                UpdateRating(sender, eventArgs);
             });
             TappedCommand = new Command<TapEventArgs>(eventArgs =>
             {
                 var sender = (VisualElement)eventArgs.Sender;
-                //var percent = (double) eventArgs.Center.X/sender.Width;
-                //Rating = (byte) Math.Round(percent*10);
-                ////takes care of the full star case
-                //var baseRating = (byte)((index + 1) * 2);
-                ////takes care of the 1/2 star case by adjusting
-                //if (eventArgs.Center.X < sender.Width / 2)
-                //    baseRating--;
-                //// special rules for the 0th star to allow selecting the empty star
-                //if (index == 0 && parent.Rating == baseRating)
-                //{
-                //    parent.Rating = 0;
-                //}
-                //else
-                //{
-                //    parent.Rating = baseRating;
-                //}
-                //Monitor.Trace($"Set rating to {parent.Rating}");
+                UpdateRating(sender, eventArgs);
             });
         }
 
-        public void OnPanUpdated(object s, PanUpdatedEventArgs e)
-        {
-            // Layout looks like this:
-            // 12 pixels (padding) : First Star, Second Star, ... , Fifth Star, 12 pixels (padding)
-            // handle the cases where the user panned way out to the right or left
-            var sender = (Xamarin.Forms.StackLayout)s;
-            //e.TotalX
-            //if (eventArgs.Center.X < Padding.Left)
-            //{
-            //    Monitor.Debug($"Setting rating to 0 in respond to CenterX={eventArgs.Center.X} and PaddingLeft={Padding.Left}");
-            //    Rating = 0;
-            //}
-            //else if (eventArgs.Center.X > sender.Width - Padding.Right)
-            //{
-            //    Monitor.Debug($"Setting rating to 10 in respond to CenterX={eventArgs.Center.X} and PaddingLeft={Padding.Left} and Width={sender.Width}");
-            //    Rating = 10;
-            //}
-            //else
-            //{
-            //    // normal case
-            //    var percentX = (eventArgs.Center.X - Padding.Left) / (sender.Width - Padding.Left - Padding.Right);
-            //    Rating = (byte)Math.Round(percentX * 10);
-            //    Monitor.Debug($"Panned, Set Rating = {Rating} in response to {percentX}% CenterX={eventArgs.Center.X} Width={sender.Width}");
-            //}
-        }
-
-        private byte rating = 0;
+        private byte rating;
 
         public byte Rating
         {
@@ -111,9 +53,9 @@ namespace XamJam.Ratings
                 if (rating != value)
                 {
                     rating = value;
-                    int fullStarIndex = rating / 2;
-                    int halfStarIndex = rating % 2;
-                    int s = 0;
+                    var fullStarIndex = rating / 2;
+                    var halfStarIndex = rating % 2;
+                    var s = 0;
                     for (; s < fullStarIndex;)
                     {
                         Monitor.Trace($"Setting star-{s} to FULL");
@@ -142,5 +84,41 @@ namespace XamJam.Ratings
         public RatingStarViewModel FourthStar => ratingStars[3];
 
         public RatingStarViewModel FifthStar => ratingStars[4];
+
+
+        /// <summary>
+        /// This is a good enough approximation of updating the Rating based on where the user clicked. In reality this could be just a bit more accurate, but for now it's sufficient for my needs.
+        /// </summary>
+        private void UpdateRating(VisualElement view, BaseGestureEventArgs eventArgs)
+        {
+            double paddingLeft = 0, paddingRight = 0;
+            var layout = view as Layout;
+            if (layout != null)
+            {
+                paddingLeft = layout.Padding.Left;
+                paddingRight = layout.Padding.Right;
+            }
+            // First 2 IF statements: handle the cases where the user panned way out to the right or left (outside of this view, causing the percentX to really be <0 or >1
+            if (eventArgs.Center.X < paddingLeft)
+            {
+                Monitor.Debug($"Setting rating to 0 in respond to CenterX={eventArgs.Center.X} and Spacing={Spacing}");
+                Rating = 0;
+            }
+            else if (eventArgs.Center.X > view.Width - paddingRight)
+            {
+                Monitor.Debug($"Setting rating to 10 in respond to CenterX={eventArgs.Center.X} and pacing={Spacing} and Width={view.Width}");
+                Rating = 10;
+            }
+            else
+            {
+                var remainingWidth = view.Width - paddingLeft - paddingRight;
+                var adjustedX = eventArgs.Center.X - paddingLeft;
+                var percentX = adjustedX / remainingWidth;
+                // normal case
+                //var percentX = (eventArgs.Center.X - Padding.Left) / (view.Width - Padding.Left - Padding.Right);
+                Rating = (byte)Math.Round(percentX * 10);
+                Monitor.Debug($"Panned, Set Rating = {Rating} in response to {percentX}% CenterX={eventArgs.Center.X} Width={view.Width}");
+            }
+        }
     }
 }
