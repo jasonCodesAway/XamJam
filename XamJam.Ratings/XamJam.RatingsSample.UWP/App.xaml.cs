@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace XamJam.RatingsSample.UWP
@@ -63,14 +53,14 @@ namespace XamJam.RatingsSample.UWP
                 var otherAssemblies = new[] {
                     typeof(MR.Gestures.ContentPage).GetTypeInfo().Assembly,
                     typeof(MR.Gestures.UWP.Renderers.PageRenderer).GetTypeInfo().Assembly,
-                    typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly //seeing if adding this allows the Images in XamJam.Rating to be referenced
                 };
 
-                //XamSvg.Shared.Config.ResourceAssembly = typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly;
-
-                XamSvg.XamForms.Universal.SvgImageRenderer.InitializeForms();
+                // Initialize XamSvg which is used to render SVGs from Xamarin Forms XAML
+                XamSvg.XamForms.Uw.SvgImageRenderer.InitializeForms();
 
                 Xamarin.Forms.Forms.Init(e, otherAssemblies);
+
+                //XamSvg.XamForms.Uw.SvgImageRenderer.InitializeForms();
 
                 System.Diagnostics.Debug.WriteLine("FOO");
                 //XamSvg.Shared.Config.ResourceAssembly = typeof(XamJam.Ratings.RatingView).GetTypeInfo().Assembly;

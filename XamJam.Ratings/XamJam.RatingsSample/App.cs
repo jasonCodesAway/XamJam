@@ -17,27 +17,23 @@ namespace XamJam.RatingsSample
                 Content = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.Center,
+                    Orientation = StackOrientation.Vertical,
                     Children = {
                         new Label {
 							HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
+                            Text = "Welcome to a Rating View in Xamarin Forms!",
+                            TextColor = Color.White
                         },
-                        //new SvgImage()
-                        //{
-                        //    Svg="res:Images.Half",
-                        //    WidthRequest=48
-
-                        //},
                         new RatingView()
                         {
-                            BindingContext = new RatingViewModel()
+                            BindingContext = new RatingViewModel
                             {
                                 Rating = 10
                             }
                         }
                     }
                 },
-                BackgroundColor = Color.Purple
+                BackgroundColor = Color.Black
             };
         }
 

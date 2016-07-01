@@ -3,7 +3,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "System.Net.Http": "4.0.0",
     "Xam.Plugins.XamJam.Pic": "0.0.4-alpha",
-    "Xamarin.Forms": "2.2.0.43"
+    "Xamarin.Forms": "2.2.0.45"
   },
   "frameworks": {
     "uap10.0": {}
