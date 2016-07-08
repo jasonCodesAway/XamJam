@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Plugin.XamJam.Ratings.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RatingView.xaml">
