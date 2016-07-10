@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ED9A4CA1-C04C-457D-9A2E-7995CCF12356}</ProjectGuid>
+    <ProjectGuid>{1C5C1AB7-1F20-401F-8B3E-482FBF34A133}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plugin.XamJam.Pic</RootNamespace>

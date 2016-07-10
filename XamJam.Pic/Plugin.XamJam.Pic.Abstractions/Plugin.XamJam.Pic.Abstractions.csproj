@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6EDB0588-FFC5-4EF5-8A99-9E241D0F878D}</ProjectGuid>
+    <ProjectGuid>{1D05DB15-7576-439C-8B23-B06EE2E70F94}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Plugin.XamJam.Pic.Abstractions</RootNamespace>
