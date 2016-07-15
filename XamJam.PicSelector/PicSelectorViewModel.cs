@@ -1,7 +1,10 @@
 ﻿#region
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
+using FFImageLoading;
+using FFImageLoading.Forms;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.XamJam.BugHound;
@@ -15,7 +18,7 @@ namespace XamJam.PicSelector
     [ImplementPropertyChanged]
     public class PicSelectorViewModel
     {
-        private static readonly IBugHound logger = BugHound.ByType(typeof (PicSelectorViewModel));
+        private static readonly IBugHound logger = BugHound.ByType(typeof(PicSelectorViewModel));
 
         private readonly PhotoSelectorOptions options;
 
@@ -27,7 +30,7 @@ namespace XamJam.PicSelector
                 CropViewModel.PicSelectionResult.UserCancelled = true;
                 await Application.Current.MainPage.Navigation.PopModalAsync();
             });
-            DoneCommand = new Command(async() =>
+            DoneCommand = new Command(async () =>
             {
                 CropViewModel.PicSelectionResult.UserCancelled = false;
                 await Application.Current.MainPage.Navigation.PopModalAsync();
@@ -41,7 +44,7 @@ namespace XamJam.PicSelector
                 string selectedOption = null;
                 if (canTakePhoto && canSelectPhoto)
                 {
-                    var buttonText = new[] {options.TakePhotoText, options.SelectPhotoText};
+                    var buttonText = new[] { options.TakePhotoText, options.SelectPhotoText };
                     selectedOption = await page.DisplayActionSheet(null, CancelText, null, buttonText);
                 }
                 else if (canTakePhoto)
@@ -70,20 +73,26 @@ namespace XamJam.PicSelector
                 }
                 if (selected != null)
                 {
-                    var pic = await options.PictureManager.LoadAsync(new Uri(selected.Path));
-                    CropViewModel.LoadImage(pic);
+                    var ci = new CachedImage
+                    {
+                        Source = new FileImageSource { File = selected.Path }
+                    };
+                    CropViewModel.LoadImage(ci);
                     logger.Info($"Setting selected photo to: {selected.Path}");
                 }
             });
         }
 
-        public async Task InitializeAsync()
+        public void Initialize()
         {
             if (options.InitialPhoto != null)
             {
                 logger.Debug($"Loading initial photo: {options.InitialPhoto}");
-                var initialPic = await options.PictureManager.LoadAsync(options.InitialPhoto);
-                CropViewModel.LoadImage(initialPic);
+                var ci = new CachedImage
+                {
+                    Source = new UriImageSource { Uri = options.InitialPhoto }
+                };
+                CropViewModel.LoadImage(ci);
                 //CropViewModel.PicSelectionResult.Selected = initialPic;
                 logger.Debug($"Done loading initial photo: {options.InitialPhoto}");
             }

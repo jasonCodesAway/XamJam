@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>Xam.Plugins.XamJam.Screen</id>
-    <version>1.0.5-beta</version>
+    <version>1.0.5</version>
     <title>Screen Size Plugin for Android, iOS, UWP, WP8, WP81, Windows Store 81</title>
     <authors>Jason C. HandUber</authors>
     <owners>Jason C. HandUber</owners>
@@ -30,6 +30,8 @@
       - Don't ask about 1.0.3-beta, it's not the beta you're looking for.
       [1.0.5-beta]
       - Fixed Android, width and height were switched. Thanks 'alaskanrogue' for the report.
+      [1.0.5]
+      - Updated nuget packages and decided to release as non-BETA
     </releaseNotes>
   </metadata>
   <files>
