@@ -52,10 +52,6 @@
       <Project>{6EDB0588-FFC5-4EF5-8A99-9E241D0F878D}</Project>
       <Name>Plugin.XamJam.Screen.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Plugin.XamJam.BugHound.Abstractions\Plugin.XamJam.BugHound.Abstractions.csproj">
-      <Project>{4350F383-2688-4C21-9765-B12E7F95FCD1}</Project>
-      <Name>Plugin.XamJam.BugHound.Abstractions</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

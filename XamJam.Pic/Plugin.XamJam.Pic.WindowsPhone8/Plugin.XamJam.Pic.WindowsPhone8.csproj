@@ -92,20 +92,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XamJam.Screen\Plugin.XamJam.Screen.Abstractions\Plugin.XamJam.Screen.Abstractions.csproj">
-      <Project>{6edb0588-ffc5-4ef5-8a99-9e241d0f878d}</Project>
-      <Name>Plugin.XamJam.Screen.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\XamJam.Screen\Plugin.XamJam.Screen\Plugin.XamJam.Screen.csproj">
-      <Project>{A6FCEF44-D2BA-42C7-B3CB-13667BCD7B54}</Project>
-      <Name>Plugin.XamJam.Screen</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Plugin.XamJam.Pic.Abstractions\Plugin.XamJam.Pic.Abstractions.csproj">
-      <Project>{1d05db15-7576-439c-8b23-b06ee2e70f94}</Project>
+      <Project>{6edb0588-ffc5-4ef5-8a99-9e241d0f878d}</Project>
       <Name>Plugin.XamJam.Pic.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Plugin.XamJam.Pic\Plugin.XamJam.Pic.csproj">
-      <Project>{b973e0ac-1d06-44bf-8bb7-167536cd5d48}</Project>
+      <Project>{A6FCEF44-D2BA-42C7-B3CB-13667BCD7B54}</Project>
       <Name>Plugin.XamJam.Pic</Name>
     </ProjectReference>
   </ItemGroup>

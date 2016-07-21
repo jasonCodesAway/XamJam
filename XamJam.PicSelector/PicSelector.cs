@@ -14,7 +14,7 @@ namespace XamJam.PicSelector
         {
             var page = new ContentPage();
             var vm = new PicSelectorViewModel(page, options);
-            vm.Initialize();
+            await vm.InitializeAsync();
             page.Content = new PicSelectorView(vm);
             await Application.Current.MainPage.Navigation.PushModalAsync(page);
             // after the page is done, go ahead and run the 'onCompleteHandler' to store the user-selected image

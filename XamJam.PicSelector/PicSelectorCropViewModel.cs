@@ -220,8 +220,9 @@ namespace XamJam.PicSelector
         private void ResetImageBox()
         {
             // Setup the ImageBox to fill the cropbox and overflow as needed
-            var imageWidth = PicSelectionResult.Selected.Width;
-            var imageHeight = PicSelectionResult.Selected.Height;
+            var imageSize = PicSelectionResult.Selected.Size;
+            var imageWidth = imageSize.Width;
+            var imageHeight = imageSize.Height;
             //				var imageWidth = ImageBox.Width;
             //				var imageHeight = ImageBox.Height;
             var cropBoxWidth = RightCropBox.Left - LeftCropBox.Right;
@@ -245,7 +246,7 @@ namespace XamJam.PicSelector
 
         private void TryPanBy(double deltaX, double deltaY)
         {
-            logger.Debug($"SelectedPhoto size is {PicSelectionResult.Selected.Width}x{PicSelectionResult.Selected.Height}");
+            logger.Debug($"SelectedPhoto size is {PicSelectionResult.Selected.Size}");
 
             if (deltaX != 0)
             {

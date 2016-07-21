@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8074E844-E354-45FF-A43A-5AB1D463BBC8}"
+	ProjectSection(SolutionItems) = preProject
+		XamJam.Pic\Plugin.XamJam.Pic.nuspec = XamJam.Pic\Plugin.XamJam.Pic.nuspec
+		README.md = README.md
+		XamJam.Pic\README.md = XamJam.Pic\README.md
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BugHound", "BugHound", "{FE7DB7B3-B057-4FBB-915E-81BCBDD6D9F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.BugHound", "XamJam.BugHound\Plugin.XamJam.BugHound\Plugin.XamJam.BugHound.csproj", "{54997076-792F-4AAF-82C0-EDE69ADF38DD}"
@@ -39,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.Screen.Window
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.Screen.UWP", "XamJam.Screen\Plugin.XamJam.Screen.UWP\Plugin.XamJam.Screen.UWP.csproj", "{E34B516D-C0D8-450F-9DB0-BB6A5B04AEF1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FCBDE5FB-820B-4681-B70D-2128C845FD94}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items (2)", "Solution Items (2)", "{FCBDE5FB-820B-4681-B70D-2128C845FD94}"
 	ProjectSection(SolutionItems) = preProject
 		XamJam.Screen\phoneSize.png = XamJam.Screen\phoneSize.png
 		XamJam.Screen\Plugin.XamJam.Screen.nuspec = XamJam.Screen\Plugin.XamJam.Screen.nuspec
@@ -70,18 +77,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.Pic.WindowsSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.XamJam.Pic.UWP", "XamJam.Pic\Plugin.XamJam.Pic.UWP\Plugin.XamJam.Pic.UWP.csproj", "{DE55191A-0EEE-4EF6-AE62-78292BF4B858}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.PicSelector", "XamJam.PicSelector\XamJam.PicSelector.csproj", "{60D9E8FA-9B2F-440D-B12F-1378200A7C1B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BCB4C73-F4BF-490E-A337-D1B61346AF3E}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A5797728-5F62-4828-81FF-DD8D62B957A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8074E844-E354-45FF-A43A-5AB1D463BBC8}"
 	ProjectSection(SolutionItems) = preProject
 		XamJam.Pic\Plugin.XamJam.Pic.nuspec = XamJam.Pic\Plugin.XamJam.Pic.nuspec
+		README.md = README.md
 		XamJam.Pic\README.md = XamJam.Pic\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.PicSelector", "XamJam.PicSelector\XamJam.PicSelector.csproj", "{60D9E8FA-9B2F-440D-B12F-1378200A7C1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -801,6 +804,6 @@ Global
 		{B39E6926-D582-4785-BBAA-0A9C47617487} = {8DFE50A4-8AD3-4067-A72D-890C1C356D44}
 		{1C5C1AB7-1F20-401F-8B3E-482FBF34A133} = {8DFE50A4-8AD3-4067-A72D-890C1C356D44}
 		{DE55191A-0EEE-4EF6-AE62-78292BF4B858} = {8DFE50A4-8AD3-4067-A72D-890C1C356D44}
-		{A5797728-5F62-4828-81FF-DD8D62B957A3} = {8DFE50A4-8AD3-4067-A72D-890C1C356D44}
+		{8074E844-E354-45FF-A43A-5AB1D463BBC8} = {8DFE50A4-8AD3-4067-A72D-890C1C356D44}
 	EndGlobalSection
 EndGlobal
