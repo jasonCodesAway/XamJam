@@ -39,8 +39,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Plugin.XamJam.Nav\bin\Release\Plugin.XamJam.Nav.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Nav.dll" />
-    <file src="Plugin.XamJam.Nav\bin\Release\Plugin.XamJam.Nav.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Nav.xml" />
-    <file src="Plugin.XamJam.Nav\bin\Release\Plugin.XamJam.Nav.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Nav.pdb" />
+    <file src="bin\Release\XamJam.Nav.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Nav.dll" />
+    <!--<file src="XamJam.Nav\bin\Release\Plugin.XamJam.Nav.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Nav.xml" />-->
+    <file src="bin\Release\XamJam.Nav.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Nav.pdb" />
   </files>
 </package>
