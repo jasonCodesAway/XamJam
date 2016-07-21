@@ -89,7 +89,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Plugin.XamJam.Nav.nuspec">
+    <None Include="Plugin.XamJam.Util.nuspec">
       <SubType>Designer</SubType>
     </None>
     <None Include="README.md" />
