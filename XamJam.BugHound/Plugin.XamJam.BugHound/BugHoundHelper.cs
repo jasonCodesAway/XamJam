@@ -1,6 +1,6 @@
-﻿using Plugin.XamJam.BugHound.Abstractions;
-using System;
+﻿using System;
 using System.Diagnostics;
+using Plugin.XamJam.BugHound.Abstractions;
 
 namespace Plugin.XamJam.BugHound
 {
