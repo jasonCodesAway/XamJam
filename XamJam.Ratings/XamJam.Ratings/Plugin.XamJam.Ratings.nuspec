@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata minClientVersion="2.8.3">
 		<id>Xam.Plugins.XamJam.Ratings</id>
-		<version>0.0.1-alpha</version>
+		<version>0.0.2-alpha</version>
 		<title>Xamarin XAML Ratings Widget</title>
     <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
     <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
