@@ -2,6 +2,7 @@
 
 using FFImageLoading.Forms;
 using PropertyChanged;
+using XamJam.Pic;
 
 #endregion
 
@@ -12,6 +13,6 @@ namespace XamJam.PicSelector
     {
         public bool UserCancelled { get; set; } = false;
 
-        public CachedImage Selected { get; set; }
+        public IPic Selected { get; set; }
     }
 }
