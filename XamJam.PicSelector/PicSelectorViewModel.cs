@@ -7,6 +7,7 @@ using Plugin.Media.Abstractions;
 using Plugin.XamJam.BugHound;
 using PropertyChanged;
 using Xamarin.Forms;
+using XamJam.Pic;
 
 #endregion
 
@@ -15,7 +16,7 @@ namespace XamJam.PicSelector
     [ImplementPropertyChanged]
     public class PicSelectorViewModel
     {
-        private static readonly IBugHound logger = BugHound.ByType(typeof (PicSelectorViewModel));
+        private static readonly IBugHound BugHound = Plugin.XamJam.BugHound.BugHound.ByType(typeof (PicSelectorViewModel));
 
         private readonly PhotoSelectorOptions options;
 
@@ -70,9 +71,9 @@ namespace XamJam.PicSelector
                 }
                 if (selected != null)
                 {
-                    var pic = await options.PictureManager.LoadAsync(new Uri(selected.Path));
+                    var pic = await PicManager.LoadAsync(new Uri(selected.Path));
                     CropViewModel.LoadImage(pic);
-                    logger.Info($"Setting selected photo to: {selected.Path}");
+                    BugHound.Info($"Setting selected photo to: {selected.Path}");
                 }
             });
         }
@@ -81,11 +82,11 @@ namespace XamJam.PicSelector
         {
             if (options.InitialPhoto != null)
             {
-                logger.Debug($"Loading initial photo: {options.InitialPhoto}");
-                var initialPic = await options.PictureManager.LoadAsync(options.InitialPhoto);
+                BugHound.Debug($"Loading initial photo: {options.InitialPhoto}");
+                var initialPic = await PicManager.LoadAsync(options.InitialPhoto);
                 CropViewModel.LoadImage(initialPic);
                 //CropViewModel.PicSelectionResult.Selected = initialPic;
-                logger.Debug($"Done loading initial photo: {options.InitialPhoto}");
+                BugHound.Debug($"Done loading initial photo: {options.InitialPhoto}");
             }
         }
 

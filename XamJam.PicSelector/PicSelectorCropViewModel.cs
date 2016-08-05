@@ -1,13 +1,11 @@
 ﻿#region
 
 using System;
-using FFImageLoading.Forms;
-using FFImageLoading.Helpers;
-using FFImageLoading.Work;
 using MR.Gestures;
 using Plugin.XamJam.BugHound;
 using PropertyChanged;
 using Xamarin.Forms;
+using XamJam.Pic;
 
 #endregion
 
@@ -16,17 +14,17 @@ namespace XamJam.PicSelector
     [ImplementPropertyChanged]
     public class PicSelectorCropViewModel
     {
-        private static readonly IBugHound logger = BugHound.ByType(typeof(PicSelectorCropViewModel));
+        private static readonly IBugHound BugHound = Plugin.XamJam.BugHound.BugHound.ByType(typeof(PicSelectorCropViewModel));
 
         /// <summary>
         ///     The percentage of the screen real-estate that the crop-box should take
         /// </summary>
-        private static readonly double cropBoxPercent = 0.65;
+        private const double CropBoxPercent = 0.65;
 
         /// <summary>
         ///     The size of the crop box border.
         /// </summary>
-        private static readonly double cropBoxBorderSize = 1.5;
+        private const double CropBoxBorderSize = 1.5;
 
         /// <summary>
         ///     This is setup during the Resize callback. The user cannot zoom out past this value.
@@ -115,10 +113,7 @@ namespace XamJam.PicSelector
         ///     saved
         /// </summary>
         /// <value>The crop box.</value>
-        public Rectangle CropBox
-            =>
-                new Rectangle(LeftCropBox.Right, TopCropBox.Bottom, RightCropBox.Left - LeftCropBox.Right,
-                    BottomCropBox.Top - TopCropBox.Bottom);
+        public Rectangle CropBox => new Rectangle(LeftCropBox.Right, TopCropBox.Bottom, RightCropBox.Left - LeftCropBox.Right, BottomCropBox.Top - TopCropBox.Bottom);
 
         /// <summary>
         ///     Used to make sure the image doesn't draw under the status bar on the top of an iPhone that shows the time/signal
@@ -130,39 +125,37 @@ namespace XamJam.PicSelector
         /// <summary>
         ///     Called whenever the loaded image size changes
         /// </summary>
-        /// <param name="ci">new image</param>
-        public void LoadImage(CachedImage ci)
+        /// <param name="pic">new image</param>
+        public void LoadImage(IPic pic)
         {
-            ci.Success += (sender, args) =>
+            TranslationX = 0;
+            TranslationY = 0;
+            ResetImageBox();
+            double xamScaleFactor;
+            var picHeight = pic.Size.Height;
+            var picWidth = pic.Size.Width;
+            if (picWidth >= picHeight)
             {
-                var ii = args.ImageInformation;
-                TranslationX = 0;
-                TranslationY = 0;
-                ResetImageBox();
-                double xamScaleFactor;
-                if (ii.OriginalWidth >= ii.OriginalHeight)
-                {
-                    xamScaleFactor = ImageBox.Width / ii.OriginalWidth;
-                }
-                else
-                {
-                    xamScaleFactor = ImageBox.Height / ii.OriginalHeight;
-                }
+                xamScaleFactor = ImageBox.Width / picWidth;
+            }
+            else
+            {
+                xamScaleFactor = ImageBox.Height / picHeight;
+            }
 
-                var widthRatio = ii.OriginalWidth * xamScaleFactor / ImageBox.Width;
-                var heightRatio = ii.OriginalHeight * xamScaleFactor / ImageBox.Height;
+            var widthRatio = picWidth * xamScaleFactor / ImageBox.Width;
+            var heightRatio = picHeight * xamScaleFactor / ImageBox.Height;
 
-                var minRatio = Math.Min(widthRatio, heightRatio);
+            var minRatio = Math.Min(widthRatio, heightRatio);
 
-                if (minRatio < 1)
-                {
-                    Scale = 1 / minRatio;
-                }
-                else
-                {
-                    Scale = 1;
-                }
-            };
+            if (minRatio < 1)
+            {
+                Scale = 1 / minRatio;
+            }
+            else
+            {
+                Scale = 1;
+            }
         }
 
         /// <summary>
@@ -183,20 +176,20 @@ namespace XamJam.PicSelector
 
             // Setup the white outline CropBox to show what part of the image will be cropped
             {
-                var cropBoxSize = cropBoxPercent * Math.Min(newViewWidth, newViewHeight);
+                var cropBoxSize = CropBoxPercent * Math.Min(newViewWidth, newViewHeight);
                 var halfCropBoxSize = cropBoxSize * 0.5;
                 var cropTop = newViewHeight * 0.5 - halfCropBoxSize;
                 var cropBottom = newViewHeight * 0.5 + halfCropBoxSize;
                 var cropLeft = newViewWidth * 0.5 - halfCropBoxSize;
                 var cropRight = newViewWidth * 0.5 + halfCropBoxSize;
-                TopCropBox = new Rectangle(cropLeft, cropTop, cropBoxSize, cropBoxBorderSize);
-                BottomCropBox = new Rectangle(cropLeft, cropBottom, cropBoxSize + cropBoxBorderSize, cropBoxBorderSize);
-                LeftCropBox = new Rectangle(cropLeft, cropTop, cropBoxBorderSize, cropBoxSize);
-                RightCropBox = new Rectangle(cropRight, cropTop, cropBoxBorderSize, cropBoxSize + cropBoxBorderSize);
-                logger.Debug($"Top Crop Box @ {TopCropBox}");
-                logger.Debug($"Bottom Crop Box @ {BottomCropBox}");
-                logger.Debug($"Left Crop Box @ {LeftCropBox}");
-                logger.Debug($"Right Crop Box @ {RightCropBox}");
+                TopCropBox = new Rectangle(cropLeft, cropTop, cropBoxSize, CropBoxBorderSize);
+                BottomCropBox = new Rectangle(cropLeft, cropBottom, cropBoxSize + CropBoxBorderSize, CropBoxBorderSize);
+                LeftCropBox = new Rectangle(cropLeft, cropTop, CropBoxBorderSize, cropBoxSize);
+                RightCropBox = new Rectangle(cropRight, cropTop, CropBoxBorderSize, cropBoxSize + CropBoxBorderSize);
+                BugHound.Debug($"Top Crop Box @ {TopCropBox}");
+                BugHound.Debug($"Bottom Crop Box @ {BottomCropBox}");
+                BugHound.Debug($"Left Crop Box @ {LeftCropBox}");
+                BugHound.Debug($"Right Crop Box @ {RightCropBox}");
             }
 
             ResetImageBox();
@@ -210,10 +203,10 @@ namespace XamJam.PicSelector
                     newViewHeight - BottomCropBox.Bottom);
                 LeftBox = new Rectangle(0, 0, LeftCropBox.Left, newViewHeight);
                 RightBox = new Rectangle(RightCropBox.Right, 0, LeftCropBox.Left, newViewHeight);
-                logger.Debug($"Top Box @ {TopBox}");
-                logger.Debug($"Bottom Box @ {BottomBox}");
-                logger.Debug($"Left Box @ {LeftBox}");
-                logger.Debug($"Right Box @ {RightBox}");
+                BugHound.Debug($"Top Box @ {TopBox}");
+                BugHound.Debug($"Bottom Box @ {BottomBox}");
+                BugHound.Debug($"Left Box @ {LeftBox}");
+                BugHound.Debug($"Right Box @ {RightBox}");
             }
         }
 
@@ -227,7 +220,7 @@ namespace XamJam.PicSelector
             //				var imageHeight = ImageBox.Height;
             var cropBoxWidth = RightCropBox.Left - LeftCropBox.Right;
             var cropBoxHeight = BottomCropBox.Top - TopCropBox.Bottom;
-            logger.Debug($"Rescaling raw image {imageWidth}x{imageHeight} to crop box {cropBoxWidth},{cropBoxHeight}");
+            BugHound.Debug($"Rescaling raw image {imageWidth}x{imageHeight} to crop box {cropBoxWidth},{cropBoxHeight}");
 
             //need to center and resize the image
             var widthFactor = cropBoxWidth / imageWidth;
@@ -238,15 +231,15 @@ namespace XamJam.PicSelector
             var scaledHeight = imageHeight * scaleFactor;
             minScale = Math.Min(scaledWidth / cropBoxWidth, scaledHeight / cropBoxWidth);
             // center the image
-            var x = (viewWidth - scaledWidth) * 0.5 + 0.5 * cropBoxBorderSize;
-            var y = (viewHeight - scaledHeight) * 0.5 + 0.5 * cropBoxBorderSize;
+            var x = (viewWidth - scaledWidth) * 0.5 + 0.5 * CropBoxBorderSize;
+            var y = (viewHeight - scaledHeight) * 0.5 + 0.5 * CropBoxBorderSize;
             ImageBox = new Rectangle(x, y, scaledWidth, scaledHeight);
-            logger.Debug($"Image Box @ {ImageBox}");
+            BugHound.Debug($"Image Box @ {ImageBox}");
         }
 
         private void TryPanBy(double deltaX, double deltaY)
         {
-            logger.Debug($"SelectedPhoto size is {PicSelectionResult.Selected.Size}");
+            BugHound.Debug($"SelectedPhoto size is {PicSelectionResult.Selected.Size}");
 
             if (deltaX != 0)
             {
@@ -259,7 +252,7 @@ namespace XamJam.PicSelector
                     if (deltaX > maxRight)
                     {
                         deltaX = maxRight;
-                        logger.Debug($"Moving right. Max legal right = {maxRight}. Moving right by {deltaX}");
+                        BugHound.Debug($"Moving right. Max legal right = {maxRight}. Moving right by {deltaX}");
                     }
                 }
                 else
@@ -269,7 +262,7 @@ namespace XamJam.PicSelector
                     if (deltaX < maxLeft)
                     {
                         deltaX = maxLeft;
-                        logger.Debug($"Moving left. Max legal left = {maxLeft}. Moving left by {deltaX}");
+                        BugHound.Debug($"Moving left. Max legal left = {maxLeft}. Moving left by {deltaX}");
                     }
                 }
             }
@@ -285,7 +278,7 @@ namespace XamJam.PicSelector
                     if (deltaY > maxDown)
                     {
                         deltaY = maxDown;
-                        logger.Debug($"Moving down. Max legal down= {maxDown}. Moving down by {deltaY}");
+                        BugHound.Debug($"Moving down. Max legal down= {maxDown}. Moving down by {deltaY}");
                     }
                 }
                 else
@@ -295,7 +288,7 @@ namespace XamJam.PicSelector
                     if (deltaY < maxUp)
                     {
                         deltaY = maxUp;
-                        logger.Debug($"Moving up. Max legal up = {maxUp}. Moving up by {deltaY}");
+                        BugHound.Debug($"Moving up. Max legal up = {maxUp}. Moving up by {deltaY}");
                     }
                 }
             }
@@ -355,7 +348,7 @@ namespace XamJam.PicSelector
 
             Scale = newScale;
 
-            logger.Debug($"Pinched, new scale = {Scale}. Delta Scale = {zoomFactor}");
+            BugHound.Debug($"Pinched, new scale = {Scale}. Delta Scale = {zoomFactor}");
         }
     }
 }
