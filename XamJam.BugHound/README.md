@@ -1,4 +1,4 @@
-## ![](https://github.com/jasonCodesAway/XamJam/blob/master/XamJam.BugHound/icon.png) Xamarin-compatible cross-platform logging and bug tracking framework.
+## ![](https://github.com/jasonCodesAway/XamJam/blob/master/XamJam.BugHound/icon.svg) Xamarin-compatible cross-platform logging and bug tracking framework.
 
 #### Disclaimer
 This is largely untested and this is intentionally lightweight (aka. feature-poor). I'm happy to accept pull requests for cleanly implemented features.
