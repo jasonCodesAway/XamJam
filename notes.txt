@@ -1,0 +1,11 @@
+Clone / download a repo:		git clone https://....
+Remove a directory recursively:		git rm -r --cached dir
+Add a file or directory: 		git add dir/file
+Commit local changes to local repo: 	git commit -m"message here"
+Commit local repo to remote repo:	git push origin master
+See what GIT is thinking: 		git status
+
+
+
+Visual Studio Build Issues
+> Tools -> Options -> Projects & Solutions -> Build and Run -> MS Build project output verbosity: Diagnostic

@@ -55,12 +55,18 @@ namespace XamJam.Nav
 
         public async Task ShowAsync<TVm>(Action<TVm> setupState = null)
         {
+            var hasDestination = vmType2Destinations.ContainsKey(typeof (TVm));
+            if (!hasDestination)
+                Monitor.Throw($"Found no destination for view model type: {typeof(TVm)}");
             var destination = vmType2Destinations[typeof(TVm)];
             await ShowAsync(destination, setupState);
         }
 
         public async Task ShowAsync<TVm>(TVm destinationViewModel, Action<TVm> setupState = null)
         {
+            var hasDestination = vmType2Destinations.ContainsKey(typeof(TVm));
+            if (!hasDestination)
+                Monitor.Throw($"Found no destination for view model type: {typeof(TVm)}");
             var destination = vm2Destinations[destinationViewModel];
             await ShowAsync(destination, setupState);
         }
