@@ -1,4 +1,4 @@
-## ![](https://github.com/jasonCodesAway/XamJam/blob/master/XamJam.Wall/icon.png =48x) Visual Wall that supports panning and selecting items. Typically used to show images.
+## ![](https://github.com/jasonCodesAway/XamJam/blob/master/XamJam.Wall/icon.png) Visual Wall that supports panning and selecting items. Typically used to show images.
 
 #### Disclaimer
 This is largely untested and this is intentionally lightweight (aka. feature-poor). I'm happy to accept pull requests for cleanly implemented features.
