@@ -1,5 +1,6 @@
 ![](xamJam.png) 
 ### Caz and Jason's collection of useful Xamarin components. Enjoy! 
+#### See the 'Demo' folder for example usage.
 
 | Component | Stability	| Description | Nuget |
 | :--- | :--- | :--- | :--- |
@@ -12,4 +13,4 @@
 | Pic<sup>1</sup> | pre-alpha | An image loading library | Coming Soon
 
 <sup>1</sup> Requires [Xamarin Forms](https://www.nuget.org/packages/Xamarin.Forms/)
-<sup>2</sup> Requires [MR.Gestures](http://www.mrgestures.com). First-class code and documentation, currently 10 euros per license. (I'm not affiliated with them in anyway)
+<sup>2</sup> Requires [MR.Gestures](http://www.mrgestures.com) - Highly recommended library, first-class code and documentation, currently only 10 euros per license. (I'm not affiliated with them in anyway)
