@@ -1,5 +1,5 @@
 ![](xamJam.png) 
-### Caz and Jason's collection of useful Xamarin components. Enjoy!
+### Caz and Jason's collection of useful Xamarin components. Enjoy! 
 
 | Component | Stability	| Description | Nuget |
 | :--- | :--- | :--- | :--- |
