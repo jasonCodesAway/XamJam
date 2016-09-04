@@ -53,6 +53,11 @@ namespace XamJam.Nav
             }
         }
 
+        public void Show<TVm>(Action<TVm> setupState = null)
+        {
+            ShowAsync<TVm>(setupState).ConfigureAwait(false);
+        }
+
         public async Task ShowAsync<TVm>(Action<TVm> setupState = null)
         {
             var hasDestination = vmType2Destinations.ContainsKey(typeof (TVm));
