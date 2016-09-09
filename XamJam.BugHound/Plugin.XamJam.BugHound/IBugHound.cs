@@ -2,11 +2,13 @@
 
 namespace Plugin.XamJam.BugHound
 {
-  /// <summary>
-  /// Interface for XamJam.BugHound
-  /// </summary>
-  public interface IBugHound
-  {
+    /// <summary>
+    /// Interface for XamJam.BugHound
+    /// </summary>
+    public interface IBugHound
+    {
+        BugHound.Tracker CreateTracker(double probability = 0.1);
+
         /// <summary>
         /// <see cref="Level.Trace"/>
         /// </summary>
@@ -39,13 +41,13 @@ namespace Plugin.XamJam.BugHound
         /// <param name="ex">the optional applicable exception</param>
         void Error(string message, Exception ex = null);
 
-      /// <summary>
-      /// Logs a message and, optionally, an exception, at the specified level.
-      /// </summary>
-      /// <param name="level">the log level for this log message</param>
-      /// <param name="message">the log message</param>
-      /// <param name="ex">the optional applicable exception</param>
-      void Log(Level level, string message, Exception ex = null);
+        /// <summary>
+        /// Logs a message and, optionally, an exception, at the specified level.
+        /// </summary>
+        /// <param name="level">the log level for this log message</param>
+        /// <param name="message">the log message</param>
+        /// <param name="ex">the optional applicable exception</param>
+        void Log(Level level, string message, Exception ex = null);
 
         /// <summary>
         /// The Hound records the exception at <see cref="Level.Error"/> level and rethrows it.

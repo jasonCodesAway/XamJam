@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:wall="clr-namespace:XamJam.Wall;assembly=XamJam.Wall"
              x:Class="XamJam.Demo.View.DemoImageWallView">
   <!-- Everything is done in the code-behind. I couldn't figure out how to use XAML in this case. -->
   <!--
     <ImageWallView ImagesSource="{Binding DemoImages}" PaddingX="5"/>
   -->
-  
+  <wall:WallView ViewModelCreator="{Binding ViewModelCreator}" ViewCreator="{Binding ViewCreator}" WallSizer="{Binding WallSizer}"/>
+  <!--
+  <StackLayout>
+    <Label Text="Hello?"/>
+    <Label Text="{Binding ViewModelCreator, StringFormat='VMC = {0}'}"/>
+  </StackLayout>
+  -->
+
 </ContentView>

@@ -1,10 +1,12 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using XamJam.Demo.View;
 using XamJam.Demo.ViewModel;
 using XamJam.Nav;
 using XamJam.Nav.Navigation;
 using XamJam.Nav.Root;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamJam.Demo
 {
     public partial class App : Application
@@ -26,7 +28,7 @@ namespace XamJam.Demo
             return new IDestination<INavScheme>[]
             {
                 new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new MainView()),
-                new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(), new DemoImageWallView(navigator))
+                new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView(navigator))
             };
         }
 

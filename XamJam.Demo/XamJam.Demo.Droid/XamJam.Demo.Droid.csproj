@@ -137,6 +137,10 @@
       <Project>{56a56f17-7de1-4ca1-9617-bf32e971ac84}</Project>
       <Name>Plugin.XamJam.Screen.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\XamJam.Wall\XamJam.Wall.csproj">
+      <Project>{9b53316b-c991-41ec-a474-97f2b655f4f3}</Project>
+      <Name>XamJam.Wall</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamJam.Demo\XamJam.Demo.csproj">
       <Project>{739aee96-0280-4135-928d-4680d958a6c3}</Project>
       <Name>XamJam.Demo</Name>

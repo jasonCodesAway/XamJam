@@ -36,6 +36,86 @@ namespace Plugin.XamJam.BugHound
             return ByTypeMap.GetOrAdd(type, t => new BugHound(BugHoundHelper.Helper, level, t));
         }
 
+        public Tracker CreateTracker(double probability = 0.1)
+        {
+            return new Tracker(probability, this);
+        }
+
+        public class Tracker
+        {
+            private static readonly Random Rng = new Random();
+            private readonly double probability;
+            private readonly BugHound hound;
+            private int numInvocations = 0;
+
+            public Tracker(double probability, BugHound hound)
+            {
+                this.hound = hound;
+                this.probability = probability;
+            }
+
+            public Track StartTrack([System.Runtime.CompilerServices.CallerMemberName] string methodName = "")
+            {
+                numInvocations++;
+                if (Rng.NextDouble() < probability)
+                {
+                    return new TrackImpl(hound, numInvocations, methodName);
+                }
+                else
+                {
+                    return EmptyTrack1;
+                }
+            }
+        }
+
+        public interface Track : IDisposable
+        {
+            void Checkpoint(string checkpointDescription);
+        }
+
+        private static readonly Track EmptyTrack1 = new EmptyTrack();
+        private class EmptyTrack : Track
+        {
+            public void Dispose()
+            {
+            }
+
+            public void Checkpoint(string checkpointDescription)
+            {
+                
+            }
+        }
+
+        private class TrackImpl : Track
+        {
+            private readonly Stopwatch watch = new Stopwatch();
+            private readonly BugHound hound;
+            private readonly int numInvocations;
+            private readonly string methodName;
+
+            public TrackImpl(BugHound hound, int numInvocations, string methodName)
+            {
+                this.hound = hound;
+                this.numInvocations = numInvocations;
+                this.methodName = methodName;
+                watch.Start();
+            }
+
+            public void Dispose()
+            {
+                watch.Stop();
+                if (watch.ElapsedMilliseconds > 10)
+                {
+                    hound.Warn($"{hound.type.Name}.{methodName}.x{numInvocations} current invocation lasted {watch.ElapsedMilliseconds} ms");
+                }
+            }
+
+            public void Checkpoint(string checkpointDescription)
+            {
+                hound.Warn($"{hound.type.Name}.{methodName}.x{numInvocations}.{checkpointDescription} time = {watch.ElapsedMilliseconds} ms");
+            }
+        }
+
         /// <summary>
         /// This BugHound's current log level
         /// </summary>

@@ -23,6 +23,8 @@ namespace XamJam.Wall
 
         public SizeInt MaxSize { get; }
 
+        public static PixelRangeWallSizer Default { get; } = PixelRangeWallSizer.CreateSquare(60, 90);
+
         public PixelRangeWallSizer(SizeInt minSize, SizeInt maxSize)
         {
             MinSize = minSize;
