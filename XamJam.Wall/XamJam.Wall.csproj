@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="PixelRangeWallSizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WallOptions.cs" />
     <Compile Include="WallSize.cs" />
     <Compile Include="WallSizer.cs" />
     <Compile Include="WallView.cs" />
@@ -70,6 +69,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="README.md" />
+    <None Include="WallClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamJam.BugHound\Plugin.XamJam.BugHound\Plugin.XamJam.BugHound.csproj">

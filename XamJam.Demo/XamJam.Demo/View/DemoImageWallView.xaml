@@ -3,4 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamJam.Demo.View.DemoImageWallView">
   <!-- Everything is done in the code-behind. I couldn't figure out how to use XAML in this case. -->
+  <!--
+    <ImageWallView ImagesSource="{Binding DemoImages}" PaddingX="5"/>
+  -->
+  
 </ContentView>

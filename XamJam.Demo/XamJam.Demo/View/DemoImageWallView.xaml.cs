@@ -18,7 +18,6 @@ namespace XamJam.Demo.View
         public DemoImageWallView(Navigator navigator)
         {
             InitializeComponent();
-            Content = new Label() {Text = "Hiya"};
             var i = 0;
             Func<ImageSource> viewModelCreator = () =>
             {

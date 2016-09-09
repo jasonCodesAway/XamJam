@@ -18,8 +18,6 @@ namespace XamJam.Demo
             var navigationDestinations = CreateDestinations(navigator);
             navigator.Initialize(navigationDestinations);
             navigator.Show<MainViewModel>();
-
-            //MainPage = new XamJam.Demo.MainPage();
         }
 
         private static IDestination<INavScheme>[] CreateDestinations(Navigator navigator)
