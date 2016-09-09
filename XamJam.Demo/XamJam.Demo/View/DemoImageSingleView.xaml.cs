@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace XamJam.Demo.View
 {
-    public partial class DemoMainView : ContentPage
+    public partial class DemoImageSingleView : ContentPage
     {
-        public DemoMainView()
+        public DemoImageSingleView()
         {
             InitializeComponent();
         }

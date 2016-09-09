@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace XamJam.Demo.ViewModel
 {
-    public class DemoSingleImageViewModel
+    public class DemoImageSingleViewModel
     {
         public ImageSource ImageSource { get; set; }
     }

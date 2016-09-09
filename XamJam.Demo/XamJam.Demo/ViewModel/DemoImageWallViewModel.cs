@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PropertyChanged;
-
-namespace XamJam.Demo.ViewModel
+﻿namespace XamJam.Demo.ViewModel
 {
-    [ImplementPropertyChanged]
+    /// <summary>
+    /// This class only exists to link this view model, which as nothing in it at all, to the DemoImageWallView for
+    /// view-model-based navigation purposes.
+    /// </summary>
     public class DemoImageWallViewModel
     {
     }

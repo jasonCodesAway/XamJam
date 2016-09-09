@@ -16,8 +16,7 @@
 		<summary>Picture Model.</summary>
 		<tags>photo, image, picture, xamarin forms, xamarin, pcl, xam.pcl, plugin, plugin for xamarin, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
 		<dependencies>
-			<group targetFramework="net">
-			</group>
+			<group targetFramework="net"/>
 			<group targetFramework="win">
 			</group>
 			<group targetFramework="wp">

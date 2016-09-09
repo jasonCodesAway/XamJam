@@ -33,7 +33,7 @@ namespace XamJam.Demo
             var navScheme = new NavigationScheme(RootScheme.Singleton);
             return new IDestination<INavScheme>[]
             {
-                new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new DemoMainView()), 
+                new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new MainView()), 
                 new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(), new DemoImageWallView(navigator))
             };
         }
