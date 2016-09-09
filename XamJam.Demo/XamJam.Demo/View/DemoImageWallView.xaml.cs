@@ -30,8 +30,7 @@ namespace XamJam.Demo.View
                 return imgSrc;
             };
             Func<WallItemView> viewCreator = () => new WallItemView(navigator);
-            var options = new WallViewInputs<WallItemView, ImageSource>(viewModelCreator, viewCreator, PixelRangeWallSizer.CreateSquare(60, 90));
-            Content = new WallView<WallItemView, ImageSource>(options);
+            Content = new WallView(viewModelCreator, viewCreator, PixelRangeWallSizer.CreateSquare(60, 90));
         }
 
         private class WallItemView : ContentView

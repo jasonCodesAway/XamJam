@@ -37,10 +37,8 @@
   <ItemGroup>
     <Compile Include="PixelRangeWallSizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WallSize.cs" />
     <Compile Include="WallSizer.cs" />
     <Compile Include="WallView.cs" />
-    <Compile Include="WallViewInputs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MR.Gestures, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL">

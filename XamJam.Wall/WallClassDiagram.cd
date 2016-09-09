@@ -1,36 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="XamJam.Wall.WallViewInputs&lt;TView, TViewModel&gt;">
-    <Position X="5.75" Y="2" Width="2.75" />
+  <Class Name="XamJam.Wall.WallView">
+    <Position X="3.25" Y="2" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAQAAAAAAAAAAAAAABAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
-      <FileName>WallViewInputs.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="XamJam.Wall.WallView&lt;TView, TViewModel&gt;">
-    <Position X="3" Y="2" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAKAAAACAIAAAgAABBAAAAAAIAAAAAIA=</HashCode>
+      <HashCode>BAAAEQAAAAAAAKAAAACAJAAAgAABBAAAQAAIAAAAAAA=</HashCode>
       <FileName>WallView.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="XamJam.Wall.WallSize">
-    <Position X="6" Y="4.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAEAAAAAAAgABBAABAAE=</HashCode>
-      <FileName>WallSize.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="XamJam.Wall.PixelRangeWallSizer" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="3.5" Width="1.75" />
+    <Position X="6.25" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAgAAAAAAgAAAQAAAAAAAAAgAAAgAAAAA=</HashCode>
       <FileName>PixelRangeWallSizer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.826" Collapsed="true" />
   </Class>
+  <Class Name="XamJam.Wall.WallSize">
+    <Position X="8.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAEAAAAAAAgABBAABAAE=</HashCode>
+      <FileName>WallSizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="XamJam.Wall.WallSizer">
-    <Position X="8.75" Y="2" Width="1.5" />
+    <Position X="6.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>WallSizer.cs</FileName>

@@ -13,35 +13,46 @@ namespace XamJam.Wall
     /// <summary>
     /// A wall view support paging and swiping from wall to wall and clicking on individual items.
     /// </summary>
-    public class WallView<TView, TViewModel> : AbsoluteLayout where TView : View
+    public class WallView : AbsoluteLayout
     {
-        private static readonly IBugHound Monitor = BugHound.ByType(typeof(WallView<TView, TViewModel>));
+        private static readonly IBugHound Monitor = BugHound.ByType(typeof(WallView));
 
-        private readonly WallViewInputs<TView, TViewModel> wallViewInputs;
         private readonly object lockLast = new object();
         private readonly CancellationToken onShutdown = new CancellationToken();
-        private readonly LinkedList<TViewModel> itemModels = new LinkedList<TViewModel>();
-        private LinkedListNode<TViewModel> current;
+        private readonly LinkedList<object> itemModels = new LinkedList<object>();
+        private LinkedListNode<object> current;
+        private int NumItemsToKeepCached { get; set; } = 1000;
+        private WallSizer WallSizer { get; }
 
-        public WallView(WallViewInputs<TView, TViewModel> wallViewInputs)
+        private Func<object> ViewModelCreator { get; }
+
+        private Func<View> ViewCreator { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewModelCreator">Creates the view models, when needed to fill the screen</param>
+        /// <param name="viewCreator">Creates a new view to display the view model, eventually we can recycle views to be more efficient</param>
+        /// <param name="wallSizer">Determines how large each view should be</param>
+        public WallView(Func<object> viewModelCreator, Func<View> viewCreator, WallSizer wallSizer)
         {
-            this.wallViewInputs = wallViewInputs;
+            WallSizer = wallSizer;
+            ViewCreator = viewCreator;
+            ViewModelCreator = viewModelCreator;
             // TODO: Listen for screen size changes and, with thread synchronization, add support for the new maximum # of views to create
             var size = CrossScreen.Current.Size;
             var maxScreenWidth = size.Width;
             var maxScreenHeight = size.Height;
-            //double maxScreenWidth = 400, maxScreenHeight = 577;
-            Monitor.Warn("Using hard-coded max screen size values");
-            var normalWallSize = wallViewInputs.WallSizer.Size(maxScreenWidth, maxScreenHeight);
-            var rotatedWallSize = wallViewInputs.WallSizer.Size(maxScreenHeight, maxScreenWidth);
+            var normalWallSize = wallSizer.Size(maxScreenWidth, maxScreenHeight);
+            var rotatedWallSize = wallSizer.Size(maxScreenHeight, maxScreenWidth);
             var maxNumViews = Math.Max(normalWallSize.MaxNumItems, rotatedWallSize.MaxNumItems);
 
             // setup our initial data & views.
             for (var i = 0; i < maxNumViews; i++)
             {
-                var dataModel = wallViewInputs.ViewModelCreator();
+                var dataModel = viewModelCreator();
                 itemModels.AddLast(dataModel);
-                var view = wallViewInputs.ViewCreator();
+                var view = viewCreator();
                 view.IsVisible = false;
                 view.BindingContext = dataModel;
                 Children.Add(view);
@@ -57,7 +68,7 @@ namespace XamJam.Wall
                 while (true)
                 {
                     //do nothing while we have enough items cached. TODO: What about Notify
-                    while (itemModels.Count >= wallViewInputs.NumItemsToKeepCached)
+                    while (itemModels.Count >= NumItemsToKeepCached)
                     {
                         lock (itemModels)
                         {
@@ -66,12 +77,12 @@ namespace XamJam.Wall
                     }
 
                     // if we need to cache items, add them to the end of the list
-                    var numToCache = wallViewInputs.NumItemsToKeepCached - itemModels.Count;
+                    var numToCache = NumItemsToKeepCached - itemModels.Count;
                     if (numToCache > 0)
                     {
-                        var newCache = new TViewModel[numToCache];
+                        var newCache = new object[numToCache];
                         for (var i = 0; i < numToCache; i++)
-                            newCache[i] = wallViewInputs.ViewModelCreator();
+                            newCache[i] = viewModelCreator();
                         lock (lockLast)
                         {
                             Monitor.Debug($"Adding {newCache.Length} items to the cache");
@@ -85,7 +96,7 @@ namespace XamJam.Wall
 
         private void OnSwiped(object sender, SwipeEventArgs swipeEventArgs)
         {
-            switch(swipeEventArgs.Direction)
+            switch (swipeEventArgs.Direction)
             {
                 case Direction.Left:
                     Monitor.Debug("Swiped Left");
@@ -125,7 +136,7 @@ namespace XamJam.Wall
             if (width > 0 && height > 0 && (width != lastWidth || height != lastHeight))
             {
                 // account for the new view size
-                var newSize = wallViewInputs.WallSizer.Size(width, height);
+                var newSize = WallSizer.Size(width, height);
 
                 // make sure all views aren't visible, we'll turn the ones on that we need
                 foreach (var child in Children)
