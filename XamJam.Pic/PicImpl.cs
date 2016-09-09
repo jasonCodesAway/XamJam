@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using FFImageLoading;
-using Xamarin.Forms;
-using ImageSource = Xamarin.Forms.ImageSource;
+﻿using Xamarin.Forms;
 
 namespace XamJam.Pic
 {

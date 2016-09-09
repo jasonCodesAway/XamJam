@@ -1,7 +1,5 @@
-﻿using MR.Gestures;
-using Plugin.XamJam.BugHound;
+﻿using Plugin.XamJam.BugHound;
 using PropertyChanged;
-using Xamarin.Forms;
 
 namespace XamJam.Ratings
 {

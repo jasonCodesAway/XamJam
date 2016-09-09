@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using Plugin.XamJam.BugHound;
 
-
 namespace XamJam.Util
 {
     public class ConcurrentLruCache<TK, TV>

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XamJam.Demo.View;
 using XamJam.Demo.ViewModel;
 using XamJam.Nav;
 using XamJam.Nav.Navigation;
 using XamJam.Nav.Root;
-using XamJam.Nav.Tab;
 
 namespace XamJam.Demo
 {
@@ -33,7 +27,7 @@ namespace XamJam.Demo
             var navScheme = new NavigationScheme(RootScheme.Singleton);
             return new IDestination<INavScheme>[]
             {
-                new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new MainView()), 
+                new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new MainView()),
                 new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(), new DemoImageWallView(navigator))
             };
         }

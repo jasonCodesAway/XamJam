@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using XamJam.Demo.ViewModel;
 using XamJam.Nav;
 using XamJam.Wall;
+using Image = MR.Gestures.Image;
 
 namespace XamJam.Demo.View
 {
@@ -22,6 +18,7 @@ namespace XamJam.Demo.View
         public DemoImageWallView(Navigator navigator)
         {
             InitializeComponent();
+            Content = new Label() {Text = "Hiya"};
             var i = 0;
             Func<ImageSource> viewModelCreator = () =>
             {
@@ -40,7 +37,7 @@ namespace XamJam.Demo.View
 
         private class WallItemView : ContentView
         {
-            private readonly MR.Gestures.Image image = new MR.Gestures.Image();
+            private readonly Image image = new Image();
 
             public WallItemView(Navigator navigator)
             {

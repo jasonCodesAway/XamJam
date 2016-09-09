@@ -3,6 +3,7 @@ using MR.Gestures;
 using Plugin.XamJam.BugHound;
 using PropertyChanged;
 using Xamarin.Forms;
+using StackLayout = MR.Gestures.StackLayout;
 
 namespace XamJam.Ratings
 {
@@ -33,7 +34,7 @@ namespace XamJam.Ratings
             }
             PanningCommand = new Command<PanEventArgs>(eventArgs =>
             {
-                var sender = (MR.Gestures.StackLayout)eventArgs.Sender;
+                var sender = (StackLayout)eventArgs.Sender;
                 UpdateRating(sender, eventArgs);
             });
             TappedCommand = new Command<TapEventArgs>(eventArgs =>

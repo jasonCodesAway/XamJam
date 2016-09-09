@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using MR.Gestures;
 using Plugin.XamJam.BugHound;
+using Plugin.XamJam.Screen;
 using Xamarin.Forms;
+using AbsoluteLayout = MR.Gestures.AbsoluteLayout;
 
 namespace XamJam.Wall
 {
     /// <summary>
     /// A wall view support paging and swiping from wall to wall and clicking on individual items.
     /// </summary>
-    public class WallView<TView, TViewModel> : MR.Gestures.AbsoluteLayout where TView : View
+    public class WallView<TView, TViewModel> : AbsoluteLayout where TView : View
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(WallView<TView, TViewModel>));
 
@@ -26,7 +27,7 @@ namespace XamJam.Wall
         {
             this.wallViewInputs = wallViewInputs;
             // TODO: Listen for screen size changes and, with thread synchronization, add support for the new maximum # of views to create
-            var size = Plugin.XamJam.Screen.CrossScreen.Current.Size;
+            var size = CrossScreen.Current.Size;
             var maxScreenWidth = size.Width;
             var maxScreenHeight = size.Height;
             //double maxScreenWidth = 400, maxScreenHeight = 577;

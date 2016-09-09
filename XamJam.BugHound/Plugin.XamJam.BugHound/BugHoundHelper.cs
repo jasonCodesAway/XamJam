@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using Plugin.XamJam.BugHound.Abstractions;
 
 namespace Plugin.XamJam.BugHound
@@ -9,7 +10,7 @@ namespace Plugin.XamJam.BugHound
     /// </summary>
     public class BugHoundHelper
     {
-        private static readonly Lazy<IBugHoundHelper> Implementation = new Lazy<IBugHoundHelper>(CreateBugHound, System.Threading.LazyThreadSafetyMode.PublicationOnly);
+        private static readonly Lazy<IBugHoundHelper> Implementation = new Lazy<IBugHoundHelper>(CreateBugHound, LazyThreadSafetyMode.PublicationOnly);
 
         /// <summary>
         ///     Forces the creation of the platform-dependent <see cref="IBugHoundHelper"/> implementation.

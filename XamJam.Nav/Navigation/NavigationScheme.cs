@@ -13,6 +13,12 @@ namespace XamJam.Nav.Navigation
             Parent = parent;
         }
 
+        public void SetupNavigationPage(Page rootPage)
+        {
+            NavigationPage = new NavigationPage(rootPage);
+            NavigationPage.SetHasNavigationBar(NavigationPage, false);
+        }
+
         internal NavigationPage NavigationPage { get; private set; }
 
         public INavScheme Parent { get; }
@@ -20,11 +26,5 @@ namespace XamJam.Nav.Navigation
         public Page CurrentPage => NavigationPage;
 
         public SchemeType SchemeType => SchemeType.NavScheme;
-
-        public void SetInitialChild(Page rootPage)
-        {
-            NavigationPage = new NavigationPage(rootPage);
-            NavigationPage.SetHasNavigationBar(NavigationPage, false);
-        }
     }
 }

@@ -1,5 +1,5 @@
-using Plugin.XamJam.BugHound.Abstractions;
 using System.Threading;
+using Plugin.XamJam.BugHound.Abstractions;
 
 namespace Plugin.XamJam.BugHound
 {

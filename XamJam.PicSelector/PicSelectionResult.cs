@@ -1,6 +1,5 @@
 ﻿#region
 
-using FFImageLoading.Forms;
 using PropertyChanged;
 using XamJam.Pic;
 

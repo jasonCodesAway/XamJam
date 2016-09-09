@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using XamJam.Util;
 
 namespace XamJam.Wall
 {

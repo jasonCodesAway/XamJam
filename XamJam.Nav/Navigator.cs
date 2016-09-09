@@ -38,7 +38,7 @@ namespace XamJam.Nav
 
         public Command CreateNavigationCommand<TVm>(Action<TVm> setupViewModel = null)
         {
-            return new Command(async () => await ShowAsync<TVm>(setupViewModel));
+            return new Command(async () => await ShowAsync(setupViewModel));
         }
 
         public void Initialize(params IDestination<INavScheme>[] destinations)
@@ -55,7 +55,7 @@ namespace XamJam.Nav
 
         public void Show<TVm>(Action<TVm> setupState = null)
         {
-            ShowAsync<TVm>(setupState).ConfigureAwait(false);
+            ShowAsync(setupState).ConfigureAwait(false);
         }
 
         public async Task ShowAsync<TVm>(Action<TVm> setupState = null)
@@ -119,7 +119,7 @@ namespace XamJam.Nav
                 case SchemeType.NavScheme:
                     var navDestination = (NavigationDestination<TVm>)destination;
                     Monitor.Debug($"Pushing {navDestination.Page.GetType().Name} on NavigationPage: {navDestination.NavScheme.NavigationPage} App.MainPage: {application.MainPage}");
-                    await navDestination.NavScheme.NavigationPage.PushAsync(navDestination.Page);
+                    await navDestination.PushAsync();
                     // Assume we don't need to "go back" to whatever was being displayed, if we're not showing the navigation page then we will and it'll take over
                     if (application.MainPage != navDestination.NavScheme.NavigationPage)
                         application.MainPage = navDestination.NavScheme.NavigationPage;

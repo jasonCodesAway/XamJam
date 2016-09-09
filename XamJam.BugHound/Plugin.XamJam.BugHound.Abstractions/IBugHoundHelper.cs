@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Plugin.XamJam.BugHound.Abstractions
+﻿namespace Plugin.XamJam.BugHound.Abstractions
 {
     /// <summary>
     /// Resolves all platform-dependent functionality required by the <see cref="Plugin.XamJam.BugHound"/>
