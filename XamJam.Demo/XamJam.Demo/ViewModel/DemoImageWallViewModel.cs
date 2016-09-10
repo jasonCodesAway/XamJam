@@ -24,15 +24,19 @@ namespace XamJam.Demo.ViewModel
         public DemoImageWallViewModel(Navigator navigator)
         {
             var i = 0;
+            const int fakeCloudDataSize = 150;
+            var data = CreateFakeData(fakeCloudDataSize);
             ViewModelCreator = () =>
             {
-                var imgSrc = new UriImageSource
+                if (i == fakeCloudDataSize)
+                    return null;
+                else
                 {
-                    Uri = new Uri(Tmp[i++])
-                };
-                if (i == Tmp.Length - 1)
-                    i = 0;
-                return imgSrc;
+                    return new UriImageSource
+                    {
+                        Uri = new Uri(data[i++])
+                    };
+                }
             };
             ViewCreator = () => new WallItemView(navigator);
         }
@@ -75,5 +79,16 @@ namespace XamJam.Demo.ViewModel
             "http://66.media.tumblr.com/avatar_a57c96e9a73f_64.png",
             "https://du76tuch9o8fi.cloudfront.net/testimonials/pictures/000/000/098/thumb/face_timi_square.png"
         };
+
+        private static string[] CreateFakeData(int numItems)
+        {
+            var rng = new Random();
+            var data = new string[numItems];
+            for (var i = 0; i < data.Length; i++)
+            {
+                data[i] = Tmp[rng.Next(Tmp.Length)]+"?index-"+i;
+            }
+            return data;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading;
+using Plugin.XamJam.BugHound;
+using Xamarin.Forms;
 using XamJam.Util;
 
 namespace XamJam.Wall
@@ -14,6 +16,8 @@ namespace XamJam.Wall
         {
             return new PixelRangeWallSizer(new SizeInt(minSize, minSize), new SizeInt(maxSize, maxSize));
         }
+
+        private static readonly IBugHound Monitor = BugHound.ByType(typeof(PixelRangeWallSizer));
 
         public int MinPaddingX { get; set; } = 3;
 
@@ -57,6 +61,7 @@ namespace XamJam.Wall
 
             // Set all remaining variables
             var itemSize = new Size(bestWidth, bestHeight);
+            Monitor.Info($"paddings: x={paddingX} y={paddingY} dimensions: {numRows}x{numColumns}");
             return new WallSize(paddingX, paddingY, itemSize, numRows, numColumns);
         }
     }

@@ -6,7 +6,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace XamJam.Demo.Droid
 {
-    [Activity(Label = "XamJam.Demo", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "GestureSample", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -17,6 +17,7 @@ namespace XamJam.Demo.Droid
             base.OnCreate(bundle);
 
             Forms.Init(this, bundle);
+            MR.Gestures.Android.Settings.LicenseKey = "ALZ9-BPVU-XQ35-CEBG-5ZRR-URJQ-ED5U-TSY8-6THP-3GVU-JW8Z-RZGE-CQW6";
             LoadApplication(new App());
         }
     }

@@ -25,6 +25,7 @@ namespace XamJam.Nav
     {
         protected PageDestination(TNavScheme navScheme, object viewModel, Page page)
         {
+            NavigationPage.SetHasNavigationBar(page, false);
             NavScheme = navScheme;
             ViewModel = viewModel;
             Page = page;
