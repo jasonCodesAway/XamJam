@@ -68,11 +68,6 @@ namespace XamJam.Util
                 else
                     break;
             } while (i < numItemsToRetrieve);
-            //while (i < numItemsToRetrieve && cursor.Next != null && cursor.Next.Value != null)
-            //{
-            //    cursor = cursor.Next;
-            //    retrieved[i++] = cursor.Value;
-            //}
             Array.Resize(ref retrieved, i);
             //we've moved the cursor forward by i-1, let the background cacher get to work
             cursorDeltaBlock.Post(i - 1);

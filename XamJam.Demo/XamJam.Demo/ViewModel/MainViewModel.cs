@@ -5,11 +5,14 @@ namespace XamJam.Demo.ViewModel
 {
     public class MainViewModel
     {
-        public Command ShowImageWall { get; }
+        public Command ShowImageWallCommand { get; }
+
+        public Command ShowRatingCommand { get; }
 
         public MainViewModel(Navigator nav)
         {
-            ShowImageWall = nav.CreateNavigationCommand<DemoImageWallViewModel>();
+            ShowImageWallCommand = nav.CreateNavigationCommand<DemoImageWallViewModel>();
+            ShowRatingCommand = nav.CreateNavigationCommand<DemoRatingsViewModel>();
         }
     }
 }

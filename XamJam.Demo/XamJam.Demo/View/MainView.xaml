@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamJam.Demo.View.MainView">
   <StackLayout>
-    <Button Text="Image Wall" Command="{Binding ShowImageWall}"/>
+    <Button Text="Image Wall" Command="{Binding ShowImageWallCommand}"/>
+    <Button Text="Ratings" Command="{Binding ShowRatingCommand}"/>
   </StackLayout>
 </ContentPage>
