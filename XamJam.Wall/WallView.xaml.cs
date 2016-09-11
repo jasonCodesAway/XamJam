@@ -63,8 +63,9 @@ namespace XamJam.Wall
             if (!hasInitialized)
             {
                 hasInitialized = true;
-                viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), 1000);
                 CreateViews();
+                //TODO: Before deploying, change 'cacheSize' to like 1500
+                viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), initialCacheSize:numVisibleViews, cacheSize:120);
             }
         }
 
@@ -74,7 +75,7 @@ namespace XamJam.Wall
             if (width > 0 && height > 0)
             {
                 SetupViewSizesAndVisibility(width, height);
-                SetupViewModels(true);
+                UpdateViewModels(ViewModelCommand.Initialize);
             }
         }
 
@@ -163,18 +164,41 @@ namespace XamJam.Wall
             }
         }
 
-        private void SetupViewModels(bool next)
+        public enum ViewModelCommand
         {
+            Initialize,
+            SwipeRight,
+            SwipeLeft
+        }
+
+        private void UpdateViewModels(ViewModelCommand command)
+        {
+            RetrievedData<object> viewModelsToDisplay;
+            switch (command)
+            {
+                case ViewModelCommand.Initialize:
+                    viewModelsToDisplay = viewModels.RetrieveInitialData(numVisibleViews);
+                    break;
+                case ViewModelCommand.SwipeRight:
+                    viewModelsToDisplay = viewModels.TryPrevious(numVisibleViews);
+                    break;
+                case ViewModelCommand.SwipeLeft:
+                    viewModelsToDisplay = viewModels.TryNext(numVisibleViews);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(command), command, null);
+            }
             // We asked for one new View Model for each View. But we might get less data, if there is no more data...
-            var retrieved = next ? viewModels.TryNext(numVisibleViews) : viewModels.TryPrevious(numVisibleViews);
+            if (viewModelsToDisplay.Retrieved.Length == 0)
+                return;
             var i = 0;
             // We need to update the ViewModel for each View; Or, if no view model is available hide the View
             foreach (var wallView in absoluteLayout.Children)
             {
-                if (i < retrieved.Retrieved.Length)
+                if (i < viewModelsToDisplay.Retrieved.Length)
                 {
                     // Yay, this View has data available, may the View and ViewModel be married!
-                    wallView.BindingContext = retrieved.Retrieved[i++];
+                    wallView.BindingContext = viewModelsToDisplay.Retrieved[i++];
                 }
                 else
                 {
@@ -193,11 +217,11 @@ namespace XamJam.Wall
             {
                 case Direction.Left:
                     Monitor.Debug("Swiped Left");
-                    SetupViewModels(true);
+                    UpdateViewModels(ViewModelCommand.SwipeLeft);
                     break;
                 case Direction.Right:
                     Monitor.Debug("Swiped Right");
-                    SetupViewModels(false);
+                    UpdateViewModels(ViewModelCommand.SwipeRight);
                     break;
             }
         }
@@ -215,7 +239,7 @@ namespace XamJam.Wall
             {
                 var retrieved = new object[numItems];
                 var i = 0;
-                for (; i < numItems; )
+                for (; i < numItems;)
                 {
                     var data = viewModelCreator();
                     if (data == null)
