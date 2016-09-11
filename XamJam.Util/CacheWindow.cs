@@ -25,13 +25,6 @@ namespace XamJam.Util
         /// </summary>
         private readonly LinkedList<T> cache = new LinkedList<T>();
 
-        /// <summary>
-        /// The visible/current/active node in the cache
-        /// </summary>
-        private LinkedListNode<T> cursor;
-
-        private int cursorIndex = 0;
-
         private readonly DataProvider<T> dataProvider;
 
         private readonly BufferBlock<Tuple<int, int>> cursorDeltaBlock = new BufferBlock<Tuple<int, int>>();
@@ -39,6 +32,8 @@ namespace XamJam.Util
         private readonly object lockLast = new object(), lockFirst = new object();
 
         private readonly CancellationToken onShutdown = new CancellationToken();
+
+        private Cursor<T> cursor;
 
         public CacheWindow(DataProvider<T> dataProvider, int initialCacheSize = 100, int cacheSize = 500)
         {
@@ -50,22 +45,21 @@ namespace XamJam.Util
 
         public RetrievedData<T> RetrieveInitialData(int numItemsToRetrieve)
         {
+            var tmp = cache.First;
             var initialData = new T[numItemsToRetrieve];
-            cursor = cache.First;
-            for (cursorIndex = 0; cursorIndex < initialData.Length - 1;)
+            var currentIndex = 0;
+            for (; currentIndex < numItemsToRetrieve - 1; currentIndex++)
             {
-                initialData[cursorIndex] = cursor.Value;
-                if (cursor.Next == null)
+                initialData[currentIndex] = tmp.Value;
+                if (tmp.Next == null)
                     break;
-                cursor = cursor.Next;
-                cursorIndex++;
+                tmp = tmp.Next;
             }
-            initialData[cursorIndex] = cursor.Value;
-            // Setup the cursor to point 
-            //cursor = cache.Last;
-            Array.Resize(ref initialData, cursorIndex + 1);
+            initialData[currentIndex] = tmp.Value;
+            cursor = new Cursor<T>(cache.First, 0, tmp, currentIndex);
+            Array.Resize(ref initialData, currentIndex + 1);
             //let the background cacher get to work
-            cursorDeltaBlock.Post(new Tuple<int, int>(cursorIndex, cursorIndex));
+            cursorDeltaBlock.Post(new Tuple<int, int>(currentIndex, currentIndex));
             return new RetrievedData<T>(initialData);
         }
 
@@ -73,48 +67,32 @@ namespace XamJam.Util
 
         public RetrievedData<T> TryNext(int numItemsToRetrieve)
         {
-            if (cursor.Next == null)
-                return empty;
-            cursor = cursor.Next;
-            cursorIndex++;
-
             var retrieved = new T[numItemsToRetrieve];
-            var retrievedIndex = 0;
-            for (; retrievedIndex < numItemsToRetrieve; retrievedIndex++)
+            var i = 0;
+            if (!cursor.TryMoveForward(numItemsToRetrieve, item => retrieved[i++] = item))
             {
-                retrieved[retrievedIndex] = cursor.Value;
-                //If no data exists, break out
-                if (cursor.Next == null || retrievedIndex == numItemsToRetrieve - 1)
-                    break;
-                cursor = cursor.Next;
-                cursorIndex++;
+                return empty;
             }
 
-            Array.Resize(ref retrieved, retrievedIndex + 1);
-            //we've moved the cursor forward by i-1, let the background cacher get to work
-            cursorDeltaBlock.Post(new Tuple<int, int>(retrievedIndex, cursorIndex));
+            Array.Resize(ref retrieved, i);
+            //we've moved the cursor forward by i, let the background cacher get to work
+            cursorDeltaBlock.Post(new Tuple<int, int>(i, cursor.LastIndex));
             return new RetrievedData<T>(retrieved);
         }
 
         public RetrievedData<T> TryPrevious(int numItemsToRetrieve)
         {
             var retrieved = new T[numItemsToRetrieve];
-            var retrievedIndex = 0;
-            while (retrievedIndex < numItemsToRetrieve)
+            var i = 0;
+            if (!cursor.TryMoveBackward(numItemsToRetrieve, item => retrieved[i++] = item))
             {
-                retrieved[retrievedIndex] = cursor.Value;
-                if (cursor.Previous != null)
-                {
-                    cursor = cursor.Previous;
-                    retrievedIndex++;
-                    cursorIndex--;
-                }
-                else
-                    break;
+                return empty;
             }
-            Array.Resize(ref retrieved, retrievedIndex + 1);
-            //we've moved the cursor backward by i-1, let the background cacher get to work
-            cursorDeltaBlock.Post(new Tuple<int, int>(-retrievedIndex, cursorIndex));
+
+            Array.Resize(ref retrieved, i);
+            Array.Reverse(retrieved);
+            //we've moved the cursor forward by i, let the background cacher get to work
+            cursorDeltaBlock.Post(new Tuple<int, int>(-i, cursor.FirstIndex));
             return new RetrievedData<T>(retrieved);
         }
 
@@ -177,4 +155,81 @@ namespace XamJam.Util
             Retrieved = retrieved;
         }
     }
+
+    public class Cursor<T>
+    {
+        public LinkedListNode<T> First { get; private set; }
+
+        public LinkedListNode<T> Last { get; private set; }
+
+        public int FirstIndex { get; private set; }
+
+        public int LastIndex { get; private set; }
+
+        public Cursor(LinkedListNode<T> first, int firstIndex, LinkedListNode<T> last, int lastIndex)
+        {
+            this.First = first;
+            this.Last = last;
+            this.FirstIndex = firstIndex;
+            this.LastIndex = lastIndex;
+        }
+
+        public bool HasNext()
+        {
+            return Last.Next != null;
+        }
+
+        public bool HasPrevious()
+        {
+            return First.Previous != null;
+        }
+
+        public bool TryMoveForward(int numMoves, Action<T> consumer)
+        {
+            if (Last.Next == null)
+                return false;
+            else
+            {
+                for (var i = 0; i < numMoves; i++)
+                {
+                    if (Last.Next == null)
+                        break;
+                    First = First.Next;
+                    FirstIndex++;
+                    Last = Last.Next;
+                    LastIndex++;
+                    // consume the new data
+                    consumer(Last.Value);
+                }
+                return true;
+            }
+        }
+
+        public bool TryMoveBackward(int numMoves, Action<T> consumer)
+        {
+            if (First.Previous == null)
+                return false;
+            else
+            {
+                for (var i = 0; i < numMoves; i++)
+                {
+                    if (First.Previous == null)
+                        break;
+                    First = First.Previous;
+                    FirstIndex--;
+                    Last = Last.Previous;
+                    LastIndex--;
+                    // consume the previously seen data
+                    consumer(First.Value);
+                }
+                return true;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{FirstIndex} - {LastIndex}. {First.Value} - {Last.Value}";
+        }
+    }
+
 }
