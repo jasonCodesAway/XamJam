@@ -23,6 +23,24 @@ namespace XamJam.Nav
     /// <typeparam name="TNavScheme"></typeparam>
     public abstract class PageDestination<TNavScheme> : IDestination<TNavScheme> where TNavScheme : INavScheme
     {
+        private static Page Wrap(View view)
+        {
+            var page = new ContentPage
+            {
+                Content = view
+            };
+            // Don't let the Page draw over the iPhone & iPad's status bar
+            Device.OnPlatform(() =>
+            {
+                page.Padding = new Thickness(0, 20, 0, 0);
+            });
+            return page;
+        }
+
+        protected PageDestination(TNavScheme navScheme, object viewModel, View view) : this(navScheme, viewModel, Wrap(view))
+        {
+        }
+
         protected PageDestination(TNavScheme navScheme, object viewModel, Page page)
         {
             NavigationPage.SetHasNavigationBar(page, false);

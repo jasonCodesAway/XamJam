@@ -105,7 +105,7 @@ namespace XamJam.Wall
             {
                 var view = ViewCreator();
                 view.BindingContext = null;
-                absoluteLayout.Children.Add(view);
+                AbsoluteLayout.Children.Add(view);
             }
             numVisibleViews = maxNumViews;
         }
@@ -130,8 +130,8 @@ namespace XamJam.Wall
                 {
                     for (var column = 0; column < newSize.NumColumns; column++)
                     {
-                        var view = absoluteLayout.Children[childIndex++];
-                        AbsoluteLayout.SetLayoutBounds(view, new Rectangle(x, y, newSize.ItemSize.Width, newSize.ItemSize.Height));
+                        var view = AbsoluteLayout.Children[childIndex++];
+                        Xamarin.Forms.AbsoluteLayout.SetLayoutBounds(view, new Rectangle(x, y, newSize.ItemSize.Width, newSize.ItemSize.Height));
                         //this might speed things up, not sure, hard to tell with Xamarin and whatever C# optimizations do here
                         if (!view.IsVisible)
                         {
@@ -146,9 +146,9 @@ namespace XamJam.Wall
                 }
 
                 // If we can't fit a view on the screen, make it invisible
-                for (; childIndex < absoluteLayout.Children.Count; childIndex++)
+                for (; childIndex < AbsoluteLayout.Children.Count; childIndex++)
                 {
-                    var child = absoluteLayout.Children[childIndex];
+                    var child = AbsoluteLayout.Children[childIndex];
                     //this might speed things up, not sure, hard to tell with Xamarin and whatever C# optimizations do here
                     if (child.IsVisible)
                     {
@@ -193,7 +193,7 @@ namespace XamJam.Wall
                 return;
             var i = 0;
             // We need to update the ViewModel for each View; Or, if no view model is available hide the View
-            foreach (var wallView in absoluteLayout.Children)
+            foreach (var wallView in AbsoluteLayout.Children)
             {
                 if (i < viewModelsToDisplay.Retrieved.Length)
                 {

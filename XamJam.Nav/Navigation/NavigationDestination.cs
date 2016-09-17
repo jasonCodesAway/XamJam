@@ -5,7 +5,7 @@ namespace XamJam.Nav.Navigation
 {
     public class NavigationDestination<TViewModel> : PageDestination<NavigationScheme>
     {
-        public NavigationDestination(NavigationScheme navScheme, TViewModel viewModel, View view) : this(navScheme, viewModel, new ContentPage { Content = view })
+        public NavigationDestination(NavigationScheme navScheme, TViewModel viewModel, View view) : base(navScheme, viewModel, view)
         {
         }
 
