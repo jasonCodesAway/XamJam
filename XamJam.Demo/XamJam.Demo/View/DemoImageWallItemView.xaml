@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="XamJam.Demo.View.DemoImageWallItemView"
+             BackgroundColor="Pink">
+  <mr:AbsoluteLayout TappedCommand="{Binding TappedCommand}">
+    <!--<Label Text="Hi" AbsoluteLayout.LayoutBounds=".5,1,.5,.1" AbsoluteLayout.LayoutFlags="All"/>-->
+    <forms:CachedImage Source="{Binding ImageSource}" LoadingPlaceholder="https://cdn1.iconfinder.com/data/icons/hawcons/32/699739-icon-64-face-sunglasses-64.png" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+    <!--<Image Source="{Binding ImageSource}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>-->
+    <Label Text="{Binding ImageText}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>  
+  </mr:AbsoluteLayout>
+  
+</ContentView>

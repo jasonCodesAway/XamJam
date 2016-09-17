@@ -43,7 +43,8 @@ namespace XamJam.Demo
             {
                 new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new MainView()),
                 new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView(navigator)),
-                new NavigationDestination<DemoRatingsViewModel>(navScheme, new DemoRatingsViewModel(), new DemoRatingsView())
+                new NavigationDestination<DemoRatingsViewModel>(navScheme, new DemoRatingsViewModel(), new DemoRatingsView()),
+                new NavigationDestination<DemoImageSingleViewModel>(navScheme, new DemoImageSingleViewModel(), new DemoImageSingleView())
             };
         }
 

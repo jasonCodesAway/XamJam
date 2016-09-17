@@ -199,6 +199,7 @@ namespace XamJam.Wall
                 {
                     // Yay, this View has data available, may the View and ViewModel be married!
                     wallView.BindingContext = viewModelsToDisplay.Retrieved[i++];
+                    wallView.IsVisible = true; // This is necessary because the view may have become invisible if there was no view model for it (think page forward to end, then page back)
                 }
                 else
                 {
@@ -223,6 +224,12 @@ namespace XamJam.Wall
                     Monitor.Debug("Swiped Right");
                     UpdateViewModels(ViewModelCommand.SwipeRight);
                     break;
+                case Direction.NotClear:
+                case Direction.Up:
+                case Direction.Down:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
