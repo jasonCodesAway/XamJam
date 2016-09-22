@@ -128,6 +128,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\XamJam.BugHound\Plugin.XamJam.BugHound.Abstractions\Plugin.XamJam.BugHound.Abstractions.csproj">
+      <Project>{4350f383-2688-4c21-9765-b12e7f95fcd1}</Project>
+      <Name>Plugin.XamJam.BugHound.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XamJam.BugHound\Plugin.XamJam.BugHound\Plugin.XamJam.BugHound.csproj">
+      <Project>{54997076-792f-4aaf-82c0-ede69adf38dd}</Project>
+      <Name>Plugin.XamJam.BugHound</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XamJam.Screen\Plugin.XamJam.Screen.UWP\Plugin.XamJam.Screen.UWP.csproj">
+      <Project>{e34b516d-c0d8-450f-9db0-bb6a5b04aef1}</Project>
+      <Name>Plugin.XamJam.Screen.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamJam.Demo\XamJam.Demo.csproj">
       <Project>{739aee96-0280-4135-928d-4680d958a6c3}</Project>
       <Name>XamJam.Demo</Name>

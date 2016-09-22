@@ -62,6 +62,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.Pic", "XamJam.Pic\XamJam.Pic.csproj", "{2A96B4C9-3F9D-4ECA-9C80-54184B93027A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamJam.Wall", "XamJam.Wall\XamJam.Wall.csproj", "{9B53316B-C991-41EC-A474-97F2B655F4F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6EDB0588-FFC5-4EF5-8A99-9E241D0F878D} = {6EDB0588-FFC5-4EF5-8A99-9E241D0F878D}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BugHound", "BugHound", "{38655D11-7C45-4478-9497-835718C9DE1A}"
 	ProjectSection(SolutionItems) = preProject

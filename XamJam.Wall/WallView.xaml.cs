@@ -18,6 +18,7 @@ namespace XamJam.Wall
         public static readonly BindableProperty ViewModelCreatorProperty = BindableProperty.Create("viewModelCreator", typeof(Func<object>), typeof(WallView));
         public static readonly BindableProperty ViewCreatorProperty = BindableProperty.Create("ViewCreator", typeof(Func<View>), typeof(WallView));
         public static readonly BindableProperty WallSizerProperty = BindableProperty.Create("WallSizer", typeof(WallSizer), typeof(WallView), defaultValueCreator: bindable => PixelRangeWallSizer.Default);
+        public static readonly BindableProperty MaxCacheSizeProperty = BindableProperty.Create("MaxCacheSize", typeof(int), typeof(WallView), 1000);
 
         /// <summary>
         /// Creates the view models, when needed to fill the screen
@@ -46,6 +47,8 @@ namespace XamJam.Wall
             set { SetValue(ViewCreatorProperty, value); }
         }
 
+        public int MaxCacheSize { get; set; } = (int) MaxCacheSizeProperty.DefaultValue;
+
         private CacheWindow<object> viewModels;
 
         private int numVisibleViews = 0;
@@ -64,8 +67,8 @@ namespace XamJam.Wall
             {
                 hasInitialized = true;
                 CreateViews();
-                //TODO: Before deploying, change 'cacheSize' to like 1500
-                viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), initialCacheSize:numVisibleViews, cacheSize:120);
+                //TODO: Before deploying, change 'MaxCacheSize' to like 1500
+                viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), initialCacheSize:numVisibleViews, maxCacheSize: MaxCacheSize);
             }
         }
 

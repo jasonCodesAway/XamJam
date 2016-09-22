@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.XamJam.BugHound;
 using PropertyChanged;
 using Xamarin.Forms;
 using XamJam.Demo.View;
@@ -15,22 +16,26 @@ namespace XamJam.Demo.ViewModel
     [ImplementPropertyChanged]
     public class DemoImageWallViewModel
     {
-        //<wall:WallView ViewModelCreator="{Binding ViewModelCreator}" ViewCreator="{Binding ViewCreator}"/>
+        private static readonly IBugHound Monitor = BugHound.ByType(typeof(DemoImageWallViewModel));
+
         public Func<object> ViewModelCreator { get; }
 
         public Func<Xamarin.Forms.View> ViewCreator { get; }
 
-        public WallSizer WallSizer { get; } = PixelRangeWallSizer.CreateSquare(60, 90);
+        public WallSizer WallSizer { get; } = PixelRangeWallSizer.CreateSquare(150, 200);
 
         public DemoImageWallViewModel(Navigator navigator)
         {
             var i = 0;
-            const int fakeCloudDataSize = 150;
+            const int fakeCloudDataSize = 100;
             var data = CreateFakeData(fakeCloudDataSize);
             ViewModelCreator = () =>
             {
                 if (i == fakeCloudDataSize)
+                {
+                    Monitor.Debug($"The cloud is out of data, i = {i}");
                     return null;
+                }
                 else
                 {
                     var myIndex = i++;
@@ -45,32 +50,6 @@ namespace XamJam.Demo.ViewModel
             };
             ViewCreator = () => new DemoImageWallItemView();
         }
-
-        //private class WallItemView : ContentView
-        //{
-        //    private readonly Image image = new Image();
-
-        //    public WallItemView(Navigator navigator)
-        //    {
-        //        Content = image;
-        //        image.TappedCommand = new Command(async () =>
-        //        {
-        //            var imageSource = (ImageSource)BindingContext;
-        //            //show a single image
-        //            await navigator.ShowAsync<DemoImageSingleViewModel>(vm =>
-        //            {
-        //                vm.ImageSource = imageSource;
-        //            });
-        //        });
-        //    }
-
-        //    protected override void OnBindingContextChanged()
-        //    {
-        //        base.OnBindingContextChanged();
-        //        if (BindingContext != null)
-        //            image.Source = (ImageSource)BindingContext;
-        //    }
-        //}
 
         private static readonly ImageSource[] Tmp = {
             new UriImageSource {Uri = new Uri("http://66.media.tumblr.com/avatar_51fd55a5bdc7_64.png")},

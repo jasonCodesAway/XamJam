@@ -3,5 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:wall="clr-namespace:XamJam.Wall;assembly=XamJam.Wall"
              x:Class="XamJam.Demo.View.DemoImageWallView">
-  <wall:WallView ViewModelCreator="{Binding ViewModelCreator}" ViewCreator="{Binding ViewCreator}" WallSizer="{Binding WallSizer}"/>
+  <wall:WallView ViewModelCreator="{Binding ViewModelCreator}" ViewCreator="{Binding ViewCreator}" WallSizer="{Binding WallSizer}" MaxCacheSize="20"/>
 </ContentView>

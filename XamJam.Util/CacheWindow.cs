@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -16,18 +17,16 @@ namespace XamJam.Util
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(CacheWindow<T>));
 
-        public int Size { get; }
-
-        public int HalfSize { get; }
-
         /// <summary>
-        /// The local cache that's loaded into RAM
+        /// A local cache that pre-fetches items before the user views them to make certain that network lag is kept to a minimum. 
         /// </summary>
         private readonly LinkedList<T> cache = new LinkedList<T>();
 
+        public int MaxCacheSize { get; }
+
         private readonly DataProvider<T> dataProvider;
 
-        private readonly BufferBlock<Tuple<int, int>> cursorDeltaBlock = new BufferBlock<Tuple<int, int>>();
+        private readonly BufferBlock<CacheWindowMoved> cursorDeltaBlock = new BufferBlock<CacheWindowMoved>();
 
         private readonly object lockLast = new object(), lockFirst = new object();
 
@@ -35,11 +34,16 @@ namespace XamJam.Util
 
         private Cursor<T> cursor;
 
-        public CacheWindow(DataProvider<T> dataProvider, int initialCacheSize = 100, int cacheSize = 500)
+        public CacheWindow(DataProvider<T> dataProvider, int initialCacheSize = 100, int maxCacheSize = 500)
         {
             this.dataProvider = dataProvider;
-            Size = cacheSize;
-            HalfSize = Size / 2;
+            MaxCacheSize = maxCacheSize;
+
+            // Populate the cache with the initial data synchronously
+            var initialData = dataProvider.ProvideAsync(initialCacheSize).GetAwaiter().GetResult();
+            foreach (var initial in initialData)
+                cache.AddLast(initial);
+
             CacheInBackground(initialCacheSize);
         }
 
@@ -59,11 +63,11 @@ namespace XamJam.Util
             cursor = new Cursor<T>(cache.First, 0, tmp, currentIndex);
             Array.Resize(ref initialData, currentIndex + 1);
             //let the background cacher get to work
-            cursorDeltaBlock.Post(new Tuple<int, int>(currentIndex, currentIndex));
+            cursorDeltaBlock.Post(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, 0));
             return new RetrievedData<T>(initialData);
         }
 
-        private static readonly RetrievedData<T> empty = new RetrievedData<T>(new T[0]);
+        private static readonly RetrievedData<T> Empty = new RetrievedData<T>(new T[0]);
 
         public RetrievedData<T> TryNext(int numItemsToRetrieve)
         {
@@ -71,12 +75,12 @@ namespace XamJam.Util
             var i = 0;
             if (!cursor.TryMoveForward(numItemsToRetrieve, item => retrieved[i++] = item))
             {
-                return empty;
+                return Empty;
             }
 
             Array.Resize(ref retrieved, i);
             //we've moved the cursor forward by i, let the background cacher get to work
-            cursorDeltaBlock.Post(new Tuple<int, int>(i, cursor.LastIndex));
+            cursorDeltaBlock.Post(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, i));
             return new RetrievedData<T>(retrieved);
         }
 
@@ -86,60 +90,65 @@ namespace XamJam.Util
             var i = 0;
             if (!cursor.TryMoveBackward(numItemsToRetrieve, item => retrieved[i++] = item))
             {
-                return empty;
+                return Empty;
             }
 
             Array.Resize(ref retrieved, i);
             Array.Reverse(retrieved);
             //we've moved the cursor forward by i, let the background cacher get to work
-            cursorDeltaBlock.Post(new Tuple<int, int>(-i, cursor.FirstIndex));
+            cursorDeltaBlock.Post(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, -i));
             return new RetrievedData<T>(retrieved);
         }
 
         /// <summary>
-        /// Maintains the cache window's data by adding data when needed and removing old data when it's out of the window
+        /// Maintains the cache window's data by adding data when needed and removing old data when it's out of the window. Except for the ctor, this is
+        /// the only method that's allowed to add items to or remove items from the cache.
         /// </summary>
         private void CacheInBackground(int initialCacheSize)
         {
-            var initialData = dataProvider.ProvideAsync(initialCacheSize).GetAwaiter().GetResult();
-            foreach (var initial in initialData)
-                cache.AddLast(initial);
-
             Task.Run(async () =>
             {
-                // int numItemsInFront = initialDataLength, numItemsInBack = 0;
+                // First: Populate the full cache
+                var numToPopulate = MaxCacheSize - initialCacheSize;
+                var fullInitialCache = await dataProvider.ProvideAsync(numToPopulate);
+                lock (lockLast)
+                {
+                    foreach (var c in fullInitialCache)
+                    {
+                        cache.AddLast(c);
+                    }
+                    Monitor.Debug($"Populated Initial Cache with {cache.Count} items = {initialCacheSize} + {numToPopulate}");
+                }
+
+                // Second: Every time the user pages forward or backward update our cache to add new items and, as needed, remove old items
                 while (await cursorDeltaBlock.OutputAvailableAsync(onShutdown))
                 {
-                    var change = cursorDeltaBlock.Receive(onShutdown);
-                    var cursorDeltaUpdate = change.Item1;
-                    var cursorIndexUpdate = change.Item2;
-                    // User moved forward by 'cursorDelta'
-                    if (cursorDeltaUpdate > 0)
+                    var userMovement = await cursorDeltaBlock.ReceiveAsync(onShutdown);
+                    // If the user moved forward, add these items to the end of the cache
+                    if (userMovement.IsForward)
                     {
-                        var newData = await dataProvider.ProvideAsync(cursorDeltaUpdate);
+                        var newData = await dataProvider.ProvideAsync(userMovement.Delta);
                         lock (lockLast)
                         {
-                            Monitor.Debug($"Adding {newData.Length} items to the cache");
+                            Monitor.Debug($"Adding {newData.Length} items to the back of the cache, current size = {cache.Count}");
                             foreach (var newGuy in newData)
                             {
                                 cache.AddLast(newGuy);
-                                //numItemsInFront++;
                             }
                         }
 
-                        //// Delete extra
-                        //lock (lockFirst)
-                        //{
-                        //    var deleteFirst = cursorIndexUpdate - HalfSize + 1;
-                        //    if (deleteFirst > 0)
-                        //        Monitor.Debug($"Deleting {deleteFirst} entries from the front of the cache");
-                        //    for (var i = 0; i < deleteFirst; i++)
-                        //        cache.RemoveFirst();
-                        //}
-                    }
-                    else
-                    {
-                        //TODO: How to move backward?
+                        // If we have too much in the cache, remove from the front
+                        if (cache.Count > MaxCacheSize)
+                        {
+                            lock (lockFirst)
+                            {
+                                Monitor.Debug($"Purging Cache, Size = {cache.Count}, Max Size = {MaxCacheSize}");
+                                for (var i = cache.Count; i < MaxCacheSize; i++)
+                                {
+                                    cache.RemoveFirst();
+                                }
+                            }
+                        }
                     }
                 }
             }, onShutdown);
@@ -156,6 +165,11 @@ namespace XamJam.Util
         }
     }
 
+    /// <summary>
+    /// Keeps track of where in the cache the user is currently looking, i.e. the cursor or view. This is used to make sure the cache 
+    /// is sufficiently populated around the user's view so that when they swipe more data is available in RAM and need not await a network request.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Cursor<T>
     {
         public LinkedListNode<T> First { get; private set; }
@@ -168,10 +182,10 @@ namespace XamJam.Util
 
         public Cursor(LinkedListNode<T> first, int firstIndex, LinkedListNode<T> last, int lastIndex)
         {
-            this.First = first;
-            this.Last = last;
-            this.FirstIndex = firstIndex;
-            this.LastIndex = lastIndex;
+            First = first;
+            Last = last;
+            FirstIndex = firstIndex;
+            LastIndex = lastIndex;
         }
 
         public bool HasNext()
@@ -246,4 +260,26 @@ namespace XamJam.Util
         }
     }
 
+    /// <summary>
+    /// This event is raised everytime the user moved the cursor/view so that the background cacher can both populate new cache values and trim old ones.
+    /// </summary>
+    internal struct CacheWindowMoved
+    {
+        /// <summary>
+        /// The new First Index in the Cache's Cursor/View
+        /// </summary>
+        public int FirstIndex { get; }
+
+        public int LastIndex { get; }
+
+        public int Delta { get; }
+        public bool IsForward => Delta > 0;
+
+        public CacheWindowMoved(int firstIndex, int lastIndex, int delta)
+        {
+            FirstIndex = firstIndex;
+            LastIndex = lastIndex;
+            Delta = delta;
+        }
+    }
 }

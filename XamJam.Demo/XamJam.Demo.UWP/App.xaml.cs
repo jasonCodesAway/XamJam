@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FFImageLoading.Forms.WinUWP;
+using XamSvg.XamForms.Uw;
 
 namespace XamJam.Demo.UWP
 {
@@ -58,7 +60,11 @@ namespace XamJam.Demo.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+
+                CachedImageRenderer.Init();
+                SvgImageRenderer.InitializeForms();
                 Xamarin.Forms.Forms.Init(e);
+                MR.Gestures.UWP.Settings.LicenseKey = "ALZ9-BPVU-XQ35-CEBG-5ZRR-URJQ-ED5U-TSY8-6THP-3GVU-JW8Z-RZGE-CQW6";
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
