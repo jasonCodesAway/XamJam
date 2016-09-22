@@ -184,44 +184,58 @@ namespace XamJam.Util
             return First.Previous != null;
         }
 
-        public bool TryMoveForward(int numMoves, Action<T> consumer)
+        public bool TryMoveForward(int desiredNumMoves, Action<T> consumer)
         {
             if (Last.Next == null)
                 return false;
             else
             {
-                for (var i = 0; i < numMoves; i++)
+                var numActualMoves = 0;
+                // First move forward until we reach desiredNumMoves or have no more data. This sets up 'Last' and 'LastIndex', and numActualMoves.
+                for (; numActualMoves < desiredNumMoves; numActualMoves++)
                 {
+                    // If we can't move forward anymore break
                     if (Last.Next == null)
                         break;
-                    First = First.Next;
-                    FirstIndex++;
                     Last = Last.Next;
                     LastIndex++;
                     // consume the new data
                     consumer(Last.Value);
                 }
+                // Now use the Last information to backtrack and figure out First and FirstIndex
+                numActualMoves--;
+                FirstIndex = LastIndex - numActualMoves;
+                First = Last;
+                for (var i = 0; i < numActualMoves; i++)
+                    First = First.Previous;
                 return true;
             }
         }
 
-        public bool TryMoveBackward(int numMoves, Action<T> consumer)
+        public bool TryMoveBackward(int desiredNumMoves, Action<T> consumer)
         {
             if (First.Previous == null)
                 return false;
             else
             {
-                for (var i = 0; i < numMoves; i++)
+                var numActualMoves = 0;
+                // First move back until we can't we reach desiredNumMoves or have no more data. This sets up 'First', 'FirstIndex', and 'numActualMoves'. 
+                for (; numActualMoves < desiredNumMoves; numActualMoves++)
                 {
+                    // If we can't move back anymore break
                     if (First.Previous == null)
                         break;
                     First = First.Previous;
                     FirstIndex--;
-                    Last = Last.Previous;
-                    LastIndex--;
                     // consume the previously seen data
                     consumer(First.Value);
                 }
+                // Now that we know 'First', 'FirstIndex', and numActualMoves figure out 'Last' and 'LastIndex' 
+                numActualMoves--;
+                LastIndex = FirstIndex + numActualMoves;
+                Last = First;
+                for (var i = 0; i < numActualMoves; i++)
+                    Last = Last.Next;
                 return true;
             }
         }
