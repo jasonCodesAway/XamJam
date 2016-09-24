@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace XamJam.Demo.View
 {
-    public partial class DemoRatingsView : ContentPage
+    public partial class DemoRatingsView : ContentView
     {
         public DemoRatingsView()
         {

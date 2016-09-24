@@ -137,18 +137,20 @@ namespace XamJam.Util
                             }
                         }
 
-                        // If we have too much in the cache, remove from the front
-                        if (cache.Count > MaxCacheSize)
-                        {
-                            lock (lockFirst)
-                            {
-                                Monitor.Debug($"Purging Cache, Size = {cache.Count}, Max Size = {MaxCacheSize}");
-                                for (var i = cache.Count; i < MaxCacheSize; i++)
-                                {
-                                    cache.RemoveFirst();
-                                }
-                            }
-                        }
+                        //// If we have too much in the cache, remove from the front
+                        //if (cache.Count > MaxCacheSize)
+                        //{
+                        //    lock (lockFirst)
+                        //    {
+                        //        var prePurgeSize = cache.Count;
+                        //        var numToPurge = prePurgeSize - MaxCacheSize;
+                        //        for (var i = 0; i < numToPurge; i++)
+                        //        {
+                        //            cache.RemoveFirst();
+                        //        }
+                        //        Monitor.Debug($"Purged {numToPurge} Items from Cache. Cache had {prePurgeSize} items, now has {cache.Count} items. Max cache size = {MaxCacheSize}");
+                        //    }
+                        //}
                     }
                 }
             }, onShutdown);

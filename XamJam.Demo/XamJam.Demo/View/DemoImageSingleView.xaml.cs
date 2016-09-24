@@ -2,7 +2,7 @@
 
 namespace XamJam.Demo.View
 {
-    public partial class DemoImageSingleView : ContentPage
+    public partial class DemoImageSingleView : ContentView
     {
         public DemoImageSingleView()
         {

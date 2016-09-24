@@ -12,7 +12,7 @@ This is largely untested and this is intentionally lightweight (aka. feature-poo
 TODO
 ```
 #### Related projects:
-* TODO
+* This project could really use some help from anyone who understand XAML templates well. The WallView should accept a template in XAML that handles rendering, on-click bindings, etc. But I don't know how to do that.
 
 #### Related documentation:
 * TODO

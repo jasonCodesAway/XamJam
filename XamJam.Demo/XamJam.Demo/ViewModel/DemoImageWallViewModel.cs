@@ -24,8 +24,11 @@ namespace XamJam.Demo.ViewModel
 
         public WallSizer WallSizer { get; } = PixelRangeWallSizer.CreateSquare(150, 200);
 
+        public Command BackCommand { get; }
+
         public DemoImageWallViewModel(Navigator navigator)
         {
+            BackCommand = navigator.BackAsyncCommand;
             var i = 0;
             const int fakeCloudDataSize = 100;
             var data = CreateFakeData(fakeCloudDataSize);

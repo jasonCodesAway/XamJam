@@ -1,9 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
              x:Class="XamJam.Demo.View.DemoImageSingleView">
-  <StackLayout>
-    <Image Source="{Binding ImageSource}"/>
-    <Label Text="{Binding Text}" VerticalOptions="Center" HorizontalOptions="Center" />
-  </StackLayout>
-</ContentPage>
+  <mr:RelativeLayout TappedCommand="{Binding TappedCommand}">
+    <forms:CachedImage
+      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.7}"
+      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.7}"
+      RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.15}"
+      RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.05}"
+      Source="{Binding ImageSource}" LoadingPlaceholder="https://cdn1.iconfinder.com/data/icons/hawcons/32/699739-icon-64-face-sunglasses-64.png"/>
+    <Label
+      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.7}"
+      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+      RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.15}"
+      RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.75}"
+      Text="{Binding Text}"/>
+    <Button Text="Back" Command="{Binding BackCommand}">
+      <Button.IsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" WinPhone="False"/>
+      </Button.IsVisible>
+    </Button>
+  </mr:RelativeLayout>
+</ContentView>

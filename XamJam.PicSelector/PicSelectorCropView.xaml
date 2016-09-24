@@ -19,14 +19,3 @@
     <BoxView BackgroundColor="White" AbsoluteLayout.LayoutBounds="{Binding StatusBox}" AbsoluteLayout.LayoutFlags="None" />
   </mr:AbsoluteLayout>
 </ContentView>
-<!--- 
-x:Name="topCropBox"
-x:Name="leftCropBox"
-x:Name="rightCropBox"
-x:Name="bottomCropBox"
-x:Name="topBox"
-x:Name="leftBox"
-x:Name="rightBox"
-x:Name="bottomBox"
-x:Name="statusBox"
--->

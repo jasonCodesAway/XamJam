@@ -133,11 +133,6 @@ namespace XamJam.Nav
                     throw new ArgumentOutOfRangeException();
             }
 
-            // Make sure the right page is being displayed
-            //var prev = application.MainPage;
-            //application.MainPage = destination.NavScheme.Parent == null ? destination.NavScheme.CurrentPage : destination.NavScheme.Parent.CurrentPage;
-            //if (prev != application.MainPage)
-            //    Monitor.Debug($"Set application main page to {application.MainPage} from {prev}");
             currentDestination = destination;
         }
 

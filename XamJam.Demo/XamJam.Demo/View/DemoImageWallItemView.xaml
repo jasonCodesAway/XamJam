@@ -3,13 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="XamJam.Demo.View.DemoImageWallItemView"
-             BackgroundColor="Pink">
-  <mr:AbsoluteLayout TappedCommand="{Binding TappedCommand}">
-    <!--<Label Text="Hi" AbsoluteLayout.LayoutBounds=".5,1,.5,.1" AbsoluteLayout.LayoutFlags="All"/>-->
-    <forms:CachedImage Source="{Binding ImageSource}" LoadingPlaceholder="https://cdn1.iconfinder.com/data/icons/hawcons/32/699739-icon-64-face-sunglasses-64.png" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
-    <!--<Image Source="{Binding ImageSource}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>-->
-    <Label Text="{Binding ImageText}" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>  
-  </mr:AbsoluteLayout>
-  
+             x:Class="XamJam.Demo.View.DemoImageWallItemView">
+  <mr:RelativeLayout TappedCommand="{Binding TappedCommand}">
+    <forms:CachedImage
+      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+      RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0}"
+      RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0}"
+      Source="{Binding ImageSource}" LoadingPlaceholder="https://cdn1.iconfinder.com/data/icons/hawcons/32/699739-icon-64-face-sunglasses-64.png"/>
+    <Label
+      RelativeLayout.XConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.05}"
+      RelativeLayout.YConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.05}"
+      Text="{Binding ImageText}"/>
+  </mr:RelativeLayout>
 </ContentView>

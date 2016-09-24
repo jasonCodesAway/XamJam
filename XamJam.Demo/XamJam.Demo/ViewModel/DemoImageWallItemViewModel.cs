@@ -26,6 +26,7 @@ namespace XamJam.Demo.ViewModel
                 await navigator.ShowAsync<DemoImageSingleViewModel>(vm =>
                 {
                     vm.ImageSource = ImageSource;
+                    vm.Text = ImageText;
                 });
             });
         }

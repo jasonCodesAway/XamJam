@@ -47,7 +47,11 @@ namespace XamJam.Wall
             set { SetValue(ViewCreatorProperty, value); }
         }
 
-        public int MaxCacheSize { get; set; } = (int) MaxCacheSizeProperty.DefaultValue;
+        public int MaxCacheSize
+        {
+            get { return (int) GetValue(MaxCacheSizeProperty); }
+            set { SetValue(MaxCacheSizeProperty, value); }
+        }
 
         private CacheWindow<object> viewModels;
 
@@ -67,7 +71,6 @@ namespace XamJam.Wall
             {
                 hasInitialized = true;
                 CreateViews();
-                //TODO: Before deploying, change 'MaxCacheSize' to like 1500
                 viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), initialCacheSize:numVisibleViews, maxCacheSize: MaxCacheSize);
             }
         }
