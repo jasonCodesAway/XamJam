@@ -49,7 +49,7 @@ namespace XamJam.Wall
 
         public int MaxCacheSize
         {
-            get { return (int) GetValue(MaxCacheSizeProperty); }
+            get { return (int)GetValue(MaxCacheSizeProperty); }
             set { SetValue(MaxCacheSizeProperty, value); }
         }
 
@@ -71,7 +71,7 @@ namespace XamJam.Wall
             {
                 hasInitialized = true;
                 CreateViews();
-                viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), initialCacheSize:numVisibleViews, maxCacheSize: MaxCacheSize);
+                viewModels = new CacheWindow<object>(new WallImageProvider(ViewModelCreator), initialCacheSize: numVisibleViews, maxCacheSize: MaxCacheSize);
             }
         }
 
@@ -80,8 +80,10 @@ namespace XamJam.Wall
             base.OnSizeAllocated(width, height);
             if (width > 0 && height > 0)
             {
-                SetupViewSizesAndVisibility(width, height);
-                UpdateViewModels(ViewModelCommand.Initialize);
+                if (SetupViewSizesAndVisibility(width, height))
+                {
+                    UpdateViewModels(ViewModelCommand.Initialize);
+                }
             }
         }
 
@@ -114,6 +116,8 @@ namespace XamJam.Wall
                 AbsoluteLayout.Children.Add(view);
             }
             numVisibleViews = maxNumViews;
+            WidthRequest = size.Width;
+            HeightRequest = size.Height;
         }
 
 
@@ -121,7 +125,7 @@ namespace XamJam.Wall
         /// Setups up all views EXCEPT DOES NOT setup the view models / BindingContexts
         /// </summary>
         private double lastWidth, lastHeight;
-        private void SetupViewSizesAndVisibility(double screenWidth, double screenHeight)
+        private bool SetupViewSizesAndVisibility(double screenWidth, double screenHeight)
         {
             var sizeChanged = screenWidth != lastWidth || screenHeight != lastHeight;
             if (sizeChanged)
@@ -166,8 +170,11 @@ namespace XamJam.Wall
 
                 lastWidth = screenWidth;
                 lastHeight = screenHeight;
+                WidthRequest = screenWidth;
+                HeightRequest = screenHeight;
                 Monitor.Info($"Size Allocated: {screenWidth}x{screenHeight}, Grid = {newSize.NumRows}x{newSize.NumColumns}, Paddings = {newSize.PaddingX}x{newSize.PaddingY}, ItemSize = {newSize.ItemSize.Width}x{newSize.ItemSize.Height}");
             }
+            return sizeChanged;
         }
 
         public enum ViewModelCommand
@@ -179,6 +186,7 @@ namespace XamJam.Wall
 
         private void UpdateViewModels(ViewModelCommand command)
         {
+            Monitor.Debug($"Updating ViewModels due to {command}");
             RetrievedData<object> viewModelsToDisplay;
             switch (command)
             {
@@ -205,12 +213,14 @@ namespace XamJam.Wall
                 {
                     // Yay, this View has data available, may the View and ViewModel be married!
                     wallView.BindingContext = viewModelsToDisplay.Retrieved[i++];
+                    Monitor.Debug($"Displaying ViewModel: {wallView.BindingContext}");
                     wallView.IsVisible = true; // This is necessary because the view may have become invisible if there was no view model for it (think page forward to end, then page back)
                 }
                 else
                 {
                     // Sorry View, there is no ViewModel available for you. You are banished and hidden.
                     wallView.IsVisible = false;
+                    Monitor.Debug($"Hiding View that was Displaying ViewModel: {wallView.BindingContext}");
                     //numVisibleViews--;
                 }
             }

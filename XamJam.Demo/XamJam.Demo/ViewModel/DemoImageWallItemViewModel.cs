@@ -30,5 +30,10 @@ namespace XamJam.Demo.ViewModel
                 });
             });
         }
+
+        public override string ToString()
+        {
+            return ImageText;
+        }
     }
 }

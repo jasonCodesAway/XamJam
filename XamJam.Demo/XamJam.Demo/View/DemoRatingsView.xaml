@@ -6,6 +6,10 @@
   <StackLayout>
     <Label Text="Welcome to Ratings"/>
     <ratings:RatingView BindingContext="{Binding RatingViewModel}"/>
-    <Label Text="..."/>
+    <Button Text="Back" Command="{Binding BackCommand}">
+      <Button.IsVisible>
+        <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" WinPhone="False"/>
+      </Button.IsVisible>
+    </Button>
   </StackLayout>
 </ContentView>

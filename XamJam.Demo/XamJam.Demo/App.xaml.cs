@@ -41,9 +41,9 @@ namespace XamJam.Demo
             var navScheme = new NavigationScheme(RootScheme.Singleton);
             return new IDestination<INavScheme>[]
             {
-                new RootDestination<MainViewModel>(RootScheme.Singleton, new MainViewModel(navigator), new MainView()),
+                new NavigationDestination<MainViewModel>(navScheme, new MainViewModel(navigator), new MainView()),
                 new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView(navigator)),
-                new NavigationDestination<DemoRatingsViewModel>(navScheme, new DemoRatingsViewModel(), new DemoRatingsView()),
+                new NavigationDestination<DemoRatingsViewModel>(navScheme, new DemoRatingsViewModel(navigator), new DemoRatingsView()),
                 new NavigationDestination<DemoImageSingleViewModel>(navScheme, new DemoImageSingleViewModel(navigator), new DemoImageSingleView())
             };
         }
