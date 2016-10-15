@@ -19,6 +19,13 @@ namespace XamJam.Ratings
             Content = canvasView;
         }
 
+        private static readonly SKShader FillGradient = SKShader.CreateLinearGradient(
+            new SKPoint(24,0), 
+            new SKPoint(24, 0), 
+            new[] { SKColors.LightYellow, SKColors.Yellow}, 
+            new[] { 0.0f, 1.0f }, 
+            SKShaderTileMode.Clamp);
+
         private void RatingStarView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
             SKCanvas canvas = e.Surface.Canvas;
@@ -62,8 +69,11 @@ namespace XamJam.Ratings
                     // draw the Xamagon path
                     canvas.DrawPath(path, paint);
                 }
-            }
 
+                // Now create this shader and fill the path somehow with it?
+                // paint.Shader = FillGradient;
+                // TODO: How do we fill the path with this paint?
+            }
         }
     }
 }
