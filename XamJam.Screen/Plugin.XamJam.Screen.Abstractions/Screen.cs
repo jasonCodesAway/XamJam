@@ -6,8 +6,7 @@
     public interface Screen
     {
         /// <summary>
-        ///     Returns this platforms total screen size. The size available to any app at any point in time will not exceed this
-        ///     size.
+        /// Returns this platforms current total screen size. Only UWP has dynamic screen sizes (e.g. plugging in a new monitor, changing resolutions, etc.)
         /// </summary>
         ScreenSize Size { get; }
     }

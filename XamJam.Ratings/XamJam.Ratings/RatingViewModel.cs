@@ -26,7 +26,7 @@ namespace XamJam.Ratings
 
         private readonly RatingStarViewModel[] ratingStars = new RatingStarViewModel[NumStars];
 
-        public RatingViewModel()
+        public RatingViewModel(byte initialRating = 0)
         {
             for (byte s = 0; s < NumStars; s++)
             {
@@ -42,6 +42,7 @@ namespace XamJam.Ratings
                 var sender = (VisualElement)eventArgs.Sender;
                 UpdateRating(sender, eventArgs);
             });
+            Rating = initialRating;
         }
 
         private byte rating;

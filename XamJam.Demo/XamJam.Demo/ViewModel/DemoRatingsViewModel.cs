@@ -11,7 +11,7 @@ namespace XamJam.Demo.ViewModel
 {
     public class DemoRatingsViewModel
     {
-        public RatingViewModel RatingViewModel { get; } = new RatingViewModel();
+        public RatingViewModel RatingViewModel { get; } = new RatingViewModel(5);
 
         public Command BackCommand { get; }
 
