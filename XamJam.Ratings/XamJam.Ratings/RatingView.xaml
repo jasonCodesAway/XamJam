@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<mr:StackLayout xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mr="clr-namespace:MR.Gestures;assembly=MR.Gestures"
-             xmlns:svg="clr-namespace:XamSvg.XamForms;assembly=XamSvg.XamForms"
-             xmlns:ratings="clr-namespace:XamJam.Ratings;assembly=XamJam.Ratings"
-             x:Class="XamJam.Ratings.RatingView">
-  <mr:StackLayout Orientation="Horizontal" PanningCommand="{Binding PanningCommand}" TappedCommand="{Binding TappedCommand}" Spacing="{Binding Spacing}" HorizontalOptions="Center">
-    <ratings:RatingStarView/>
-    <ratings:RatingStarView/>
-    <ratings:RatingStarView/>
-    <ratings:RatingStarView/>
-    <ratings:RatingStarView/>
-    <!--<svg:SvgImage Svg="{Binding FirstStar.Image}" WidthRequest="150" />
-    <svg:SvgImage Svg="{Binding SecondStar.Image}" WidthRequest="150"/>
-    <svg:SvgImage Svg="{Binding ThirdStar.Image}" WidthRequest="150"/>
-    <svg:SvgImage Svg="{Binding FourthStar.Image}" WidthRequest="150"/>
-    <svg:SvgImage Svg="{Binding FifthStar.Image}" WidthRequest="150"/>-->
-  </mr:StackLayout>
-</ContentView> 
+             x:Class="XamJam.Ratings.RatingView"
+             Orientation="Horizontal" Spacing="{Binding Spacing}"
+             PanningCommand="{Binding PanningCommand}"
+             TappedCommand="{Binding TappedCommand}">
+</mr:StackLayout>

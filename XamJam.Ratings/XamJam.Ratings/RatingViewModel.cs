@@ -12,7 +12,7 @@ namespace XamJam.Ratings
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingViewModel));
 
-        public const int NumStars = 5;
+        public int NumStars { get; }
 
         /// <summary>
         /// The UI's Spacing value, definitely weird to set this in the view model but the view and view model are somewhat linked in this case because of all the
@@ -24,13 +24,15 @@ namespace XamJam.Ratings
 
         public Command<TapEventArgs> TappedCommand { get; }
 
-        private readonly RatingStarViewModel[] ratingStars = new RatingStarViewModel[NumStars];
+        private readonly RatingStarView[] ratingStars;
 
-        public RatingViewModel(byte initialRating = 0)
+        public RatingViewModel(double initialRating = 0, int numStars = 5)
         {
-            for (byte s = 0; s < NumStars; s++)
+            NumStars = numStars;
+            ratingStars = new RatingStarView[numStars];
+            for (var s = 0; s < NumStars; s++)
             {
-                ratingStars[s] = new RatingStarViewModel(this, s);
+                ratingStars[s] = new RatingStarView();
             }
             PanningCommand = new Command<PanEventArgs>(eventArgs =>
             {
@@ -45,9 +47,9 @@ namespace XamJam.Ratings
             Rating = initialRating;
         }
 
-        private byte rating;
+        private double rating;
 
-        public byte Rating
+        public double Rating
         {
             get { return rating; }
             set
@@ -55,37 +57,23 @@ namespace XamJam.Ratings
                 if (rating != value)
                 {
                     rating = value;
-                    var fullStarIndex = rating / 2;
-                    var halfStarIndex = rating % 2;
-                    var s = 0;
-                    for (; s < fullStarIndex;)
+                    var i = 0;
+                    for (; i < rating - 1; )
                     {
-                        Monitor.Trace($"Setting star-{s} to FULL");
-                        ratingStars[s++].Image = RatingStarViewModel.Full;
+                        Monitor.Info($"Setting star-{i} to FULL");
+                        ratingStars[i++].Fill = 1.0;
                     }
-                    if (halfStarIndex != 0)
+                    var residual = rating - i;
+                    Monitor.Info($"Setting star-{i} to {residual}");
+                    ratingStars[i++].Fill = residual;
+                    for (; i < NumStars; )
                     {
-                        Monitor.Trace($"Setting star-{s} to HALF");
-                        ratingStars[s++].Image = RatingStarViewModel.HalfFull;
-                    }
-                    for (; s < 5;)
-                    {
-                        Monitor.Trace($"Setting star-{s} to EMPTY");
-                        ratingStars[s++].Image = RatingStarViewModel.Empty;
+                        Monitor.Info($"Setting star-{i} to EMPTY");
+                        ratingStars[i++].Fill = 0;
                     }
                 }
             }
         }
-
-        public RatingStarViewModel FirstStar => ratingStars[0];
-
-        public RatingStarViewModel SecondStar => ratingStars[1];
-
-        public RatingStarViewModel ThirdStar => ratingStars[2];
-
-        public RatingStarViewModel FourthStar => ratingStars[3];
-
-        public RatingStarViewModel FifthStar => ratingStars[4];
 
 
         /// <summary>
@@ -108,17 +96,26 @@ namespace XamJam.Ratings
             }
             else if (eventArgs.Center.X > view.Width - paddingRight)
             {
-                Monitor.Debug($"Setting rating to 10 in respond to CenterX={eventArgs.Center.X} and pacing={Spacing} and Width={view.Width}");
-                Rating = 10;
+                Monitor.Debug($"Setting rating to {NumStars} in respond to CenterX={eventArgs.Center.X} and pacing={Spacing} and Width={view.Width}");
+                Rating = NumStars;
             }
             else
             {
                 var remainingWidth = view.Width - paddingLeft - paddingRight;
                 var adjustedX = eventArgs.Center.X - paddingLeft;
                 var percentX = adjustedX / remainingWidth;
+                var newRating = Math.Round(percentX * NumStars);
                 // normal case
                 //var percentX = (eventArgs.Center.X - Padding.Left) / (view.Width - Padding.Left - Padding.Right);
-                Rating = (byte)Math.Round(percentX * 10);
+                if (newRating > NumStars)
+                {
+                    newRating = NumStars;
+                }
+                else if (newRating < 0)
+                {
+                    newRating = 0;
+                }
+                Rating = newRating;
                 Monitor.Debug($"Panned, Set Rating = {Rating} in response to {percentX}% CenterX={eventArgs.Center.X} Width={view.Width}");
             }
         }

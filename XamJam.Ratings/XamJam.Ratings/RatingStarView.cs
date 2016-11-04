@@ -1,43 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
 namespace XamJam.Ratings
 {
-    public class RatingStarView : ContentView
+    public class RatingStarView : SKCanvasView //SKGLView
     {
         public RatingStarView()
         {
-            var canvasView = new SKCanvasView { WidthRequest = 48, HeightRequest = 48 };
-            canvasView.PaintSurface += RatingStarView_PaintSurface;
-            canvasView.InvalidateSurface();
-            Content = canvasView;
+            BackgroundColor = Color.Transparent;
+            PaintSurface += OnPaintSurface;
+            WidthRequest = 48;
+            HeightRequest = 48;
         }
 
-        private static readonly SKShader FillGradient = SKShader.CreateLinearGradient(
-            new SKPoint(24,0), 
-            new SKPoint(24, 0), 
-            new[] { SKColors.LightYellow, SKColors.Yellow}, 
-            new[] { 0.0f, 1.0f }, 
+        public double Fill
+        {
+            get { return fill; }
+            set
+            {
+                if (fill != value)
+                {
+                    fill = value;
+                    InvalidateMeasure();
+                    //cause a repaint
+                    InvalidateSurface();
+                }
+            }
+        }
+
+        private static readonly SKShader FullFillGradient = SKShader.CreateLinearGradient(
+            new SKPoint(0, 0),
+            new SKPoint(24, 24),
+            new[] { SKColors.Yellow, SKColors.LightYellow },
+            new[] { 0.0f, 1.0f },
             SKShaderTileMode.Clamp);
 
-        private void RatingStarView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
+        private static readonly SKShader HalfFillGradient = SKShader.CreateLinearGradient(
+            new SKPoint(0, 0),
+            new SKPoint(12, 24),
+            new[] { SKColors.Yellow, SKColors.LightYellow },
+            new[] { 0.0f, 1.0f },
+            SKShaderTileMode.Clamp);
+
+        private double fill;
+
+        private void PaintStar(SKCanvas canvas)
         {
-            SKCanvas canvas = e.Surface.Canvas;
+            // TODO: How to gradient fill? If our fill is 1.0 we want a fully filled in yellow star. If it's 0.3 then we want 1/3 filled in, etc. 
             // clear the canvas / fill with white
-            canvas.Clear(SKColors.White);
+            //canvas.Clear(SKColors.Transparent);
 
             // set up drawing tools
             using (var paint = new SKPaint())
             {
                 paint.IsAntialias = true;
-                paint.Color = new SKColor(0x2c, 0x3e, 0x50);
+                paint.Color = SKColors.Gray;//new SKColor(0x2c, 0x3e, 0x50);
+                paint.StrokeWidth = 5;
                 paint.StrokeCap = SKStrokeCap.Round;
+                if (fill > 0.8)
+                    paint.Shader = FullFillGradient;
+                else if (fill > 0.3)
+                    paint.Shader = HalfFillGradient;
 
                 // create the Xamagon path
                 using (var path = new SKPath())
@@ -68,12 +93,23 @@ namespace XamJam.Ratings
 
                     // draw the Xamagon path
                     canvas.DrawPath(path, paint);
+                    //canvas.DrawColor(SKColors.Yellow);
                 }
 
                 // Now create this shader and fill the path somehow with it?
                 // paint.Shader = FillGradient;
                 // TODO: How do we fill the path with this paint?
             }
+        }
+
+        private void OnPaintSurfaceGL(object sender, SKPaintGLSurfaceEventArgs e)
+        {
+            PaintStar(e.Surface.Canvas);
+        }
+
+        private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
+        {
+            PaintStar(e.Surface.Canvas);
         }
     }
 }
