@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ratings="clr-namespace:XamJam.Ratings;assembly=XamJam.Ratings"
              x:Class="XamJam.Demo.View.DemoRatingsView">
-  <StackLayout>
+  <StackLayout Orientation="Vertical">
     <Label Text="Welcome to Ratings"/>
-    <ratings:RatingView BindingContext="{Binding RatingViewModel}"/>
+    <ratings:RatingView Rating="{Binding Rating}" NumStars="{Binding NumStars}" HorizontalOptions="FillAndExpand" HeightRequest="100"/>
     <Button Text="Back" Command="{Binding BackCommand}">
       <Button.IsVisible>
         <OnPlatform x:TypeArguments="x:Boolean" iOS="True" Android="False" WinPhone="False"/>

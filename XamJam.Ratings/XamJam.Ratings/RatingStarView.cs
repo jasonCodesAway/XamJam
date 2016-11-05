@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.XamJam.BugHound;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
@@ -8,13 +9,34 @@ namespace XamJam.Ratings
     // If we ever figure out how to properly initialize SkiaGraphics with OpenGL, extends "SKGLView" instead of "SKCanvasView"
     public class RatingStarView : SKCanvasView
     {
-        public RatingStarView()
+        private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingStarView));
+        //private static readonly Color[] Colors = { Color.Green, Color.Blue, Color.Black, Color.Yellow, Color.Lime };
+        //private static int colorIndex = 0;
+        private readonly bool logThis;
+        private readonly int starIndex;
+
+        public RatingStarView(int index)
         {
-            BackgroundColor = Color.Transparent;
+            starIndex = index;
+            logThis = index == 0;
+            //BackgroundColor = Color.Transparent;
+            //BackgroundColor = Colors[colorIndex++];
+            //if (colorIndex > Colors.Length)
+            //    colorIndex = 0;
             PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas);
             //PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas); Uncomment if we figure out OpenGL initialization
-            WidthRequest = 600;
-            HeightRequest = 600;
+            HorizontalOptions = LayoutOptions.CenterAndExpand;
+            VerticalOptions = LayoutOptions.CenterAndExpand;
+            MinimumHeightRequest = 10;
+            MinimumWidthRequest = 10;
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            if (logThis && width > 0 && height > 0)
+            {
+                Monitor.Info($"Drawing Star with ({width}x{height})");
+            }
         }
 
         public double Fill
@@ -25,65 +47,52 @@ namespace XamJam.Ratings
                 if (fill != value)
                 {
                     fill = value;
-                    InvalidateMeasure();
-                    //cause a repaint
-                    InvalidateSurface();
+                    if (logThis)
+                        Monitor.Info($"Set fill to {Fill}");
                 }
             }
         }
-
-        private static readonly SKShader FullFillGradient = SKShader.CreateLinearGradient(
-            new SKPoint(0, 0),
-            new SKPoint(48, 48),
-            new[] { SKColors.Yellow, SKColors.Yellow },
-            new[] { 1.0f, 1.0f },
-            SKShaderTileMode.Clamp);
 
         private double fill;
 
         private void PaintStar(SKCanvas canvas)
         {
-            // TODO: How to gradient fill? If our fill is 1.0 we want a fully filled in yellow star. If it's 0.3 then we want 1/3 filled in, etc. 
-            // clear the canvas / fill with white
+            //TODO: Once this issue is fixed: https://github.com/mono/SkiaSharp/issues/175
+            //then we can scale the Star to really take up the full width it's supposed to.
             // canvas.Clear(SKColors.White);
-            // set up drawing tools
-            var half = (float)Math.Min(Width, Height) / 2;
-            var halfFillGradient = SKShader.CreateLinearGradient(
-                new SKPoint(0, half),
-                new SKPoint(half, half),
-                new[] { new SKColor(235, 193, 7), SKColors.Yellow, SKColors.Transparent },
-                new[] { 0.5f, 1f },
+            var full = (float)Math.Min(Width, Height);
+            var half = full / 2;
+            var shadeToX = (float)(full * Fill);
+            Monitor.Info($"Drawing Star-{starIndex}, Max Size: ({Width}x{Height}) Shading to {shadeToX}");
+            var gradient = SKShader.CreateLinearGradient(
+                // This feels 100% backwards to me, the start and end point feel flipped as do the colors, but this is what seems to work
+                new SKPoint(shadeToX, half), new SKPoint(0, half),
+                new[] { SKColors.Transparent, new SKColor(235, 193, 7) },
+                null,
                 SKShaderTileMode.Clamp);
-            using (var paint = new SKPaint())
-            {
-                paint.IsAntialias = true;
-                paint.Shader = halfFillGradient;
-                //if (fill > 0.8)
-                //    paint.Shader = FullFillGradient;
-                //else if (fill > 0.3)
-                //    paint.Shader = HalfFillGradient;
 
-                using (var path = new SKPath())
+            using (var path = new SKPath())
+            {
+                // Draw the star path
+                DrawPath(path);
+                path.Close();
+                // Draw the fill gradient
+                using (var paint = new SKPaint())
                 {
-                    DrawPath(path);
-                    path.Close();
+                    paint.IsAntialias = true;
+                    paint.Shader = gradient;
                     canvas.DrawPath(path, paint);
                 }
-            }
 
-            using (var paint = new SKPaint())
-            {
-                paint.IsAntialias = true;
-                paint.IsStroke = true;
-                paint.StrokeWidth = 1;
-                paint.Color = SKColors.Gray;
-                paint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 1.0f);
-                //paint.StrokeWidth = 1;
-                paint.StrokeCap = SKStrokeCap.Butt;
-                using (var path = new SKPath())
+                // Draw the gray star outline
+                using (var paint = new SKPaint())
                 {
-                    DrawPath(path);
-                    path.Close();
+                    paint.IsAntialias = true;
+                    paint.IsStroke = true;
+                    paint.StrokeWidth = 1;
+                    paint.Color = SKColors.Gray;
+                    paint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 1.0f);
+                    paint.StrokeCap = SKStrokeCap.Butt;
                     canvas.DrawPath(path, paint);
                 }
             }

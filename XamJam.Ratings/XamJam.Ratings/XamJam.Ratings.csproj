@@ -40,7 +40,6 @@
     <Compile Include="RatingView.xaml.cs">
       <DependentUpon>RatingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RatingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MR.Gestures, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL">

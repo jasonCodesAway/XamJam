@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PropertyChanged;
 using Xamarin.Forms;
 using XamJam.Nav;
 using XamJam.Ratings;
 
 namespace XamJam.Demo.ViewModel
 {
+    [ImplementPropertyChanged]
     public class DemoRatingsViewModel
     {
-        public RatingViewModel RatingViewModel { get; } = new RatingViewModel(initialRating:0.5, numStars:1);
+        public double Rating { get; set; } = 4.5;
+
+        public int NumStars { get; set; } = 5;
 
         public Command BackCommand { get; }
 
