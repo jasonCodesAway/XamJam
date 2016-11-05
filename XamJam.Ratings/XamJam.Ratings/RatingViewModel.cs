@@ -26,7 +26,7 @@ namespace XamJam.Ratings
 
         private readonly RatingStarView[] ratingStars;
 
-        public RatingViewModel(double initialRating = 0, int numStars = 5)
+        public RatingViewModel(double initialRating = 3.5, int numStars = 5)
         {
             NumStars = numStars;
             ratingStars = new RatingStarView[numStars];
@@ -63,9 +63,9 @@ namespace XamJam.Ratings
                         Monitor.Info($"Setting star-{i} to FULL");
                         ratingStars[i++].Fill = 1.0;
                     }
-                    var residual = rating - i;
-                    Monitor.Info($"Setting star-{i} to {residual}");
-                    ratingStars[i++].Fill = residual;
+                    var partial = rating - i;
+                    Monitor.Info($"Setting star-{i} to {partial}");
+                    ratingStars[i++].Fill = partial;
                     for (; i < NumStars; )
                     {
                         Monitor.Info($"Setting star-{i} to EMPTY");

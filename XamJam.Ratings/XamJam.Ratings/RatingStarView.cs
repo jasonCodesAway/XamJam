@@ -5,15 +5,14 @@ using Xamarin.Forms;
 
 namespace XamJam.Ratings
 {
+    // If we ever figure out how to properly initialize SkiaGraphics with OpenGL, extends "SKGLView" instead of "SKCanvasView"
     public class RatingStarView : SKCanvasView
-    //    public class RatingStarView : SKGLView
     {
         public RatingStarView()
         {
             BackgroundColor = Color.Transparent;
-            PaintSurface += OnPaintSurface;
-            //PaintSurface += OnPaintSurfaceGL;
-            //PaintSurface += RatingStarView_PaintSurface;
+            PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas);
+            //PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas); Uncomment if we figure out OpenGL initialization
             WidthRequest = 600;
             HeightRequest = 600;
         }
@@ -52,7 +51,7 @@ namespace XamJam.Ratings
             var halfFillGradient = SKShader.CreateLinearGradient(
                 new SKPoint(0, half),
                 new SKPoint(half, half),
-                new[] { new SKColor(235,193,7), SKColors.Yellow, SKColors.Transparent },
+                new[] { new SKColor(235, 193, 7), SKColors.Yellow, SKColors.Transparent },
                 new[] { 0.5f, 1f },
                 SKShaderTileMode.Clamp);
             using (var paint = new SKPaint())
@@ -93,24 +92,22 @@ namespace XamJam.Ratings
         private void DrawPath(SKPath path)
         {
             var full = (float)Math.Min(Width, Height);
-            var sixth = full/6;
-            var fifth = full / 5;
-            var fourth = full / 4;
-            var third = full / 3;
-            var twoFifths = full*2/5;
-            var half = full / 2;
-            var threeFifths = 3 * full / 5;
-            var twoThirds = 2 * full / 3;
-            var threeQuaters = 3 * full / 4;
-            var fourFifth = 4 * full / 5;
-            var fiveSixths = 5*full/6;
+            var sixth = full / 6; // 0.1666
+            var fourth = full / 4; // 0.25
+            var third = full / 3; // 0.333
+            var threeFive = 0.35f * full;
+            var half = full / 2; // 0.5
+            var threeFifths = 3 * full / 5; // 0.6
+            var twoThirds = 2 * full / 3; // 0.666
+            var threeQuaters = 3 * full / 4; // 0.75
+            var fiveSixths = 5 * full / 6; // 0.8333
 
             // 1: Start at top middle
             path.MoveTo(half, 0f);
             // 2: Top Left Inner
             path.LineTo(third, third);
             // 3: Left Tip
-            path.LineTo(0f, 0.35f*full);
+            path.LineTo(0f, threeFive);
             // 4: Bottom Left Inner
             path.LineTo(fourth, threeFifths);
             // 5: Bottom Left Tip
@@ -122,21 +119,11 @@ namespace XamJam.Ratings
             // 8: Bottom Right Inner
             path.LineTo(threeQuaters, threeFifths);
             // 9: Right Tip
-            path.LineTo(full, 0.35f * full);
+            path.LineTo(full, threeFive);
             // 10: Up & Left to upper right inner
             path.LineTo(twoThirds, third);
             // 0: Back up to Top
             path.LineTo(half, 0f);
-        }
-
-        private void OnPaintSurfaceGL(object sender, SKPaintGLSurfaceEventArgs e)
-        {
-            PaintStar(e.Surface.Canvas);
-        }
-
-        private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
-        {
-            PaintStar(e.Surface.Canvas);
         }
     }
 }
