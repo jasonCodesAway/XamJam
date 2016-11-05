@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
+using Android.Opengl;
 using Android.OS;
 using FFImageLoading.Forms.Droid;
 using Xamarin.Forms;
