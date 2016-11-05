@@ -1,6 +1,6 @@
 ![](xamJam.png) 
 ### Caz and Jason's collection of useful Xamarin components. Enjoy! 
-#### See the 'Demo' folder for example usage.
+#### See the [Demo](XamJam.Demo/XamJam.Demo) folder for example usage.
 
 | Component | Stability	| Description | Nuget |
 | :--- | :--- | :--- | :--- |
