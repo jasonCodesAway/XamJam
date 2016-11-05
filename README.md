@@ -8,9 +8,9 @@
 | [BugHound](XamJam.BugHound) | beta | Type & task-based logging,  exception reporting, and (coming soon) runtime log-platform-aware bug reporter and performance monitor | [Xam.Plugins.XamJam.BugHound](https://www.nuget.org/packages/Xam.Plugins.XamJam.BugHound)
 | Nav<sup>1</sup> | beta | ViewModel-based navigation between Root, Navigation, and TabbedPages | [Xam.Plugins.XamJam.Nav](https://www.nuget.org/packages/Xam.Plugins.XamJam.Nav)
 | [Wall](XamJam.Wall)<sup>1,2,3</sup> | pre-alpha | A paged and scrollable wall of images that allows the image size to be sized as a function of screen size and other constraints | [Xam.Plugins.XamJam.Wall](https://www.nuget.org/packages/Xam.Plugins.XamJam.Wall)
-| Ratings<sup>1,2,4</sup> | pre-alpha | A 5-star ratings control with 1/2 star increments. | Coming Soon
-| PicSelector<sup>1,2</sup> | pre-alpha | A full blown image crop widget! Also a full screen photo viewer with swipe support | Coming Soon
-| Pic<sup>1</sup> | pre-alpha | An image loading library | Coming Soon
+| Ratings<sup>1,2,4</sup> | pre-alpha | A 5-star ratings control with 1/2 star increments. | [Xam.Plugins.XamJam.Ratings](https://www.nuget.org/packages/Xam.Plugins.XamJam.Ratings/)
+| PicSelector<sup>1,2,3</sup> | pre-alpha | A full blown image crop widget! Also a full screen photo viewer with swipe support | [Xam.Plugins.XamJam.PicSelector](https://www.nuget.org/packages/Xam.Plugins.XamJam.PicSelector/)
+| Pic<sup>1,3</sup> | pre-alpha | An image abstraction library, very similar to the model portion of FFImageLoading | [Xam.Plugins.XamJam.Pic](https://www.nuget.org/packages/Xam.Plugins.XamJam.Pic/)
 
 Notable Dependencies:
 <sup>1</sup> Requires [Xamarin Forms](https://www.nuget.org/packages/Xamarin.Forms/)
