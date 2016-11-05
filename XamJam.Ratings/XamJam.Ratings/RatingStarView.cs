@@ -14,8 +14,8 @@ namespace XamJam.Ratings
             PaintSurface += OnPaintSurface;
             //PaintSurface += OnPaintSurfaceGL;
             //PaintSurface += RatingStarView_PaintSurface;
-            WidthRequest = 48;
-            HeightRequest = 48;
+            WidthRequest = 600;
+            HeightRequest = 600;
         }
 
         public double Fill
@@ -40,31 +40,30 @@ namespace XamJam.Ratings
             new[] { 1.0f, 1.0f },
             SKShaderTileMode.Clamp);
 
-        private static readonly SKShader HalfFillGradient = SKShader.CreateLinearGradient(
-            new SKPoint(0, 24),
-            new SKPoint(24, 24),
-            new[] { SKColors.Yellow, SKColors.Transparent },
-            new[] { 1.0f, 0.1f },
-            SKShaderTileMode.Clamp);
-
         private double fill;
 
         private void PaintStar(SKCanvas canvas)
         {
             // TODO: How to gradient fill? If our fill is 1.0 we want a fully filled in yellow star. If it's 0.3 then we want 1/3 filled in, etc. 
             // clear the canvas / fill with white
-            canvas.Clear(SKColors.White);
+            // canvas.Clear(SKColors.White);
             // set up drawing tools
+            var half = (float)Math.Min(Width, Height) / 2;
+            var halfFillGradient = SKShader.CreateLinearGradient(
+                new SKPoint(0, half),
+                new SKPoint(half, half),
+                new[] { new SKColor(235,193,7), SKColors.Yellow, SKColors.Transparent },
+                new[] { 0.5f, 1f },
+                SKShaderTileMode.Clamp);
             using (var paint = new SKPaint())
             {
                 paint.IsAntialias = true;
-                paint.Shader = HalfFillGradient;
+                paint.Shader = halfFillGradient;
                 //if (fill > 0.8)
                 //    paint.Shader = FullFillGradient;
                 //else if (fill > 0.3)
                 //    paint.Shader = HalfFillGradient;
 
-                // create the Xamagon path
                 using (var path = new SKPath())
                 {
                     DrawPath(path);
@@ -77,10 +76,11 @@ namespace XamJam.Ratings
             {
                 paint.IsAntialias = true;
                 paint.IsStroke = true;
-                paint.StrokeWidth = 3;
-                paint.Color = new SKColor(0x2c, 0x3e, 0x50);//SKColors.Black;
+                paint.StrokeWidth = 1;
+                paint.Color = SKColors.Gray;
+                paint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 1.0f);
                 //paint.StrokeWidth = 1;
-                paint.StrokeCap = SKStrokeCap.Round;
+                paint.StrokeCap = SKStrokeCap.Butt;
                 using (var path = new SKPath())
                 {
                     DrawPath(path);
@@ -92,28 +92,41 @@ namespace XamJam.Ratings
 
         private void DrawPath(SKPath path)
         {
+            var full = (float)Math.Min(Width, Height);
+            var sixth = full/6;
+            var fifth = full / 5;
+            var fourth = full / 4;
+            var third = full / 3;
+            var twoFifths = full*2/5;
+            var half = full / 2;
+            var threeFifths = 3 * full / 5;
+            var twoThirds = 2 * full / 3;
+            var threeQuaters = 3 * full / 4;
+            var fourFifth = 4 * full / 5;
+            var fiveSixths = 5*full/6;
+
             // 1: Start at top middle
-            path.MoveTo(24f, 0f);
+            path.MoveTo(half, 0f);
             // 2: Top Left Inner
-            path.LineTo(17f, 15f);
+            path.LineTo(third, third);
             // 3: Left Tip
-            path.LineTo(0f, 18f);
+            path.LineTo(0f, 0.35f*full);
             // 4: Bottom Left Inner
-            path.LineTo(12f, 30f);
+            path.LineTo(fourth, threeFifths);
             // 5: Bottom Left Tip
-            path.LineTo(10f, 48f);
+            path.LineTo(sixth, full);
             // 6: Lower Middle Inner
-            path.LineTo(24f, 38f);
+            path.LineTo(half, threeQuaters);
             // 7: Bottom Right Tip
-            path.LineTo(38f, 48f);
+            path.LineTo(fiveSixths, full);
             // 8: Bottom Right Inner
-            path.LineTo(36f, 30f);
+            path.LineTo(threeQuaters, threeFifths);
             // 9: Right Tip
-            path.LineTo(48f, 18f);
+            path.LineTo(full, 0.35f * full);
             // 10: Up & Left to upper right inner
-            path.LineTo(31f, 15f);
+            path.LineTo(twoThirds, third);
             // 0: Back up to Top
-            path.LineTo(24f, 0f);
+            path.LineTo(half, 0f);
         }
 
         private void OnPaintSurfaceGL(object sender, SKPaintGLSurfaceEventArgs e)
@@ -124,55 +137,6 @@ namespace XamJam.Ratings
         private void OnPaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
             PaintStar(e.Surface.Canvas);
-        }
-
-        private void RatingStarView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
-        {
-            SKCanvas canvas = e.Surface.Canvas;
-            // clear the canvas / fill with white
-            canvas.Clear(SKColors.White);
-
-            // set up drawing tools
-            using (var paint = new SKPaint())
-            {
-                paint.IsAntialias = true;
-                paint.IsStroke = true;
-                paint.StrokeWidth = 2;
-                paint.Color = new SKColor(0x2c, 0x3e, 0x50);
-                paint.StrokeCap = SKStrokeCap.Round;
-
-                // create the Xamagon path
-                using (var path = new SKPath())
-                {
-                    // 1: Start at top middle
-                    path.MoveTo(24f, 0f);
-                    // 2: Top Left Inner
-                    path.LineTo(17f, 15f);
-                    // 3: Left Tip
-                    path.LineTo(0f, 18f);
-                    // 4: Bottom Left Inner
-                    path.LineTo(12f, 30f);
-                    // 5: Bottom Left Tip
-                    path.LineTo(10f, 48f);
-                    // 6: Lower Middle Inner
-                    path.LineTo(24f, 38f);
-                    // 7: Bottom Right Tip
-                    path.LineTo(38f, 48f);
-                    // 8: Bottom Right Inner
-                    path.LineTo(36f, 30f);
-                    // 9: Right Tip
-                    path.LineTo(48f, 18f);
-                    // 10: Up & Left to upper right inner
-                    path.LineTo(31f, 15f);
-                    // 0: Back up to Top
-                    path.LineTo(24f, 0f);
-                    path.Close();
-
-                    // draw the Xamagon path
-                    canvas.DrawPath(path, paint);
-                }
-            }
-
         }
     }
 }
