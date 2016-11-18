@@ -12,7 +12,7 @@ namespace XamJam.Ratings
 
         public static readonly BindableProperty NumStarsProperty = BindableProperty.Create(nameof(NumStars), typeof(int), typeof(RatingView), 5, BindingMode.TwoWay);
 
-        public static readonly BindableProperty RatingProperty = BindableProperty.Create(nameof(Rating), typeof(double), typeof(RatingView), 3.25, BindingMode.TwoWay);
+        public static readonly BindableProperty RatingProperty = BindableProperty.Create(nameof(Rating), typeof(double), typeof(RatingView), 3.5, BindingMode.TwoWay);
 
         public static readonly BindableProperty SpacingProperty = BindableProperty.Create(nameof(Spacing), typeof(double), typeof(RatingView), 2.0, BindingMode.TwoWay);
 
@@ -20,6 +20,8 @@ namespace XamJam.Ratings
         {
             PanningCommand = new Command<PanEventArgs>(UpdateRating);
             TappedCommand = new Command<TapEventArgs>(UpdateRating);
+            // Adding this padding allows for true 0-star and 5-star (or however many stars you have) to be selectable by the user
+            Padding = new Thickness(5, 0, 5, 0);
             InitializeComponent();
             DrawStars();
             DrawRating();
@@ -114,33 +116,23 @@ namespace XamJam.Ratings
             }
             else
             {
-                var remainingWidth = Width - Padding.Left - Padding.Right;
-                var adjustedX = eventArgs.Center.X - Padding.Left;
-                var percentX = adjustedX / remainingWidth;
-                var newRating = Math.Round(percentX * NumStars);
-                // normal case
-                //var percentX = (eventArgs.Center.X - Padding.Left) / (view.Width - Padding.Left - Padding.Right);
-                if (newRating > NumStars)
-                {
-                    newRating = NumStars;
-                }
-                else if (newRating < 0)
-                {
-                    newRating = 0;
-                }
+                var starWidth = Children[0].Width + Spacing;
+                var newX = eventArgs.Center.X - Padding.Left;
+                var newRating = newX / starWidth;
                 Rating = newRating;
-                Monitor.Debug($"Panned, Set Rating = {Rating} in response to {percentX}% CenterX={eventArgs.Center.X} Width={Width}");
+                DrawRating();
+                Monitor.Debug($"Panned, Set Rating = {Rating} in response to CenterX={eventArgs.Center.X} New X = {newX} Star Width={starWidth}");
             }
         }
 
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-            if (width > 0 && height > 0)
-            {
-                Monitor.Info($"RatingView Allocated ({width}x{height}) in which to draw all {NumStars} stars. # Children: {Children.Count}");
-            }
-        }
+        //protected override void OnSizeAllocated(double width, double height)
+        //{
+        //    base.OnSizeAllocated(width, height);
+        //    if (width > 0 && height > 0)
+        //    {
+        //        Monitor.Trace($"RatingView Allocated ({width}x{height}) in which to draw all {NumStars} stars. # Children: {Children.Count}");
+        //    }
+        //}
 
         // In case we ever want to let the user request the size of the stars individually
         //protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)

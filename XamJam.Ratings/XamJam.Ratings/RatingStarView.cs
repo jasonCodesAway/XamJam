@@ -10,21 +10,17 @@ namespace XamJam.Ratings
     public class RatingStarView : SKCanvasView
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingStarView));
-        //private static readonly Color[] Colors = { Color.Green, Color.Blue, Color.Black, Color.Yellow, Color.Lime };
-        //private static int colorIndex = 0;
+        private static readonly SKColor PrettyYellow = new SKColor(235, 193, 7);
+
         private readonly bool logThis;
         private readonly int starIndex;
+        private double fill;
 
         public RatingStarView(int index)
         {
             starIndex = index;
             logThis = index == 0;
-            //BackgroundColor = Color.Transparent;
-            //BackgroundColor = Colors[colorIndex++];
-            //if (colorIndex > Colors.Length)
-            //    colorIndex = 0;
             PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas);
-            //PaintSurface += (sender, args) => PaintTest(args.Surface.Canvas);
             //PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas); Uncomment if we figure out OpenGL initialization
             HorizontalOptions = LayoutOptions.CenterAndExpand;
             VerticalOptions = LayoutOptions.CenterAndExpand;
@@ -48,21 +44,18 @@ namespace XamJam.Ratings
                 if (fill != value)
                 {
                     fill = value;
-                    if (logThis)
-                        Monitor.Info($"Set fill to {Fill}");
+                    InvalidateSurface();
                 }
             }
         }
 
-        private static readonly SKColor PrettyYellow = new SKColor(235, 193, 7);
-        private double fill;
-
         private void PaintStar(SKCanvas canvas)
         {
+            canvas.Clear();
             var full = Math.Min(canvas.ClipBounds.Width, canvas.ClipBounds.Height);
             var half = full / 2;
             var shadeToX = (float)(full * Fill);
-            Monitor.Info($"Drawing Star-{starIndex}, Max Size: ({canvas.ClipBounds.Width}x{canvas.ClipBounds.Height}) Shading to {shadeToX}, Fill: {Fill}");
+            Monitor.Trace($"Drawing Star-{starIndex}, Max Size: ({canvas.ClipBounds.Width}x{canvas.ClipBounds.Height}) Shading to {shadeToX}, Fill: {Fill}");
 
             using (var path = new SKPath())
             {
