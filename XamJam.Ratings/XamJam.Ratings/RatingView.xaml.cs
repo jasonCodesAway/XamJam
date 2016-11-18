@@ -13,6 +13,7 @@ namespace XamJam.Ratings
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingView));
         public static readonly BindableProperty NumStarsProperty = BindableProperty.Create("NumStars", typeof(int), typeof(RatingView), 5, propertyChanged: NumStarsPropertyChanged);
         public static readonly BindableProperty RatingProperty = BindableProperty.Create("Rating", typeof(double), typeof(RatingView), 3.5, propertyChanged: RatingPropertyChanged);
+        public static readonly BindableProperty SpacingProperty = BindableProperty.Create("Spacing", typeof(double), typeof(RatingView), 2);
 
         private static void RatingPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -48,6 +49,16 @@ namespace XamJam.Ratings
             }
         }
 
+        public double Spacing
+        {
+            get { return (double)GetValue(SpacingProperty); }
+            set
+            {
+                SetValue(SpacingProperty, value);
+                DrawStars();
+            }
+        }
+
         public int NumStars
         {
             get { return (int)GetValue(NumStarsProperty); }
@@ -72,11 +83,12 @@ namespace XamJam.Ratings
                 //Children.Add(star);
                 //Children.Add(star, new Rectangle(x, 0, width, 1.0), AbsoluteLayoutFlags.All);
                 var myIndex = i;
+
                 Children.Add(star,
                     Constraint.RelativeToParent(parent => parent.Width / NumStars * myIndex),        
                     Constraint.Constant(0),
                     Constraint.RelativeToParent(parent => parent.Width / NumStars),
-                    Constraint.RelativeToParent(parent => parent.HeightRequest));
+                    Constraint.RelativeToParent(parent => parent.Height));
                 //x += deltaX;
             }
         }

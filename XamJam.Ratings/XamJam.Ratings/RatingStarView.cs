@@ -57,10 +57,8 @@ namespace XamJam.Ratings
 
         private void PaintStar(SKCanvas canvas)
         {
-            //TODO: Once this issue is fixed: https://github.com/mono/SkiaSharp/issues/175
-            //then we can scale the Star to really take up the full width it's supposed to.
             // canvas.Clear(SKColors.White);
-            var full = (float)Math.Min(Width, Height);
+            var full = (float)Math.Min(canvas.ClipBounds.Width, canvas.ClipBounds.Height);
             var half = full / 2;
             var shadeToX = (float)(full * Fill);
             Monitor.Info($"Drawing Star-{starIndex}, Max Size: ({Width}x{Height}) Shading to {shadeToX}");
@@ -74,7 +72,7 @@ namespace XamJam.Ratings
             using (var path = new SKPath())
             {
                 // Draw the star path
-                DrawPath(path);
+                DrawPath(path, full);
                 path.Close();
                 // Draw the fill gradient
                 using (var paint = new SKPaint())
@@ -98,18 +96,17 @@ namespace XamJam.Ratings
             }
         }
 
-        private void DrawPath(SKPath path)
+        private void DrawPath(SKPath path, float size)
         {
-            var full = (float)Math.Min(Width, Height);
-            var sixth = full / 6; // 0.1666
-            var fourth = full / 4; // 0.25
-            var third = full / 3; // 0.333
-            var threeFive = 0.35f * full;
-            var half = full / 2; // 0.5
-            var threeFifths = 3 * full / 5; // 0.6
-            var twoThirds = 2 * full / 3; // 0.666
-            var threeQuaters = 3 * full / 4; // 0.75
-            var fiveSixths = 5 * full / 6; // 0.8333
+            var sixth = size / 6; // 0.1666
+            var fourth = size / 4; // 0.25
+            var third = size / 3; // 0.333
+            var threeFive = 0.35f * size;
+            var half = size / 2; // 0.5
+            var threeFifths = 3 * size / 5; // 0.6
+            var twoThirds = 2 * size / 3; // 0.666
+            var threeQuaters = 3 * size / 4; // 0.75
+            var fiveSixths = 5 * size / 6; // 0.8333
 
             // 1: Start at top middle
             path.MoveTo(half, 0f);
@@ -120,15 +117,15 @@ namespace XamJam.Ratings
             // 4: Bottom Left Inner
             path.LineTo(fourth, threeFifths);
             // 5: Bottom Left Tip
-            path.LineTo(sixth, full);
+            path.LineTo(sixth, size);
             // 6: Lower Middle Inner
             path.LineTo(half, threeQuaters);
             // 7: Bottom Right Tip
-            path.LineTo(fiveSixths, full);
+            path.LineTo(fiveSixths, size);
             // 8: Bottom Right Inner
             path.LineTo(threeQuaters, threeFifths);
             // 9: Right Tip
-            path.LineTo(full, threeFive);
+            path.LineTo(size, threeFive);
             // 10: Up & Left to upper right inner
             path.LineTo(twoThirds, third);
             // 0: Back up to Top

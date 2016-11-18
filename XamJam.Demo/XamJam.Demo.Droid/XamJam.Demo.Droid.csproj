@@ -49,19 +49,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.3\lib\MonoAndroid10\FFImageLoading.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.5\lib\MonoAndroid10\FFImageLoading.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.3\lib\MonoAndroid10\FFImageLoading.Forms.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.5\lib\MonoAndroid10\FFImageLoading.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FFImageLoading.Forms.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.3\lib\MonoAndroid10\FFImageLoading.Forms.Droid.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.5\lib\MonoAndroid10\FFImageLoading.Forms.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.3\lib\MonoAndroid10\FFImageLoading.Platform.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.5\lib\MonoAndroid10\FFImageLoading.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -82,16 +82,16 @@
       <HintPath>..\..\packages\PropertyChanged.Fody.1.52.1\Lib\netstandard10\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SkiaSharp, Version=1.54.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SkiaSharp.1.54.1\lib\MonoAndroid\SkiaSharp.dll</HintPath>
+    <Reference Include="SkiaSharp, Version=1.55.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SkiaSharp.1.55.0\lib\MonoAndroid\SkiaSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SkiaSharp.Views.Android, Version=1.54.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SkiaSharp.Views.1.54.1-beta1\lib\MonoAndroid\SkiaSharp.Views.Android.dll</HintPath>
+    <Reference Include="SkiaSharp.Views.Android, Version=1.55.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SkiaSharp.Views.1.55.0\lib\MonoAndroid\SkiaSharp.Views.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SkiaSharp.Views.Forms, Version=1.54.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.54.1-beta1\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
+    <Reference Include="SkiaSharp.Views.Forms, Version=1.55.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.55.0\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
