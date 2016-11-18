@@ -2,94 +2,78 @@
 using MR.Gestures;
 using Plugin.XamJam.BugHound;
 using Xamarin.Forms;
-using AbsoluteLayout = MR.Gestures.AbsoluteLayout;
 using RelativeLayout = MR.Gestures.RelativeLayout;
-using StackLayout = MR.Gestures.StackLayout;
 
 namespace XamJam.Ratings
 {
     public partial class RatingView : RelativeLayout
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingView));
-        public static readonly BindableProperty NumStarsProperty = BindableProperty.Create("NumStars", typeof(int), typeof(RatingView), 5, propertyChanged: NumStarsPropertyChanged);
-        public static readonly BindableProperty RatingProperty = BindableProperty.Create("Rating", typeof(double), typeof(RatingView), 3.5, propertyChanged: RatingPropertyChanged);
-        public static readonly BindableProperty SpacingProperty = BindableProperty.Create("Spacing", typeof(double), typeof(RatingView), 2);
 
-        private static void RatingPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            Monitor.Info($"Rating changed from {oldValue} to {newValue}");
-            //((RatingView)bindable).Rating = (double)newValue;
-        }
+        public static readonly BindableProperty NumStarsProperty = BindableProperty.Create(nameof(NumStars), typeof(int), typeof(RatingView), 5, BindingMode.TwoWay);
 
-        private static void NumStarsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            //((RatingView) bindable).NumStars = (int) newValue;
-            Monitor.Info($"NumStars changed from {oldValue} to {newValue}");
-        }
+        public static readonly BindableProperty RatingProperty = BindableProperty.Create(nameof(Rating), typeof(double), typeof(RatingView), 3.5, BindingMode.TwoWay);
 
+        public static readonly BindableProperty SpacingProperty = BindableProperty.Create(nameof(Spacing), typeof(double), typeof(RatingView), 2.0, BindingMode.TwoWay);
 
         public RatingView()
         {
-            //Orientation = StackOrientation.Horizontal;
-            //BackgroundColor = Color.Aqua;
             PanningCommand = new Command<PanEventArgs>(UpdateRating);
             TappedCommand = new Command<TapEventArgs>(UpdateRating);
+            // Adding this padding allows for true 0-star and 5-star (or however many stars you have) to be selectable by the user
+            Padding = new Thickness(5, 0, 5, 0);
             InitializeComponent();
             DrawStars();
             DrawRating();
         }
 
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            switch (propertyName)
+            {
+                case nameof(Rating):
+                    DrawRating();
+                    break;
+                case nameof(NumStars):
+                case nameof(Spacing):
+                    DrawStars();
+                    DrawRating();
+                    break;
+            }
+        }
+
         public double Rating
         {
             get { return (double)GetValue(RatingProperty); }
-            set
-            {
-                SetValue(RatingProperty, value);
-                DrawRating();
-            }
+            set { SetValue(RatingProperty, value); }
         }
 
         public double Spacing
         {
             get { return (double)GetValue(SpacingProperty); }
-            set
-            {
-                SetValue(SpacingProperty, value);
-                DrawStars();
-            }
+            set { SetValue(SpacingProperty, value); }
         }
 
         public int NumStars
         {
             get { return (int)GetValue(NumStarsProperty); }
-            set
-            {
-                SetValue(NumStarsProperty, value);
-                DrawStars();
-                DrawRating();
-            }
+            set { SetValue(NumStarsProperty, value); }
         }
-
 
         private void DrawStars()
         {
             Children.Clear();
-            //var x = 0.0;
-            //var width = 100.0 / NumStars / 100.0;
-            //var deltaX = 100.0 / (NumStars -1) / 100.0;
             for (var i = 0; i < NumStars; i++)
             {
                 var star = new RatingStarView(i);
-                //Children.Add(star);
-                //Children.Add(star, new Rectangle(x, 0, width, 1.0), AbsoluteLayoutFlags.All);
                 var myIndex = i;
 
                 Children.Add(star,
-                    Constraint.RelativeToParent(parent => parent.Width / NumStars * myIndex),        
+                    Constraint.RelativeToParent(parent => parent.Width / NumStars * myIndex + Spacing / 2),
                     Constraint.Constant(0),
-                    Constraint.RelativeToParent(parent => parent.Width / NumStars),
+                    Constraint.RelativeToParent(parent => parent.Width / NumStars - Spacing),
                     Constraint.RelativeToParent(parent => parent.Height));
-                //x += deltaX;
             }
         }
 
@@ -132,38 +116,28 @@ namespace XamJam.Ratings
             }
             else
             {
-                var remainingWidth = Width - Padding.Left - Padding.Right;
-                var adjustedX = eventArgs.Center.X - Padding.Left;
-                var percentX = adjustedX / remainingWidth;
-                var newRating = Math.Round(percentX * NumStars);
-                // normal case
-                //var percentX = (eventArgs.Center.X - Padding.Left) / (view.Width - Padding.Left - Padding.Right);
-                if (newRating > NumStars)
-                {
-                    newRating = NumStars;
-                }
-                else if (newRating < 0)
-                {
-                    newRating = 0;
-                }
+                var starWidth = Children[0].Width + Spacing;
+                var newX = eventArgs.Center.X - Padding.Left;
+                var newRating = newX / starWidth;
                 Rating = newRating;
-                Monitor.Debug($"Panned, Set Rating = {Rating} in response to {percentX}% CenterX={eventArgs.Center.X} Width={Width}");
+                DrawRating();
+                Monitor.Debug($"Panned, Set Rating = {Rating} in response to CenterX={eventArgs.Center.X} New X = {newX} Star Width={starWidth}");
             }
         }
 
+        //protected override void OnSizeAllocated(double width, double height)
+        //{
+        //    base.OnSizeAllocated(width, height);
+        //    if (width > 0 && height > 0)
+        //    {
+        //        Monitor.Trace($"RatingView Allocated ({width}x{height}) in which to draw all {NumStars} stars. # Children: {Children.Count}");
+        //    }
+        //}
+
+        // In case we ever want to let the user request the size of the stars individually
         //protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         //{
         //    return new SizeRequest(new Size(widthConstraint, HeightRequest), new Size(Math.Min(100, widthConstraint), Math.Min(25, heightConstraint)));
         //}
-
-
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-            if (width > 0 && height > 0)
-            {
-                Monitor.Info($"RatingView Allocated ({width}x{height}) in which to draw all {NumStars} stars. # Children: {Children.Count}");
-            }
-        }
     }
 }

@@ -13,7 +13,7 @@ namespace XamJam.Demo.ViewModel
     [ImplementPropertyChanged]
     public class DemoRatingsViewModel
     {
-        public double Rating { get; set; } = 4.5;
+        public double Rating { get; set; } = 4.25;
 
         public int NumStars { get; set; } = 5;
 

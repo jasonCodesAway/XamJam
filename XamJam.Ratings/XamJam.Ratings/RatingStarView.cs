@@ -10,19 +10,16 @@ namespace XamJam.Ratings
     public class RatingStarView : SKCanvasView
     {
         private static readonly IBugHound Monitor = BugHound.ByType(typeof(RatingStarView));
-        //private static readonly Color[] Colors = { Color.Green, Color.Blue, Color.Black, Color.Yellow, Color.Lime };
-        //private static int colorIndex = 0;
+        private static readonly SKColor PrettyYellow = new SKColor(235, 193, 7);
+
         private readonly bool logThis;
         private readonly int starIndex;
+        private double fill;
 
         public RatingStarView(int index)
         {
             starIndex = index;
             logThis = index == 0;
-            //BackgroundColor = Color.Transparent;
-            //BackgroundColor = Colors[colorIndex++];
-            //if (colorIndex > Colors.Length)
-            //    colorIndex = 0;
             PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas);
             //PaintSurface += (sender, args) => PaintStar(args.Surface.Canvas); Uncomment if we figure out OpenGL initialization
             HorizontalOptions = LayoutOptions.CenterAndExpand;
@@ -47,39 +44,37 @@ namespace XamJam.Ratings
                 if (fill != value)
                 {
                     fill = value;
-                    if (logThis)
-                        Monitor.Info($"Set fill to {Fill}");
+                    InvalidateSurface();
                 }
             }
         }
 
-        private double fill;
-
         private void PaintStar(SKCanvas canvas)
         {
-            // canvas.Clear(SKColors.White);
-            var full = (float)Math.Min(canvas.ClipBounds.Width, canvas.ClipBounds.Height);
+            canvas.Clear();
+            var full = Math.Min(canvas.ClipBounds.Width, canvas.ClipBounds.Height);
             var half = full / 2;
             var shadeToX = (float)(full * Fill);
-            Monitor.Info($"Drawing Star-{starIndex}, Max Size: ({Width}x{Height}) Shading to {shadeToX}");
-            var gradient = SKShader.CreateLinearGradient(
-                // This feels 100% backwards to me, the start and end point feel flipped as do the colors, but this is what seems to work
-                new SKPoint(shadeToX, half), new SKPoint(0, half),
-                new[] { SKColors.Transparent, new SKColor(235, 193, 7) },
-                null,
-                SKShaderTileMode.Clamp);
+            Monitor.Trace($"Drawing Star-{starIndex}, Max Size: ({canvas.ClipBounds.Width}x{canvas.ClipBounds.Height}) Shading to {shadeToX}, Fill: {Fill}");
 
             using (var path = new SKPath())
             {
                 // Draw the star path
                 DrawPath(path, full);
-                path.Close();
-                // Draw the fill gradient
-                using (var paint = new SKPaint())
+
+                // If we need to fill, go ahead and draw the fill gradient
+                if (Fill > 0)
                 {
-                    paint.IsAntialias = true;
-                    paint.Shader = gradient;
-                    canvas.DrawPath(path, paint);
+                    var gradient = SKShader.CreateLinearGradient(
+                        new SKPoint(0, half), new SKPoint(shadeToX + shadeToX * 0.4f, half),
+                        new[] { PrettyYellow, SKColors.Transparent },
+                        null,
+                        SKShaderTileMode.Clamp);
+                    using (var paint = new SKPaint())
+                    {
+                        paint.Shader = gradient;
+                        canvas.DrawPath(path, paint);
+                    }
                 }
 
                 // Draw the gray star outline
@@ -130,6 +125,41 @@ namespace XamJam.Ratings
             path.LineTo(twoThirds, third);
             // 0: Back up to Top
             path.LineTo(half, 0f);
+            path.Close();
         }
     }
 }
+
+// Simple way to test gradients by drawing a square
+//private void PaintTest(SKCanvas canvas)
+//{
+//    var size = Math.Min(canvas.ClipBounds.Width, canvas.ClipBounds.Height);
+//    var half = size / 2;
+//    var topLeft = new SKPoint(0, 0);
+//    var topRight = new SKPoint(size, 0);
+//    var bottomRight = new SKPoint(size, size);
+//    var bottomLeft = new SKPoint(0, size);
+
+//    var leftCenter = new SKPoint(0, half);
+//    var rightCenter = new SKPoint(size, half);
+//    var gradient = SKShader.CreateLinearGradient(
+//        leftCenter, rightCenter,
+//        new[] { PrettyYellow, SKColors.Transparent },
+//        null,
+//        SKShaderTileMode.Clamp);
+//    using (var path = new SKPath())
+//    {
+//        path.MoveTo(topRight);
+//        path.LineTo(bottomRight);
+//        path.LineTo(bottomLeft);
+//        path.LineTo(topLeft);
+//        path.LineTo(topRight);
+//        path.Close();
+//        using (var paint = new SKPaint())
+//        {
+//            paint.IsAntialias = true;
+//            paint.Shader = gradient;
+//            canvas.DrawPath(path, paint);
+//        }
+//    }
+//}
