@@ -28,7 +28,7 @@ namespace XamJam.Util
 
         private readonly BufferBlock<CacheWindowMoved> cursorDeltaBlock = new BufferBlock<CacheWindowMoved>();
 
-        private readonly object lockLast = new object(), lockFirst = new object();
+        private readonly object lockLast = new object();
 
         private readonly CancellationToken onShutdown = new CancellationToken();
 

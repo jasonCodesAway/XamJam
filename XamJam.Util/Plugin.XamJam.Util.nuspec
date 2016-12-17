@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.3">
     <id>Xam.Plugins.XamJam.Util</id>
-    <version>0.0.1-alpha</version>
+    <version>0.0.2-alpha</version>
     <title>XamJam's Common Utilities</title>
     <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
     <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
@@ -16,31 +16,21 @@
     <summary>XamJam's Common Utilities</summary>
     <tags>utility, xamarin, pcl, xam.pcl, plugin, plugin for xamarin, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
     <dependencies>
-      <group targetFramework="net">
-      </group>
-      <group targetFramework="win">
-      </group>
-      <group targetFramework="wp">
-      </group>
-      <group targetFramework="wpa">
-      </group>
-      <group targetFramework="MonoAndroid">
-      </group>
-      <group targetFramework="Xamarin.iOS10">
-      </group>
-      <group targetFramework="Xamarin.Mac20">
-      </group>
-      <group targetFramework="portable-net45+win+wpa81+wp80">
-      </group>
-      <group targetFramework="uap">
-      </group>
-      <group targetFramework="dotnet">
-      </group>
+      <group targetFramework="net"/>
+      <group targetFramework="win"/>
+      <group targetFramework="wp"/>
+      <group targetFramework="wpa"/>
+      <group targetFramework="MonoAndroid"/>
+      <group targetFramework="Xamarin.iOS10"/>
+      <group targetFramework="Xamarin.Mac20"/>
+      <group targetFramework="portable-net45+win+wpa81+wp80"/>
+      <group targetFramework="uap"/>
+      <group targetFramework="dotnet"/>
     </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\XamJam.Util.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Util.dll" />
-    <!--<file src="bin\Release\XamJam.Util.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Util.xml" />-->
+    <file src="bin\Release\XamJam.Util.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Util.xml" />
     <file src="bin\Release\XamJam.Util.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Util.pdb" />
   </files>
 </package>
