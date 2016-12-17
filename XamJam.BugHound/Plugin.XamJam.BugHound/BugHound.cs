@@ -136,7 +136,9 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Trace(string message)
         {
+#if DEBUG
             Log(Level.Trace, message);
+#endif
         }
 
         /// <summary>
@@ -144,7 +146,9 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Debug(string message)
         {
+#if DEBUG
             Log(Level.Debug, message);
+#endif
         }
 
         /// <summary>
@@ -152,7 +156,9 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Info(string message)
         {
+#if DEBUG
             Log(Level.Info, message);
+#endif
         }
 
         /// <summary>
@@ -160,7 +166,9 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Warn(string message, Exception ex = null)
         {
+#if DEBUG
             Log(Level.Warn, message, ex);
+#endif
         }
 
         /// <summary>
@@ -168,7 +176,9 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Error(string message, Exception ex = null)
         {
+#if DEBUG
             Log(Level.Error, message, ex);
+#endif
         }
 
         /// <summary>
@@ -176,6 +186,7 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Log(Level level, string message, Exception ex = null)
         {
+#if DEBUG
             if (level >= Level)
             {
                 var logMsg = $"{Watch.ElapsedMilliseconds,-10} | {level.Label,-5} | ";
@@ -197,6 +208,7 @@ namespace Plugin.XamJam.BugHound
                 }
                 System.Diagnostics.Debug.WriteLine(logMsg);
             }
+#endif
         }
 
         /// <summary>
@@ -204,7 +216,9 @@ namespace Plugin.XamJam.BugHound
         /// </summary>
         public void Throw(string exceptionMessage = null, Exception ex = null, Level level = null)
         {
+#if DEBUG
             Log(level ?? Level.Error, exceptionMessage, ex);
+#endif
             throw new Exception(exceptionMessage, ex);
         }
     }

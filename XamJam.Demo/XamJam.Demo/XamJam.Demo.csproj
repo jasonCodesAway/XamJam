@@ -137,10 +137,6 @@
       <Project>{829C860C-A35F-4CE6-A0AA-886EF62D0690}</Project>
       <Name>XamJam.Nav</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XamJam.Ratings\XamJam.Ratings\XamJam.Ratings.csproj">
-      <Project>{5ffba81c-9e4b-4292-818e-a16f31965c4b}</Project>
-      <Name>XamJam.Ratings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\XamJam.Wall\XamJam.Wall.csproj">
       <Project>{9B53316B-C991-41EC-A474-97F2B655F4F3}</Project>
       <Name>XamJam.Wall</Name>
