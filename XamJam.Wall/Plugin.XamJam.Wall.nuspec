@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.3">
     <id>Xam.Plugins.XamJam.Wall</id>
-    <version>0.0.3-alpha</version>
+    <version>0.0.8-alpha</version>
     <title>XamJam's Wall</title>
     <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
     <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
@@ -27,10 +27,14 @@
       <group targetFramework="uap"/>
       <group targetFramework="dotnet"/>
     </dependencies>
+    <releaseNotes>
+      0.0.8-alpha
+      - no real change, only pushing to make sure that the latest version of XamJam.Util gets referenced. Not sure how that works, so pushing to be safe.
+    </releaseNotes>
   </metadata>
   <files>
     <file src="bin\Release\XamJam.Wall.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Wall.dll" />
-    <!--<file src="bin\Release\XamJam.Util.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Util.xml" />-->
+    <file src="bin\Release\XamJam.Wall.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Wall.xml" />
     <file src="bin\Release\XamJam.Wall.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Wall.pdb" />
   </files>
 </package>

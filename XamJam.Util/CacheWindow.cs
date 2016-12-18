@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
 using Plugin.XamJam.BugHound;
 
 namespace XamJam.Util
@@ -26,7 +26,9 @@ namespace XamJam.Util
 
         private readonly DataProvider<T> dataProvider;
 
-        private readonly BufferBlock<CacheWindowMoved> cursorDeltaBlock = new BufferBlock<CacheWindowMoved>();
+        private readonly BlockingCollection<CacheWindowMoved> cursorDeltaBlock = new BlockingCollection<CacheWindowMoved>(); 
+
+        //private readonly BufferBlock<CacheWindowMoved> cursorDeltaBlock = new BufferBlock<CacheWindowMoved>();
 
         private readonly object lockLast = new object();
 
@@ -63,7 +65,7 @@ namespace XamJam.Util
             cursor = new Cursor<T>(cache.First, 0, tmp, currentIndex);
             Array.Resize(ref initialData, currentIndex + 1);
             //let the background cacher get to work
-            cursorDeltaBlock.Post(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, 0));
+            cursorDeltaBlock.Add(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, 0));
             return new RetrievedData<T>(initialData);
         }
 
@@ -80,7 +82,7 @@ namespace XamJam.Util
 
             Array.Resize(ref retrieved, i);
             //we've moved the cursor forward by i, let the background cacher get to work
-            cursorDeltaBlock.Post(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, i));
+            cursorDeltaBlock.Add(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, i));
             return new RetrievedData<T>(retrieved);
         }
 
@@ -96,7 +98,7 @@ namespace XamJam.Util
             Array.Resize(ref retrieved, i);
             Array.Reverse(retrieved);
             //we've moved the cursor forward by i, let the background cacher get to work
-            cursorDeltaBlock.Post(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, -i));
+            cursorDeltaBlock.Add(new CacheWindowMoved(cursor.FirstIndex, cursor.LastIndex, -i));
             return new RetrievedData<T>(retrieved);
         }
 
@@ -121,9 +123,11 @@ namespace XamJam.Util
                 }
 
                 // Second: Every time the user pages forward or backward update our cache to add new items and, as needed, remove old items
-                while (await cursorDeltaBlock.OutputAvailableAsync(onShutdown))
+
+                while (!onShutdown.IsCancellationRequested)
                 {
-                    var userMovement = await cursorDeltaBlock.ReceiveAsync(onShutdown);
+                    var userMovement = cursorDeltaBlock.Take(onShutdown);
+                    //var userMovement = await cursorDeltaBlock.ReceiveAsync(onShutdown);
                     // If the user moved forward, add these items to the end of the cache
                     if (userMovement.IsForward)
                     {

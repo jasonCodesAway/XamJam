@@ -27,6 +27,11 @@
       <group targetFramework="uap"/>
       <group targetFramework="dotnet"/>
     </dependencies>
+    <releaseNotes>
+      0.0.2-alpha 
+      - removed the dependency on Microsoft.Tpl.Dataflow.4.5.24 as it was causing issues for Xamarin iOS and Droid (but not UWP) projects. I did try this fix: https://developer.xamarin.com/guides/cross-platform/troubleshooting/questions/pcl-case-study/, but it didn't work for me. Not sure why. Not worth hunting down.
+      - also added the XML docs to the nuget package
+    </releaseNotes>
   </metadata>
   <files>
     <file src="bin\Release\XamJam.Util.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Util.dll" />

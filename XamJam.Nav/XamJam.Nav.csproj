@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\XamJam.Nav.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,11 +59,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.XamJam.BugHound, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xam.Plugins.XamJam.BugHound.0.0.1-alpha\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.dll</HintPath>
+      <HintPath>..\..\RockMyLook\Client\packages\Xam.Plugins.XamJam.BugHound.0.0.4-alpha\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.XamJam.BugHound.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xam.Plugins.XamJam.BugHound.0.0.1-alpha\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.Abstractions.dll</HintPath>
+      <HintPath>..\..\RockMyLook\Client\packages\Xam.Plugins.XamJam.BugHound.0.0.4-alpha\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PropertyChanged, Version=1.52.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">

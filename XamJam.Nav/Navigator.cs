@@ -101,8 +101,8 @@ namespace XamJam.Nav
                             await currentDestination.NavScheme.CurrentPage.Navigation.PushAsync(tabDestination.NavScheme.TabbedPage);
                         }
                         // else set the current page to the tabbed page
-                        else if (tabDestination.NavScheme.Parent != null &&
-                                 tabDestination.NavScheme.Parent.SchemeType == SchemeType.NavScheme)
+                        else if (tabDestination.NavScheme.Parent?.CurrentPage != null && 
+                            tabDestination.NavScheme.Parent.SchemeType == SchemeType.NavScheme)
                         {
                             Monitor.Debug($"Setting tab's navigation parent: {tabDestination.NavScheme.Parent.CurrentPage.GetType().Name} as the root page");
                             application.MainPage = tabDestination.NavScheme.Parent.CurrentPage;

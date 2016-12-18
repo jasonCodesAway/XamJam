@@ -13,4 +13,4 @@ if not exist "%msbuild.exe%" echo error: %msbuild.exe%: not found & goto :eof
 cd %rawProjectName%
 del Xam.Plugins.%rawProjectName%.*.nupkg
 nuget pack Plugin.%rawProjectName%.nuspec
-nuget push Xam.Plugins.%rawProjectName%.*.nupkg
+nuget push Xam.Plugins.%rawProjectName%.*.nupkg -Source https://www.nuget.org/api/v2/package

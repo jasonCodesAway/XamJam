@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.3">
     <id>Xam.Plugins.XamJam.Nav</id>
-    <version>0.0.1-alpha</version>
+    <version>0.0.3-alpha</version>
     <title>XamJam Nav</title>
     <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
     <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
@@ -16,31 +16,28 @@
     <summary>XamJam Nav</summary>
     <tags>Navigation, Model-View, TabbedPage, NavigationPage, Model-View-Based Navigation, xamarin, pcl, xam.pcl, plugin, plugin for xamarin, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
     <dependencies>
-      <group targetFramework="net">
-      </group>
-      <group targetFramework="win">
-      </group>
-      <group targetFramework="wp">
-      </group>
-      <group targetFramework="wpa">
-      </group>
-      <group targetFramework="MonoAndroid">
-      </group>
-      <group targetFramework="Xamarin.iOS10">
-      </group>
-      <group targetFramework="Xamarin.Mac20">
-      </group>
-      <group targetFramework="portable-net45+win+wpa81+wp80">
-      </group>
-      <group targetFramework="uap">
-      </group>
-      <group targetFramework="dotnet">
-      </group>
+      <group targetFramework="net"/>
+      <group targetFramework="win"/>
+      <group targetFramework="wp"/>
+      <group targetFramework="wpa"/>
+      <group targetFramework="MonoAndroid"/>
+      <group targetFramework="Xamarin.iOS10"/>
+      <group targetFramework="Xamarin.Mac20"/>
+      <group targetFramework="portable-net45+win+wpa81+wp80"/>
+      <group targetFramework="uap"/>
+      <group targetFramework="dotnet"/>
     </dependencies>
+    <releaseNotes>
+      0.0.3-alpha
+      #BugFix #Navigator we were pushing a tab page's parent when there wasn't a parent, fixed
+      #Enhancement added xml docs
+      #Enhancement bumped bug hound dependency to 0.0.4-alpha.
+      #Temporary I'm changing this over to a Debug release so we don't lose the debug logs. Will clean this up in a future release. The issue is UWP doesn't have a console.writeline...argh.
+    </releaseNotes>
   </metadata>
   <files>
-    <file src="bin\Release\XamJam.Nav.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Nav.dll" />
-    <!--<file src="XamJam.Nav\bin\Release\Plugin.XamJam.Nav.xml" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Nav.xml" />-->
-    <file src="bin\Release\XamJam.Nav.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Nav.pdb" />
+    <file src="bin\Debug\XamJam.Nav.dll" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Nav.dll" />
+    <file src="bin\Debug\XamJam.Nav.XML" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.Nav.xml" />
+    <file src="bin\Debug\XamJam.Nav.pdb" target="lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\XamJam.Nav.pdb" />
   </files>
 </package>
