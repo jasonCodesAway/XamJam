@@ -11,6 +11,7 @@ namespace Plugin.XamJam.BugHound
     public class BugHoundHelper
     {
         private static readonly Lazy<IBugHoundHelper> Implementation = new Lazy<IBugHoundHelper>(CreateBugHound, LazyThreadSafetyMode.PublicationOnly);
+        private static bool hasWarned = false;
 
         /// <summary>
         ///     Forces the creation of the platform-dependent <see cref="IBugHoundHelper"/> implementation.
@@ -22,7 +23,11 @@ namespace Plugin.XamJam.BugHound
                 var ret = Implementation.Value;
                 if (ret == null)
                 {
-                    Debug.WriteLine("WARN: Failed to find 'Xam.Plugins.XamJam.BugHound' in your startup platform project's (e.g. Droid, iOS, WP, UWP, etc.) references. Falling back to platform-agnostic logging.");
+                    if (!hasWarned)
+                    {
+                        hasWarned = true;
+                        Debug.WriteLine("WARN: Failed to find 'Xam.Plugins.XamJam.BugHound' in your startup platform project's (e.g. Droid, iOS, WP, UWP, etc.) references. Falling back to platform-agnostic logging.");
+                    }
                 }
                 return ret;
             }

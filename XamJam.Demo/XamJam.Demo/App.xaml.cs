@@ -7,7 +7,7 @@ using XamJam.Demo.ViewModel;
 using XamJam.Nav;
 using XamJam.Nav.Navigation;
 using XamJam.Nav.Root;
-using XamJam.Ratings;
+//using XamJam.Ratings;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamJam.Demo
@@ -25,7 +25,7 @@ namespace XamJam.Demo
             //    typeof(RatingView).GetTypeInfo().Assembly,
             //    typeof (App).GetTypeInfo().Assembly
             //};
-            XamSvg.Shared.Config.ResourceAssembly = typeof(RatingView).GetTypeInfo().Assembly;
+            //XamSvg.Shared.Config.ResourceAssembly = typeof(RatingView).GetTypeInfo().Assembly;
 
             InitializeComponent();
 
@@ -42,8 +42,7 @@ namespace XamJam.Demo
             return new IDestination<INavScheme>[]
             {
                 new NavigationDestination<MainViewModel>(navScheme, new MainViewModel(navigator), new MainView()),
-                new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView(navigator)),
-                new NavigationDestination<DemoRatingsViewModel>(navScheme, new DemoRatingsViewModel(navigator), new DemoRatingsView()),
+                new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView()),
                 new NavigationDestination<DemoImageSingleViewModel>(navScheme, new DemoImageSingleViewModel(navigator), new DemoImageSingleView())
             };
         }

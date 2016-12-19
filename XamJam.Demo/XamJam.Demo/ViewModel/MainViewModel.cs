@@ -7,12 +7,9 @@ namespace XamJam.Demo.ViewModel
     {
         public Command ShowImageWallCommand { get; }
 
-        public Command ShowRatingCommand { get; }
-
         public MainViewModel(Navigator nav)
         {
             ShowImageWallCommand = nav.CreateNavigationCommand<DemoImageWallViewModel>();
-            ShowRatingCommand = nav.CreateNavigationCommand<DemoRatingsViewModel>();
         }
     }
 }

@@ -42,7 +42,6 @@
     <Compile Include="ViewModel\DemoImageWallItemViewModel.cs" />
     <Compile Include="ViewModel\DemoImageWallViewModel.cs" />
     <Compile Include="ViewModel\DemoImageSingleViewModel.cs" />
-    <Compile Include="ViewModel\DemoRatingsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\DemoImageSingleView.xaml.cs">
       <DependentUpon>DemoImageSingleView.xaml</DependentUpon>
@@ -52,9 +51,6 @@
     </Compile>
     <Compile Include="View\DemoImageWallView.xaml.cs">
       <DependentUpon>DemoImageWallView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DemoRatingsView.xaml.cs">
-      <DependentUpon>DemoRatingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -150,12 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\DemoImageSingleView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\DemoRatingsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

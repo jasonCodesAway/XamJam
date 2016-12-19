@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata minClientVersion="2.8.3">
 		<id>Xam.Plugins.XamJam.BugHound</id>
-		<version>0.0.4-alpha</version>
+		<version>0.0.5-alpha</version>
 		<title>BugHound, App Logging and Performance Monitoring</title>
     <authors>Jason C. HandUber, Dr. Catherine Zanbaka</authors>
     <owners>Jason C. HandUber, Dr. Catherine Zanbaka</owners>
@@ -29,8 +29,10 @@
 		</dependencies>
     <releaseNotes>
       0.0.4-alpha
-      - compiling in 'debug' so we don't lose the debug.writeline
-      - also added the XML docs to the nuget package
+      - #Major compiling in 'debug' so we don't lose the debug.writeline
+      - #Minor also added the XML docs to the nuget package
+      0.0.5
+      - #Minor making sure that the message about not being able to find the platform-specific implementation is only output once'ish (depending on threading)
     </releaseNotes>
   </metadata>
 	<files>
