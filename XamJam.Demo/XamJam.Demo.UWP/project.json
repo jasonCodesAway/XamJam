@@ -1,12 +1,12 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "MR.Gestures": "1.3.5",
-    "Softlion.XamSvg": "2.3.2.4",
-    "Vapolia.XamSvg.Forms": "2.3.2.4",
+    "MR.Gestures": "1.4.1",
+    "Softlion.XamSvg": "2.3.3",
+    "Vapolia.XamSvg.Forms": "2.3.3.1",
     "Xamarin.FFImageLoading": "2.2.5",
     "Xamarin.FFImageLoading.Forms": "2.2.5",
-    "Xamarin.Forms": "2.3.2.127"
+    "Xamarin.Forms": "2.3.3.175"
   },
   "frameworks": {
     "uap10.0": {}

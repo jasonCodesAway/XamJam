@@ -72,14 +72,6 @@
       <HintPath>..\packages\Xam.Plugin.Media.2.6.1\lib\portable-net45+wp80+win8+wpa81\Plugin.Media.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Plugin.XamJam.BugHound, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xam.Plugins.XamJam.BugHound.0.0.1-alpha\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Plugin.XamJam.BugHound.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xam.Plugins.XamJam.BugHound.0.0.1-alpha\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.XamJam.BugHound.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PropertyChanged, Version=1.52.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.1.52.1\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
@@ -98,7 +90,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Plugin.XamJam.PicSelector.nuspec" />
     <None Include="README.md" />
   </ItemGroup>
@@ -118,6 +112,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XamJam.BugHound\Plugin.XamJam.BugHound\Plugin.XamJam.BugHound.csproj">
+      <Project>{54997076-792f-4aaf-82c0-ede69adf38dd}</Project>
+      <Name>Plugin.XamJam.BugHound</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamJam.Pic\XamJam.Pic.csproj">
       <Project>{2a96b4c9-3f9d-4eca-9c80-54184b93027a}</Project>
       <Name>XamJam.Pic</Name>
