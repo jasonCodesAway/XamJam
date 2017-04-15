@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamJam.Demo.View;
 using XamJam.Demo.ViewModel;
@@ -33,7 +31,10 @@ namespace XamJam.Demo
             var navigator = new Navigator(this);
             var navigationDestinations = CreateDestinations(navigator);
             navigator.Initialize(navigationDestinations);
-            navigator.Show<MainViewModel>();
+            //navigator.Show<DemoScreenSizeViewModel>();
+            MainPage = new Xamarin.Forms.ContentPage { Content = new DemoScreenSizeView { BindingContext = new DemoScreenSizeViewModel(navigator) } };
+            //MainPage = new Xamarin.Forms.ContentPage() { Content = new Xamarin.Forms.Label() { Text = "Hello World", TextColor = Color.Red} };
+            //navigator.Show<MainViewModel>();
         }
 
         private static IDestination<INavScheme>[] CreateDestinations(Navigator navigator)
@@ -41,9 +42,10 @@ namespace XamJam.Demo
             var navScheme = new NavigationScheme(RootScheme.Singleton);
             return new IDestination<INavScheme>[]
             {
-                new NavigationDestination<MainViewModel>(navScheme, new MainViewModel(navigator), new MainView()),
-                new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView()),
-                new NavigationDestination<DemoImageSingleViewModel>(navScheme, new DemoImageSingleViewModel(navigator), new DemoImageSingleView())
+                //new NavigationDestination<MainViewModel>(navScheme, new MainViewModel(navigator), new MainView()),
+                //new NavigationDestination<DemoImageWallViewModel>(navScheme, new DemoImageWallViewModel(navigator), new DemoImageWallView()),
+                //new NavigationDestination<DemoImageSingleViewModel>(navScheme, new DemoImageSingleViewModel(navigator), new DemoImageSingleView()),
+                new NavigationDestination<DemoScreenSizeViewModel>(navScheme, new DemoScreenSizeViewModel(navigator), new DemoScreenSizeView())
             };
         }
 

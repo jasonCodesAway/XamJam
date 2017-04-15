@@ -11,17 +11,15 @@ namespace Plugin.XamJam.Screen
         /// <summary>
         /// See <see cref="Abstractions.Screen"/>
         /// </summary>
-        public ScreenSize Size { get; }
-
-        /// <summary>
-        /// Sets the screen's size
-        /// </summary>
-        public ScreenImplementation()
+        public ScreenSize Size
         {
-            var displayMetrics = Resources.System.DisplayMetrics;
-            var height = displayMetrics.HeightPixels / displayMetrics.Density;
-            var width = displayMetrics.WidthPixels / displayMetrics.Density;
-            Size = new ScreenSize(true, width, height);
+            get
+            {
+                var displayMetrics = Resources.System.DisplayMetrics;
+                var height = displayMetrics.HeightPixels / displayMetrics.Density;
+                var width = displayMetrics.WidthPixels / displayMetrics.Density;
+                return new ScreenSize(true, width, height);
+            }
         }
     }
 }

@@ -13,6 +13,6 @@ namespace Plugin.XamJam.Screen
         /// http://stackoverflow.com/questions/30335540/get-available-screen-size
         ///     See <see cref="Abstractions.Screen" />
         /// </summary>
-        public ScreenSize Size { get; } = new ScreenSize(false, Window.Current.Bounds.Width, Window.Current.Bounds.Height);
+        public ScreenSize Size => new ScreenSize(false, Window.Current.Bounds.Width, Window.Current.Bounds.Height);
     }
 }

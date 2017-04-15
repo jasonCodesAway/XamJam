@@ -6,7 +6,6 @@ using Plugin.XamJam.Screen;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamJam.Util;
-using AbsoluteLayout = Xamarin.Forms.AbsoluteLayout;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamJam.Wall
@@ -105,8 +104,8 @@ namespace XamJam.Wall
             var rotatedWallSize = WallSizer.Size(maxScreenHeight, maxScreenWidth);
             var maxNumViews = Math.Max(normalWallSize.MaxNumItems, rotatedWallSize.MaxNumItems);
 
-            Monitor.Info($"Guessing Max Views for {size.Width}x{size.Height}");
-            Monitor.Info($"Landscape. Table = {rotatedWallSize.NumRows}x{rotatedWallSize.NumColumns}, Padding = {rotatedWallSize.PaddingX}x{rotatedWallSize.PaddingY}, ItemSize = {rotatedWallSize.ItemSize.Width}x{rotatedWallSize.ItemSize.Height}");
+            Monitor.Debug($"Guessing Max Views for {size.Width}x{size.Height}");
+            Monitor.Debug($"Landscape. Table = {rotatedWallSize.NumRows}x{rotatedWallSize.NumColumns}, Padding = {rotatedWallSize.PaddingX}x{rotatedWallSize.PaddingY}, ItemSize = {rotatedWallSize.ItemSize.Width}x{rotatedWallSize.ItemSize.Height}");
 
             // setup our initial data & views.
             for (var i = 0; i < maxNumViews; i++)
@@ -172,7 +171,7 @@ namespace XamJam.Wall
                 lastHeight = screenHeight;
                 WidthRequest = screenWidth;
                 HeightRequest = screenHeight;
-                Monitor.Info($"Size Allocated: {screenWidth}x{screenHeight}, Grid = {newSize.NumRows}x{newSize.NumColumns}, Paddings = {newSize.PaddingX}x{newSize.PaddingY}, ItemSize = {newSize.ItemSize.Width}x{newSize.ItemSize.Height}");
+                Monitor.Debug($"Size Allocated: {screenWidth}x{screenHeight}, Grid = {newSize.NumRows}x{newSize.NumColumns}, Paddings = {newSize.PaddingX}x{newSize.PaddingY}, ItemSize = {newSize.ItemSize.Width}x{newSize.ItemSize.Height}");
             }
             return sizeChanged;
         }
@@ -186,7 +185,7 @@ namespace XamJam.Wall
 
         private void UpdateViewModels(ViewModelCommand command)
         {
-            Monitor.Debug($"Updating ViewModels due to {command}");
+            Monitor.Trace($"Updating ViewModels due to {command}");
             RetrievedData<object> viewModelsToDisplay;
             switch (command)
             {
@@ -213,14 +212,14 @@ namespace XamJam.Wall
                 {
                     // Yay, this View has data available, may the View and ViewModel be married!
                     wallView.BindingContext = viewModelsToDisplay.Retrieved[i++];
-                    Monitor.Debug($"Displaying ViewModel: {wallView.BindingContext}");
+                    Monitor.Trace($"Displaying ViewModel: {wallView.BindingContext}");
                     wallView.IsVisible = true; // This is necessary because the view may have become invisible if there was no view model for it (think page forward to end, then page back)
                 }
                 else
                 {
                     // Sorry View, there is no ViewModel available for you. You are banished and hidden.
                     wallView.IsVisible = false;
-                    Monitor.Debug($"Hiding View that was Displaying ViewModel: {wallView.BindingContext}");
+                    Monitor.Trace($"Hiding View that was Displaying ViewModel: {wallView.BindingContext}");
                     //numVisibleViews--;
                 }
             }

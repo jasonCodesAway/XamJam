@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="XamJam.Demo.View.DemoScreenSizeView">
+    <StackLayout>
+        <Label Text="I dare you to rotate me. Go ahead..." TextColor="Red"/>
+        <Label Text="I dare you to rotate me. Go ahead..." TextColor="Red"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding Width}" TextColor="Red"/>
+            <Label Text=" x " TextColor="Red"/>
+            <Label Text="{Binding Height}" TextColor="Red"/>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

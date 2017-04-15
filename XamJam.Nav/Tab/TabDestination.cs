@@ -4,7 +4,7 @@ using Xamarin.Forms;
 namespace XamJam.Nav.Tab
 {
     /// <summary>
-    ///     A single tab
+    ///     A single tab view within a tabbed pane
     /// </summary>
     [ImplementPropertyChanged]
     public class TabDestination : IDestination<TabScheme>
@@ -82,6 +82,11 @@ namespace XamJam.Nav.Tab
             return ((int) (color.R*255)).ToString("X2") +
                    ((int) (color.G*255)).ToString("X2") +
                    ((int) (color.B*255)).ToString("X2");
+        }
+
+        public override string ToString()
+        {
+            return "TabDestination{" + View.GetType().Name + "}";
         }
     }
 }

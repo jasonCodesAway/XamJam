@@ -25,6 +25,8 @@ namespace XamJam.Nav.Navigation
 
         public Page CurrentPage => NavigationPage;
 
+        public bool IsDisplayed { get; set; } = false;
+
         public SchemeType SchemeType => SchemeType.NavScheme;
     }
 }

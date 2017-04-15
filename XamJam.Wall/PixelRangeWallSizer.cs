@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Plugin.XamJam.BugHound;
+﻿using Plugin.XamJam.BugHound;
 using Xamarin.Forms;
 using XamJam.Util;
 

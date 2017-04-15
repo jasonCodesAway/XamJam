@@ -5,14 +5,9 @@ using Xamarin.Forms;
 using XamJam.Demo.View;
 using XamJam.Nav;
 using XamJam.Wall;
-using Image = MR.Gestures.Image;
 
 namespace XamJam.Demo.ViewModel
 {
-    /// <summary>
-    /// This class only exists to link this view model, which as nothing in it at all, to the DemoImageWallView for
-    /// view-model-based navigation purposes.
-    /// </summary>
     [ImplementPropertyChanged]
     public class DemoImageWallViewModel
     {

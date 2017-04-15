@@ -37,6 +37,8 @@ namespace XamJam.Nav.Tab
 
         public Page CurrentPage => TabbedPage;
 
+        public bool IsDisplayed { get; set; } = false;
+
         public void SetChildren(Func<View, ContentPage> pageCreator = null, params TabDestination[] children)
         {
             if (pageCreator == null)

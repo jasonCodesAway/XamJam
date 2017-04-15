@@ -2,8 +2,9 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamJam.Demo.View.MainView">
-  <StackLayout>
-    <Button Text="Image Wall" Command="{Binding ShowImageWallCommand}"/>
-    <Button Text="Ratings" Command="{Binding ShowRatingCommand}"/>
-  </StackLayout>
+    <StackLayout>
+        <Button Text="Screen" Command="{Binding ShowScreenCommand}"/>
+        <Button Text="Image Wall" Command="{Binding ShowImageWallCommand}"/>
+        <Button Text="Ratings" Command="{Binding ShowRatingCommand}"/>
+    </StackLayout>
 </ContentView>

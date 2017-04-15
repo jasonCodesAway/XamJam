@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XamJam.Nav.Navigation.NavigationDestination&lt;TViewModel&gt;" Collapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Navigation\NavigationDestination.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamJam.Nav.Navigation.NavigationScheme" Collapsed="true">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAQQAAAAAAAAAAAAAAABAAAAAI=</HashCode>
+      <FileName>Navigation\NavigationScheme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XamJam.Nav.Root.RootDestination&lt;TViewModel&gt;" Collapsed="true">
+    <Position X="10" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Root\RootDestination.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamJam.Nav.Root.RootScheme" Collapsed="true">
+    <Position X="4.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAQQAAAAAAAAAEAAAAAAAAAAAI=</HashCode>
+      <FileName>Root\RootScheme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XamJam.Nav.Tab.TabDestination" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAACABAABAAkAAMBAQAAgAAEABBAAAAAAgAAAIAAAA=</HashCode>
+      <FileName>Tab\TabDestination.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XamJam.Nav.Tab.TabScheme" Collapsed="true">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABFAAAAAAAAAAABCUQAAAAAAEAAAAAQAAAAAACAI=</HashCode>
+      <FileName>Tab\TabScheme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XamJam.Nav.Tab.SexyTabbedView" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAEgAAAAAAAAAAEAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Tab\SexyTabbedView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamJam.Nav.Tab.SexyTabbedItemView" Collapsed="true">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tab\SexyTabbedItemView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XamJam.Nav.PageDestination&lt;TNavScheme&gt;" Collapsed="true">
+    <Position X="8" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAQgAAEAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDestination.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XamJam.Nav.Navigator" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAIAQAAAACAAAACMAAEAAAACAEAQAAAAAA=</HashCode>
+      <FileName>Navigator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="XamJam.Nav.IDestination&lt;TNavScheme&gt;" Collapsed="true">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IDestination.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="XamJam.Nav.INavScheme" Collapsed="true">
+    <Position X="6" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>INavScheme.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="XamJam.Nav.SchemeType" Collapsed="true">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgCAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>SchemeType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

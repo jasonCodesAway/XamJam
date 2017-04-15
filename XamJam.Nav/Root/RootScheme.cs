@@ -15,5 +15,7 @@ namespace XamJam.Nav.Root
         public INavScheme Parent => null;
 
         public Page CurrentPage { get; set; }
+
+        public bool IsDisplayed { get; set; } = false;
     }
 }

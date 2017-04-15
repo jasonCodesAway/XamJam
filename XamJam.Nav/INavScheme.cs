@@ -9,5 +9,7 @@ namespace XamJam.Nav
         INavScheme Parent { get; }
 
         Page CurrentPage { get; }
+
+        bool IsDisplayed { get; set; }
     }
 }

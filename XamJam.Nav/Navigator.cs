@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Plugin.XamJam.BugHound;
 using Xamarin.Forms;
@@ -85,43 +86,54 @@ namespace XamJam.Nav
             // Setup the ViewModel
             setupState?.Invoke((TVm)destination.ViewModel);
 
-            // Display the new page
+            // Display the new page. 
             switch (destination.NavScheme.SchemeType)
             {
+                // Make sure the right tab is displayed, then make sure the parent of the tab is displayed
                 case SchemeType.TabScheme:
                     var tabDestination = (TabDestination)destination;
+                    // Make sure the right tab is displayed
                     tabDestination.NavScheme.Show(tabDestination);
-                    // If the tab page isn't the main page
-                    if (application.MainPage != tabDestination.NavScheme.TabbedPage)
+                    // Make sure the parent of the tab view is displayed
+                    //TODO: FIXME: WTH!
+                    //if (!tabDestination.IsDisplayed)
+                    //{
+                    //}
+                    if (!tabDestination.View.IsVisible)
                     {
-                        // if the main page is a nav page, then push the tab page
-                        if (currentDestination.NavScheme.SchemeType == SchemeType.NavScheme)
-                        {
-                            Monitor.Debug("Pushing tabbed page on top of Navigation Page");
-                            await currentDestination.NavScheme.CurrentPage.Navigation.PushAsync(tabDestination.NavScheme.TabbedPage);
-                        }
-                        // else set the current page to the tabbed page
-                        else if (tabDestination.NavScheme.Parent?.CurrentPage != null && 
-                            tabDestination.NavScheme.Parent.SchemeType == SchemeType.NavScheme)
-                        {
-                            Monitor.Debug($"Setting tab's navigation parent: {tabDestination.NavScheme.Parent.CurrentPage.GetType().Name} as the root page");
-                            application.MainPage = tabDestination.NavScheme.Parent.CurrentPage;
-                            //do we have to push the tab on the parent here?
-                            //await tabDestination.NavScheme.Parent.CurrentPage.Navigation.PushAsync(tabDestination.NavScheme.TabbedPage);
-                        }
-                        else
-                        {
-                            Monitor.Debug("Setting tabbed page as the root page");
-                            application.MainPage = tabDestination.NavScheme.TabbedPage;
-                        }
+                        Debug.WriteLine("Okay, now show this sucker");
                     }
+                    // If the tab page isn't the main page
+                    //if (application.MainPage != tabDestination.NavScheme.TabbedPage)
+                    //{
+                    //    // if the main page is a nav page, then push the tab page
+                    //    if (currentDestination.NavScheme.SchemeType == SchemeType.NavScheme)
+                    //    {
+                    //        Monitor.Debug("Pushing tabbed page on top of Navigation Page");
+                    //        await currentDestination.NavScheme.CurrentPage.Navigation.PushAsync(tabDestination.NavScheme.TabbedPage);
+                    //    }
+                    //    // else set the current page to the tabbed page
+                    //    else if (tabDestination.NavScheme.Parent?.CurrentPage != null && 
+                    //        tabDestination.NavScheme.Parent.SchemeType == SchemeType.NavScheme)
+                    //    {
+                    //        Monitor.Debug($"Setting tab's navigation parent: {tabDestination.NavScheme.Parent.CurrentPage.GetType().Name} as the root page");
+                    //        application.MainPage = tabDestination.NavScheme.Parent.CurrentPage;
+                    //        //do we have to push the tab on the parent here?
+                    //        //await tabDestination.NavScheme.Parent.CurrentPage.Navigation.PushAsync(tabDestination.NavScheme.TabbedPage);
+                    //    }
+                    //    else
+                    //    {
+                    //        Monitor.Debug("Setting tabbed page as the root page");
+                    //        application.MainPage = tabDestination.NavScheme.TabbedPage;
+                    //    }
+                    //}
                     break;
                 case SchemeType.NavScheme:
                     var navDestination = (NavigationDestination<TVm>)destination;
-                    Monitor.Debug($"Pushing {navDestination.Page.GetType().Name} on NavigationPage: {navDestination.NavScheme.NavigationPage} App.MainPage: {application.MainPage}");
+                    Monitor.Debug($"Pushing {navDestination.Page} on NavigationPage: {navDestination.NavScheme.NavigationPage} App.MainPage: {application.MainPage}");
                     await navDestination.PushAsync();
-                    // Assume we don't need to "go back" to whatever was being displayed, if we're not showing the navigation page then we will and it'll take over
-                    if (application.MainPage != navDestination.NavScheme.NavigationPage)
+                    // If the nav page isn't showing, then implicitly make it the main page
+                    if (!navDestination.NavScheme.NavigationPage.IsVisible)
                         application.MainPage = navDestination.NavScheme.NavigationPage;
                     break;
                 case SchemeType.Root:
